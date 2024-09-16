@@ -60,26 +60,25 @@ class ProductController extends Controller
                 'length' => 4,
                 'prefix' => 'PC'
             ]),
-
-            'product_image'     => $image,
-            'name'              => $request->name,
-            'category_id'       => $request->category_id,
-            'unit_id'           => $request->unit_id,
-            'quantity'          => $request->quantity,
-            'buying_price'      => $request->buying_price,
-            'selling_price'     => $request->selling_price,
-            'quantity_alert'    => $request->quantity_alert,
-            'tax'               => $request->tax,
-            'tax_type'          => $request->tax_type,
-            'notes'             => $request->notes,
+            'product_image' => $image,
+            'category_id' => $request->category_id,
+            'unit_id' => $request->unit_id,
+            'quantity' => $request->quantity,
+            'buying_price' => $request->buying_price,
+            'selling_price' => $request->selling_price,
+            'quantity_alert' => $request->quantity_alert,
+            'tax' => $request->tax,
+            'tax_type' => $request->tax_type,
+            'notes' => $request->notes,
             "user_id" => auth()->id(),
+            // 'name' => $request->name, // Hapus baris ini jika tidak diperlukan
             "slug" => Str::slug($request->name, '-'),
             "uuid" => Str::uuid()
         ]);
 
-
         return to_route('products.index')->with('success', 'Product has been created!');
     }
+
 
     public function show($uuid)
     {
@@ -112,7 +111,6 @@ class ProductController extends Controller
 
         $image = $product->product_image;
         if ($request->hasFile('product_image')) {
-
             // Delete Old Photo
             if ($product->product_image) {
                 unlink(public_path('storage/') . $product->product_image);
@@ -120,8 +118,6 @@ class ProductController extends Controller
             $image = $request->file('product_image')->store('products', 'public');
         }
 
-        $product->name = $request->name;
-        $product->slug = Str::slug($request->name, '-');
         $product->category_id = $request->category_id;
         $product->unit_id = $request->unit_id;
         $product->quantity = $request->quantity;
@@ -133,7 +129,6 @@ class ProductController extends Controller
         $product->notes = $request->notes;
         $product->product_image = $image;
         $product->save();
-
 
         return redirect()
             ->route('products.index')

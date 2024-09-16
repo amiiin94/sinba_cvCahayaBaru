@@ -14,7 +14,7 @@ class ProductByCategoryTable extends Component
 
     public $search = '';
 
-    public $sortField = 'name';
+    public $sortField = 'category';
 
     public $sortAsc = true;
 

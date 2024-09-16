@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->uuid();
             $table->foreignId("user_id")->constrained()->onDelete('cascade');
-            $table->string('name');
+            $table->string('name')->nullable(); // Menjadikan kolom name opsional
             $table->string('slug');
             $table->string('code');
             //$table->string('product_barcode_symbology')->nullable();

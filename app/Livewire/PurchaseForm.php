@@ -81,7 +81,7 @@ class PurchaseForm extends Component
 
         $product = $this->allProducts->find($this->invoiceProducts[$index]['product_id']);
 
-        $this->invoiceProducts[$index]['product_name'] = $product->name;
+        $this->invoiceProducts[$index]['product_name'] = $product->category ? $product->category->name : '--';
         $this->invoiceProducts[$index]['product_price'] = $product->buying_price;
         $this->invoiceProducts[$index]['is_saved'] = true;
     }

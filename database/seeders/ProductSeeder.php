@@ -14,7 +14,7 @@ class ProductSeeder extends Seeder
     {
         $products = collect([
             [
-                'slug' => 'iphone-14-pro',
+                'slug' => 'ta-product-0',
                 'code' => 001,
                 'quantity' => 10,
                 'buying_price' => 900,
@@ -23,14 +23,14 @@ class ProductSeeder extends Seeder
                 'tax' => 24,
                 'tax_type' => 1,
                 'notes' => null,
-                'category_id' => 3,
-                'unit_id' => 3,
+                'category_id' => 1, // TA
+                'unit_id' => 1,
                 'user_id'=>1,
                 'uuid'=>Str::uuid(),
                 'product_image' => 'assets/img/products/ip14.png'
             ],
             [
-                'slug' => 'asus-laptop',
+                'slug' => 'ta-potong-product-002',
                 'code' => 002,
                 'quantity' => 10,
                 'buying_price' => 900,
@@ -39,14 +39,14 @@ class ProductSeeder extends Seeder
                 'tax' => 24,
                 'tax_type' => 1,
                 'notes' => null,
-                'category_id' => 1,
-                'unit_id' => 3,
+                'category_id' => 2, // TA POTONG
+                'unit_id' => 1,
                 'user_id'=>1,
                 'uuid'=>Str::uuid(),
                 'product_image' => 'assets/img/products/ip14.png'
             ],
             [
-                'slug' => 'logitech-keyboard',
+                'slug' => 'tred-product-003',
                 'code' => 003,
                 'quantity' => 10,
                 'buying_price' => 900,
@@ -55,14 +55,14 @@ class ProductSeeder extends Seeder
                 'tax' => 24,
                 'tax_type' => 1,
                 'notes' => null,
-                'category_id' => 2,
-                'unit_id' => 3,
+                'category_id' => 3, // TRED
+                'unit_id' => 1,
                 'user_id'=>1,
                 'uuid'=>Str::uuid(),
                 'product_image' => 'assets/img/products/keyboard.jpg'
             ],
             [
-                'slug' => 'logitech-speakers',
+                'slug' => 'benang-product-004',
                 'code' => 004,
                 'quantity' => 10,
                 'buying_price' => 900,
@@ -71,14 +71,14 @@ class ProductSeeder extends Seeder
                 'tax' => 24,
                 'tax_type' => 1,
                 'notes' => null,
-                'category_id' => 4,
-                'unit_id' => 3,
+                'category_id' => 4, // BENANG
+                'unit_id' => 1,
                 'user_id'=>1,
                 'uuid'=>Str::uuid(),
                 'product_image' => 'assets/img/products/speaker.png'
             ],
             [
-                'slug' => 'autocad-v7.0',
+                'slug' => 'kelotokan-product-005',
                 'code' => 005,
                 'quantity' => 10,
                 'buying_price' => 900,
@@ -87,8 +87,24 @@ class ProductSeeder extends Seeder
                 'tax' => 24,
                 'tax_type' => 1,
                 'notes' => null,
-                'category_id' => 5,
-                'unit_id' => 3,
+                'category_id' => 5, // KELOTOKAN
+                'unit_id' => 1,
+                'user_id'=>1,
+                'uuid'=>Str::uuid(),
+                'product_image' => 'assets/img/products/autocard.png'
+            ],
+            [
+                'slug' => 'kawat-product-005',
+                'code' => 006,
+                'quantity' => 10,
+                'buying_price' => 900,
+                'selling_price' => 1400,
+                'quantity_alert' => 10,
+                'tax' => 24,
+                'tax_type' => 1,
+                'notes' => null,
+                'category_id' => 6, // KAWAT
+                'unit_id' => 1,
                 'user_id'=>1,
                 'uuid'=>Str::uuid(),
                 'product_image' => 'assets/img/products/autocard.png'

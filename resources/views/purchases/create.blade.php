@@ -7,6 +7,7 @@
             <x-alert />
 
             <div class="row row-cards">
+                TESTES
 
                 <form action="{{ route('purchases.store') }}" method="POST">
                     @csrf

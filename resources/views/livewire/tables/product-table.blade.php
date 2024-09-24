@@ -79,15 +79,15 @@
                         </a>
                     </th> --}}
                     <th scope="col" class="align-middle text-center">
-                        <a wire:click.prevent="sortBy('price')" href="#" role="button">
-                            {{ __('Price') }}
-                            @include('inclues._sort-icon', ['field' => 'price'])
+                        <a wire:click.prevent="sortBy('category_id')" href="#" role="button">
+                            {{ __('Nama kategori') }}
+                            @include('inclues._sort-icon', ['field' => 'category_id'])
                         </a>
                     </th>
                     <th scope="col" class="align-middle text-center">
-                        <a wire:click.prevent="sortBy('category_id')" href="#" role="button">
-                            {{ __('Category') }}
-                            @include('inclues._sort-icon', ['field' => 'category_id'])
+                        <a wire:click.prevent="sortBy('price')" href="#" role="button">
+                            {{ __('Price') }}
+                            @include('inclues._sort-icon', ['field' => 'price'])
                         </a>
                     </th>
                     <th scope="col" class="align-middle text-center">
@@ -119,10 +119,10 @@
                             {{ $product->code }}
                         </td> --}}
                         <td class="align-middle text-center">
-                            {{ $product->buying_price }}
+                            {{ $product->category ? $product->category->name : '--' }}
                         </td>
                         <td class="align-middle text-center">
-                            {{ $product->category ? $product->category->name : '--' }}
+                            {{ $product->buying_price }}
                         </td>
                         <td class="align-middle text-center">
                             {{ $product->quantity }}

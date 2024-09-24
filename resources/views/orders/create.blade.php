@@ -85,6 +85,7 @@
                                     <table class="table table-striped table-bordered align-middle">
                                         <thead class="thead-light">
                                             <tr>
+                                                {{-- <th scope="col">{{ __('Id') }}</th> --}}
                                                 <th scope="col">{{ __('Category') }}</th>
                                                 <th scope="col" class="text-center">{{ __('Quantity') }}</th>
                                                 <th scope="col" class="text-center">{{ __('Price') }}</th>
@@ -100,8 +101,12 @@
                                                     <td>
                                                         {{ $item->name }}
                                                     </td>
+                                                    {{-- <td>
+                                                        {{ $item->category_id }}
+                                                    </td> --}}
 
-                                                    <td style="min-width: 170px;">`
+                                                    <td style="min-width: 170px;">
+                                                        <form></form>
                                                         <form action="{{ route('pos.updateCartItem', $item->rowId) }}"
                                                             method="POST">
                                                             @csrf
@@ -222,6 +227,7 @@
                                         <thead class="thead-light">
                                             <tr>
                                                 {{-- - <th scope="col">No.</th> - --}}
+                                                <th scope="col">ID</th>
                                                 <th scope="col">Category</th>
                                                 <th scope="col">Quantity</th>
                                                 <th scope="col">Unit</th>
@@ -239,6 +245,9 @@
                                                 </div>
                                             </td>
                                             - --}}
+                                                    <td class="text-center">
+                                                        {{ $product->category_id }}
+                                                    </td>
                                                     <td class="text-center">
                                                         {{ $product->category ? $product->category->name : '--' }}
                                                     </td>
@@ -258,8 +267,9 @@
                                                                 @csrf
                                                                 <input type="hidden" name="id"
                                                                     value="{{ $product->id }}">
+                                                                {{-- <input type="hidden" name="name"
+                                                                    value="{{ $product->category_id }}"> --}}
                                                                 <input type="hidden" name="name"
-                                                                    {{ $product->category ? $product->category->name : '--' }}
                                                                     value="{{ $product->category ? $product->category->name : '--' }}">
                                                                 <input type="hidden" name="selling_price"
                                                                     value="{{ $product->selling_price }}">

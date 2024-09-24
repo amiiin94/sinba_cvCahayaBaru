@@ -9,6 +9,7 @@
 9. npm install
 10. npm run dev
 11. php artisan serve
+12. composer require maatwebsite/excel
 
 note:
 admin@admin.com

@@ -87,7 +87,7 @@ class PurchaseController extends Controller
                 'length' => 10,
                 'prefix' => 'PRS-'
             ]),
-            'status'     => PurchaseStatus::PENDING->value,
+            'status'     => PurchaseStatus::APPROVED->value,
             'created_by' => auth()->user()->id,
             'supplier_id.required' =>$request->required,
             'supplier_id'   =>$request->supplier_id,
@@ -174,55 +174,66 @@ class PurchaseController extends Controller
     }
 
     public function exportPurchaseReport(Request $request)
-    {
-        $rules = [
-            'start_date' => 'required|string|date_format:Y-m-d',
-            'end_date' => 'required|string|date_format:Y-m-d',
-        ];
+{
+    $rules = [
+        'start_date' => 'required|string|date_format:Y-m-d',
+        'end_date' => 'required|string|date_format:Y-m-d',
+    ];
 
-        $validatedData = $request->validate($rules);
+    $validatedData = $request->validate($rules);
 
-        $sDate = $validatedData['start_date'];
-        $eDate = $validatedData['end_date'];
+    $sDate = $validatedData['start_date'];
+    $eDate = $validatedData['end_date'];
 
-        $purchases = DB::table('purchase_details')
-            ->join('products', 'purchase_details.product_id', '=', 'products.id')
-            ->join('purchases', 'purchase_details.purchase_id', '=', 'purchases.id')
-            ->join('users', 'users.id', '=', 'purchases.created_by')
-            ->whereBetween('purchases.updated_at',[$sDate,$eDate])
-            ->where('purchases.status','1')
-            ->select( 'purchases.purchase_no', 'purchases.updated_at', 'purchases.supplier_id','products.code', 'products.name', 'purchase_details.quantity', 'purchase_details.unitcost', 'purchase_details.total', 'users.name as created_by')
-            ->get();
+    $purchases = DB::table('purchase_details')
+        ->join('products', 'purchase_details.product_id', '=', 'products.id')
+        ->join('purchases', 'purchase_details.purchase_id', '=', 'purchases.id')
+        ->join('users', 'users.id', '=', 'purchases.created_by')
+        ->join('suppliers', 'suppliers.id', '=', 'purchases.supplier_id') // Join to get supplier details
+        ->whereBetween('purchases.updated_at', [$sDate, $eDate])
+        ->where('purchases.status', '1')
+        ->select(
+            'purchases.purchase_no',
+            'purchases.updated_at',
+            'suppliers.name as supplier_name', // Get the supplier name
+            'products.code',
+            'products.name',
+            'purchase_details.quantity',
+            'purchase_details.unitcost',
+            'purchase_details.total',
+            'users.name as created_by'
+        )
+        ->get();
 
-        $purchase_array [] = array(
-            'Date',
-            'No Purchase',
-            'Supplier',
-            'Product Code',
-            'Product',
-            'Quantity',
-            'Unitcost',
-            'Total',
-            'Created By'
+    $purchase_array[] = array(
+        'Date',
+        'No Purchase',
+        'Supplier', // Change this to 'Supplier Name' if desired
+        'Product Code',
+        'Product',
+        'Quantity',
+        'Unitcost',
+        'Total',
+        'Created By'
+    );
+
+    foreach ($purchases as $purchase) {
+        $purchase_array[] = array(
+            'Date' => $purchase->updated_at,
+            'No Purchase' => $purchase->purchase_no,
+            'Supplier' => $purchase->supplier_name, // Use supplier name
+            'Product Code' => $purchase->code,
+            'Product' => $purchase->name,
+            'Quantity' => $purchase->quantity,
+            'Unitcost' => $purchase->unitcost,
+            'Total' => $purchase->total,
+            'Created By' => $purchase->created_by
         );
-
-        foreach($purchases as $purchase)
-        {
-            $purchase_array[] = array(
-                'Date' => $purchase->updated_at,
-                'No Purchase' => $purchase->purchase_no,
-                'Supplier' => $purchase->supplier_id,
-                'Product Code' => $purchase->code,
-                'Product' => $purchase->name,
-                'Quantity' => $purchase->quantity,
-                'Unitcost' => $purchase->unitcost,
-                'Total' => $purchase->total,
-                'Created By' => $purchase->created_by
-            );
-        }
-
-        $this->exportExcel($purchase_array);
     }
+
+    $this->exportExcel($purchase_array);
+}
+
 
     public function exportExcel($products)
     {

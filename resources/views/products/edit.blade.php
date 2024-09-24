@@ -56,12 +56,12 @@
 
                             <div class="card">
                                 <div class="card-body">
-                                    <h3 class="card-title">
+                                    {{-- <h3 class="card-title">
                                         {{ __('Product Details') }}
-                                    </h3>
+                                    </h3> --}}
 
                                     <div class="row row-cards">
-                                        <div class="col-md-12">
+                                        {{-- <div class="col-md-12">
                                             <div class="mb-3">
                                                 <label for="name" class="form-label">
                                                     {{ __('Name') }}
@@ -78,7 +78,7 @@
                                                     </div>
                                                 @enderror
                                             </div>
-                                        </div>
+                                        </div> --}}
 
                                         <div class="col-sm-6 col-md-6">
                                             <div class="mb-3">

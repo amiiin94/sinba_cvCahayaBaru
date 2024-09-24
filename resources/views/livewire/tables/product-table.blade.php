@@ -66,22 +66,28 @@
                     <th scope="col" class="align-middle text-center">
                         {{ __('Image') }}
                     </th>
-                    <th scope="col" class="align-middle text-center">
+                    {{-- <th scope="col" class="align-middle text-center">
                         <a wire:click.prevent="sortBy('name')" href="#" role="button">
                             {{ __('Name') }}
                             @include('inclues._sort-icon', ['field' => 'name'])
                         </a>
-                    </th>
-                    <th scope="col" class="align-middle text-center">
+                    </th> --}}
+                    {{-- <th scope="col" class="align-middle text-center">
                         <a wire:click.prevent="sortBy('code')" href="#" role="button">
                             {{ __('Code') }}
                             @include('inclues._sort-icon', ['field' => 'code'])
                         </a>
-                    </th>
+                    </th> --}}
                     <th scope="col" class="align-middle text-center">
                         <a wire:click.prevent="sortBy('category_id')" href="#" role="button">
-                            {{ __('Category') }}
+                            {{ __('Nama kategori') }}
                             @include('inclues._sort-icon', ['field' => 'category_id'])
+                        </a>
+                    </th>
+                    <th scope="col" class="align-middle text-center">
+                        <a wire:click.prevent="sortBy('price')" href="#" role="button">
+                            {{ __('Price') }}
+                            @include('inclues._sort-icon', ['field' => 'price'])
                         </a>
                     </th>
                     <th scope="col" class="align-middle text-center">
@@ -106,14 +112,17 @@
                                 src="{{ $product->product_image ? asset('storage/' . $product->product_image) : asset('assets/img/products/default.webp') }}"
                                 alt="">
                         </td>
-                        <td class="align-middle text-center">
+                        {{-- <td class="align-middle text-center">
                             {{ $product->name }}
-                        </td>
-                        <td class="align-middle text-center">
+                        </td> --}}
+                        {{-- <td class="align-middle text-center">
                             {{ $product->code }}
-                        </td>
+                        </td> --}}
                         <td class="align-middle text-center">
                             {{ $product->category ? $product->category->name : '--' }}
+                        </td>
+                        <td class="align-middle text-center">
+                            {{ $product->buying_price }}
                         </td>
                         <td class="align-middle text-center">
                             {{ $product->quantity }}

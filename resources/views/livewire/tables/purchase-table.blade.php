@@ -113,6 +113,9 @@
                             </span>
                         </td>
                         <td class="align-middle text-center" style="width: 10%">
+                            
+                            {{-- <x-button.show class="btn-icon bg-azure-lt" route="{{ route('purchases.show', $purchase->uuid) }}"/> --}}
+                                
                             <x-button.show class="btn-icon" route="{{ route('purchases.edit', $purchase->uuid) }}"/>
                             {{-- <x-button.complete class="btn-icon"  onclick="return confirm('Are you sure to approve purchase no. {{ $purchase->purchase_no }}!') route="{{ route('purchases.update', $purchase->uuid) }}"/> --}}
                             <x-button.complete class="btn-icon" route="{{ route('purchases.update', $purchase->uuid) }}" onclick="return confirm('Are you sure to approve purchase no. {{ $purchase->purchase_no }}?')"/>

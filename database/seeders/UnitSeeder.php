@@ -15,23 +15,18 @@ class UnitSeeder extends Seeder
     {
         $units = collect([
             [
-                'name' => 'Meters',
-                'slug' => 'meters',
-                'short_code' => 'm',
+                'name' => 'Kilometer',
+                'slug' => 'Kilometer',
+                'short_code' => 'kg',
                 'user_id'=>1
             ],
             [
-                'name' => 'Centimeters',
-                'slug' => 'centimeters',
-                'short_code' => 'cm',
+                'name' => 'kg',
+                'slug' => 'kg',
+                'short_code' => 'kg',
                 'user_id'=>1
             ],
-            [
-                'name' => 'Piece',
-                'slug' => 'piece',
-                'short_code' => 'pc',
-                'user_id'=>1
-            ]
+            
         ]);
 
         $units->each(function ($unit){

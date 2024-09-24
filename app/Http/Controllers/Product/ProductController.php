@@ -60,26 +60,25 @@ class ProductController extends Controller
                 'length' => 4,
                 'prefix' => 'PC'
             ]),
-
-            'product_image'     => $image,
-            'name'              => $request->name,
-            'category_id'       => $request->category_id,
-            'unit_id'           => $request->unit_id,
-            'quantity'          => $request->quantity,
-            'buying_price'      => $request->buying_price,
-            'selling_price'     => $request->selling_price,
-            'quantity_alert'    => $request->quantity_alert,
-            'tax'               => $request->tax,
-            'tax_type'          => $request->tax_type,
-            'notes'             => $request->notes,
+            'product_image' => $image,
+            'category_id' => $request->category_id,
+            'unit_id' => $request->unit_id,
+            'quantity' => $request->quantity,
+            'buying_price' => $request->buying_price,
+            'selling_price' => $request->selling_price,
+            'quantity_alert' => $request->quantity_alert,
+            'tax' => $request->tax,
+            'tax_type' => $request->tax_type,
+            'notes' => $request->notes,
             "user_id" => auth()->id(),
+            // 'name' => $request->name, // Hapus baris ini jika tidak diperlukan
             "slug" => Str::slug($request->name, '-'),
             "uuid" => Str::uuid()
         ]);
 
-
         return to_route('products.index')->with('success', 'Product has been created!');
     }
+
 
     public function show($uuid)
     {
@@ -107,38 +106,42 @@ class ProductController extends Controller
 
     public function update(UpdateProductRequest $request, $uuid)
     {
+        // Cari produk berdasarkan UUID
         $product = Product::where("uuid", $uuid)->firstOrFail();
-        $product->update($request->except('product_image'));
 
-        $image = $product->product_image;
+        // Periksa apakah ada file gambar baru
         if ($request->hasFile('product_image')) {
-
-            // Delete Old Photo
-            if ($product->product_image) {
+            // Hapus foto lama jika ada
+            if ($product->product_image && file_exists(public_path('storage/') . $product->product_image)) {
                 unlink(public_path('storage/') . $product->product_image);
             }
+            // Simpan gambar baru
             $image = $request->file('product_image')->store('products', 'public');
+        } else {
+            // Jika tidak ada gambar baru, gunakan gambar lama
+            $image = $product->product_image;
         }
 
-        $product->name = $request->name;
-        $product->slug = Str::slug($request->name, '-');
-        $product->category_id = $request->category_id;
-        $product->unit_id = $request->unit_id;
-        $product->quantity = $request->quantity;
-        $product->buying_price = $request->buying_price;
-        $product->selling_price = $request->selling_price;
-        $product->quantity_alert = $request->quantity_alert;
-        $product->tax = $request->tax;
-        $product->tax_type = $request->tax_type;
-        $product->notes = $request->notes;
-        $product->product_image = $image;
-        $product->save();
+        // Update semua field produk
+        $product->update([
+            'category_id' => $request->category_id,
+            'unit_id' => $request->unit_id,
+            'quantity' => $request->quantity,
+            'buying_price' => $request->buying_price,
+            'selling_price' => $request->selling_price,
+            'quantity_alert' => $request->quantity_alert,
+            'tax' => $request->tax,
+            'tax_type' => $request->tax_type,
+            'notes' => $request->notes,
+            'product_image' => $image, // Update gambar baru atau pertahankan yang lama
+        ]);
 
-
+        // Redirect dengan pesan sukses
         return redirect()
-            ->route('products.index')
+            ->route('products.index') // Tidak perlu menggunakan route(route: ...)
             ->with('success', 'Product has been updated!');
     }
+
 
     public function destroy($uuid)
     {

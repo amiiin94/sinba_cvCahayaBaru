@@ -30,7 +30,7 @@
 
                             @foreach ($allProducts as $product)
                                 <option value="{{ $product->id }}" class="text-center">
-                                    {{ $product->name }}
+                                    {{ $product->category ? $product->category->name : '--' }}
 {{--                                    (${{ number_format($product->buying_price, 2) }})--}}
                                 </option>
                             @endforeach

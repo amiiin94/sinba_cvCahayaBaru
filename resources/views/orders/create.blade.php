@@ -21,9 +21,9 @@
                             <div class="card-body">
                                 <div class="row gx-3 mb-3">
                                     @include('partials.session')
-                                    <div class="col-md-4">
+                                    <div class="col-md-6">
                                         <label for="purchase_date" class="small my-1">
-                                            {{ __('Date') }}
+                                            {{ __('Tanggal Kirim') }}
                                             <span class="text-danger">*</span>
                                         </label>
 
@@ -38,9 +38,9 @@
                                         @enderror
                                     </div>
 
-                                    <div class="col-md-4">
+                                    <div class="col-md-6">
                                         <label class="small mb-1" for="customer_id">
-                                            {{ __('Customer') }}
+                                            {{ __('Relasi') }}
                                             <span class="text-danger">*</span>
                                         </label>
 
@@ -59,21 +59,6 @@
                                         </select>
 
                                         @error('customer_id')
-                                            <div class="invalid-feedback">
-                                                {{ $message }}
-                                            </div>
-                                        @enderror
-                                    </div>
-
-                                    <div class="col-md-4">
-                                        <label class="small mb-1" for="reference">
-                                            {{ __('Reference') }}
-                                        </label>
-
-                                        <input type="text" class="form-control" id="reference" name="reference"
-                                            value="ORD" readonly>
-
-                                        @error('reference')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
                                             </div>

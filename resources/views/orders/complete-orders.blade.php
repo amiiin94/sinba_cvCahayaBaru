@@ -28,6 +28,12 @@
     </div>
     @else
     <div class="container-xl">
+        <div class="card-actions">
+            <a href="{{ route('orders.export') }}" class="btn btn-icon btn-outline-primary">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-download" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 3v12" /><path d="M16 11l-4 4l-4 -4" /><path d="M12 21v-18" /></svg>
+                Export to Excel
+            </a>
+        </div>
         <div class="card">
             <div class="card-header">
                 <div>
@@ -53,11 +59,11 @@
                         <tr>
                             <th scope="col" class="text-center">{{ __('No.') }}</th>
                             <th scope="col" class="text-center">{{ __('Invoice No.') }}</th>
-                            <th scope="col" class="text-center">{{ __('Customer') }}</th>
-                            <th scope="col" class="text-center">{{ __('Date') }}</th>
-                            <th scope="col" class="text-center">{{ __('Payment') }}</th>
+                            <th scope="col" class="text-center">{{ __('Relasi') }}</th>
+                            <th scope="col" class="text-center">{{ __('Tanggal Kirim') }}</th>
+                            <th scope="col" class="text-center">{{ __('Pembayaran') }}</th>
                             <th scope="col" class="text-center">{{ __('Total') }}</th>
-                            <th scope="col" class="text-center">{{ __('Action') }}</th>
+                            <th scope="col" class="text-center">{{ __('Aksi') }}</th>
                         </tr>
                     </thead>
                     <tbody>

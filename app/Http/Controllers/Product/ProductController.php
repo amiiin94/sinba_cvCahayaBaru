@@ -34,7 +34,7 @@ class ProductController extends Controller
         }
 
         if ($request->has('unit')) {
-            $units = Unit::where("user_id", auth()->id())->whereSlug($request->get('unit'))->get();
+            $units = Unit::where("user_id", auth()->id())->whereSlug(('unit'))->get();
         }
 
         return view('products.create', [

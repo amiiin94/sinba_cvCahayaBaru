@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name') }}</title>
+    <title>CV Chaya Baru</title>
 
     <!-- CSS files -->
     <link href="{{ asset('dist/css/tabler.min.css') }}" rel="stylesheet" />
@@ -315,15 +315,10 @@
                             </li>
 
 
-                            <li class="nav-item dropdown {{ request()->is('purchases*') ? 'active' : null }}">
-                                <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown"
-                                    data-bs-auto-close="outside" role="button" aria-expanded="false">
+                            <li class="nav-item {{ request()->is('purchases*') ? 'active' : null }}">
+                                <a class="nav-link" href="{{ route('purchases.index') }}">
                                     <span class="nav-link-icon d-md-none d-lg-inline-block">
-                                        <svg xmlns="http://www.w3.org/2000/svg"
-                                            class="icon icon-tabler icon-tabler-package-import" width="24"
-                                            height="24" viewBox="0 0 24 24" stroke-width="2"
-                                            stroke="currentColor" fill="none" stroke-linecap="round"
-                                            stroke-linejoin="round">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-package-import" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                             <path d="M12 21l-8 -4.5v-9l8 -4.5l8 4.5v4.5" />
                                             <path d="M12 12l8 -4.5" />
@@ -334,27 +329,11 @@
                                         </svg>
                                     </span>
                                     <span class="nav-link-title">
-                                        {{ __('Purchases') }}
+                                        Pembelian
                                     </span>
                                 </a>
-                                <div class="dropdown-menu">
-                                    <div class="dropdown-menu-columns">
-                                        <div class="dropdown-menu-column">
-                                            <a class="dropdown-item" href="{{ route('purchases.index') }}">
-                                                {{ __('All') }}
-                                            </a>
-                                            <a class="dropdown-item"
-                                                href="{{ route('purchases.approvedPurchases') }}">
-                                                {{ __('Approval') }}
-                                            </a>
-                                            <a class="dropdown-item"
-                                                href="{{ route('purchases.purchaseReport') }}">
-                                                {{ __('Daily Purchase Report') }}
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
                             </li>
+                            
 
 
 
@@ -380,7 +359,7 @@
 
 
 
-                            <li
+                            {{-- <li
                                 class="nav-item dropdown {{ request()->is('suppliers*', 'customers*') ? 'active' : null }}">
                                 <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown"
                                     data-bs-auto-close="outside" role="button" aria-expanded="false">
@@ -403,16 +382,11 @@
                                 <div class="dropdown-menu">
                                     <div class="dropdown-menu-columns">
                                         <div class="dropdown-menu-column">
-                                            <a class="dropdown-item" href="{{ route('suppliers.index') }}">
-                                                {{ __('Suppliers') }}
-                                            </a>
-                                            <a class="dropdown-item" href="{{ route('customers.index') }}">
-                                                {{ __('Customers') }}
-                                            </a>
+                                            
                                         </div>
                                     </div>
                                 </div>
-                            </li>
+                            </li> --}}
 
 
                             <li
@@ -446,6 +420,12 @@
                                             </a>
                                             <a class="dropdown-item" href="{{ route('units.index') }}">
                                                 {{ __('Units') }}
+                                            </a>
+                                            <a class="dropdown-item" href="{{ route('suppliers.index') }}">
+                                                {{ __('Suppliers') }}
+                                            </a>
+                                            <a class="dropdown-item" href="{{ route('customers.index') }}">
+                                                {{ __('Customers') }}
                                             </a>
                                         </div>
                                     </div>

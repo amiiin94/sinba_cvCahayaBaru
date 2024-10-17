@@ -7,7 +7,6 @@
             <x-alert />
 
             <div class="row row-cards">
-                TESTES
 
                 <form action="{{ route('purchases.store') }}" method="POST">
                     @csrf
@@ -18,7 +17,7 @@
                                 <div class="card-header">
                                     <div>
                                         <h3 class="card-title">
-                                            {{ __('Create Purchase') }}
+                                            Buat Pembelian
                                         </h3>
                                     </div>
 
@@ -40,7 +39,7 @@
                                     <div class="row gx-3 mb-3">
                                         <div class="col-md-4">
                                             <label for="date" class="form-label required">
-                                                {{ __('Purchase Date') }}
+                                                Tanggal Pembelian
                                             </label>
 
                                             <input name="date" id="date" type="date"
@@ -70,7 +69,7 @@
                                     {{-- - onclick="return confirm('Are you sure you want to purchase?')" - --}}
                                     {{-- - @disabled($errors->isNotEmpty()) - --}}
                                     <button type="submit" class="btn btn-primary">
-                                        {{ __('Purchase') }}
+                                        Beli Bahan
                                     </button>
                                 </div>
                             </div>

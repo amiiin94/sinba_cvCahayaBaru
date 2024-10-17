@@ -71,12 +71,12 @@
                                         <thead class="thead-light">
                                             <tr>
                                                 {{-- <th scope="col">{{ __('Id') }}</th> --}}
-                                                <th scope="col">{{ __('Category') }}</th>
-                                                <th scope="col" class="text-center">{{ __('Quantity') }}</th>
-                                                <th scope="col" class="text-center">{{ __('Price') }}</th>
-                                                <th scope="col" class="text-center">{{ __('SubTotal') }}</th>
+                                                <th scope="col">{{ __('Nama Barang') }}</th>
+                                                <th scope="col" class="text-center">{{ __('Kuantitas') }}</th>
+                                                <th scope="col" class="text-center">{{ __('Harga/kg') }}</th>
+                                                <th scope="col" class="text-center">{{ __('Total') }}</th>
                                                 <th scope="col" class="text-center">
-                                                    {{ __('Action') }}
+                                                    {{ __('Aksi') }}
                                                 </th>
                                             </tr>
                                         </thead>
@@ -203,7 +203,7 @@
                 <div class="col-lg-5">
                     <div class="card mb-4 mb-xl-0">
                         <div class="card-header">
-                            List Product
+                            List Produk
                         </div>
                         <div class="card-body">
                             <div class="col-lg-12">
@@ -213,11 +213,11 @@
                                             <tr>
                                                 {{-- - <th scope="col">No.</th> - --}}
                                                 <th scope="col">ID</th>
-                                                <th scope="col">Category</th>
-                                                <th scope="col">Quantity</th>
+                                                <th scope="col">Nama Barang</th>
+                                                <th scope="col">Kuantitas</th>
                                                 <th scope="col">Unit</th>
-                                                <th scope="col">Price</th>
-                                                <th scope="col">Action</th>
+                                                <th scope="col">Harga/kg</th>
+                                                <th scope="col">Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody>

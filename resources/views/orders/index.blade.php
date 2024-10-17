@@ -23,12 +23,12 @@
                 <x-slot:th>
                     <x-table.th>{{ __('No.') }}</x-table.th>
                     <x-table.th>{{ __('Invoice No.') }}</x-table.th>
-                    <x-table.th>{{ __('Customer') }}</x-table.th>
-                    <x-table.th>{{ __('Date') }}</x-table.th>
-                    <x-table.th>{{ __('Payment') }}</x-table.th>
+                    <x-table.th>{{ __('Relasi') }}</x-table.th>
+                    <x-table.th>{{ __('Tanggal Kirim') }}</x-table.th>
+                    <x-table.th>{{ __('Pembayaran') }}</x-table.th>
                     <x-table.th>{{ __('Total') }}</x-table.th>
                     <x-table.th>{{ __('Status') }}</x-table.th>
-                    <x-table.th>{{ __('Actions') }}</x-table.th>
+                    <x-table.th>{{ __('Aksi') }}</x-table.th>
                 </x-slot:th>
                 <x-slot:tbody>
                     @foreach ($orders as $order)

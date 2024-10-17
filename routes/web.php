@@ -18,6 +18,8 @@ use App\Http\Controllers\Quotation\QuotationController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\UnitController;
 use App\Http\Controllers\UserController;
+use App\Exports\CompleteOrdersExport;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -85,6 +87,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('/orders/create', [OrderController::class, 'create'])->name('orders.create');
     Route::post('/orders/store', [OrderController::class, 'store'])->name('orders.store');
+    Route::get('/orders/export', function() {
+        return Excel::download(new CompleteOrdersExport, 'complete-orders.xlsx');
+    })->name('orders.export');
 
     // SHOW ORDER
     Route::get('/orders/{order}', [OrderController::class, 'show'])->name('orders.show');
@@ -130,3 +135,5 @@ require __DIR__.'/auth.php';
 Route::get('test/', function (){
     return view('test');
 });
+
+

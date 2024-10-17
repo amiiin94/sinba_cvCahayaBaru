@@ -52,11 +52,11 @@
                     <tr>
                         <th scope="col" class="text-center">{{ __('No.') }}</th>
                         <th scope="col" class="text-center">{{ __('Invoice No.') }}</th>
-                        <th scope="col" class="text-center">{{ __('Customer') }}</th>
-                        <th scope="col" class="text-center">{{ __('Date') }}</th>
-                        <th scope="col" class="text-center">{{ __('Payment') }}</th>
+                        <th scope="col" class="text-center">{{ __('Relasi') }}</th>
+                        <th scope="col" class="text-center">{{ __('Tanggal Kirim') }}</th>
+                        <th scope="col" class="text-center">{{ __('Pembayaran') }}</th>
                         <th scope="col" class="text-center">{{ __('Total') }}</th>
-                        <th scope="col" class="text-center">{{ __('Actions') }}</th>
+                        <th scope="col" class="text-center">{{ __('Aksi') }}</th>
                     </tr>
                     </thead>
                     <tbody>

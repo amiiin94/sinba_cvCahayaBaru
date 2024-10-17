@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('purchase_no'); // old: purchase_no
 
             $table->tinyInteger('status' )  // old: purchase_status
-                ->default(0)
+                ->default(1)
                 ->comment('0=Pending, 1=Approved');
 
             $table->integer('total_amount'); // old: total_amount

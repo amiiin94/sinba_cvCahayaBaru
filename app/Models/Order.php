@@ -4,11 +4,13 @@ namespace App\Models;
 
 use App\Enums\OrderStatus;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Order extends Model
 {
+    use HasFactory;
     protected $guarded = [
         'id',
     ];
@@ -61,5 +63,13 @@ class Order extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+    public function items()
+    {
+        return $this->hasMany(OrderItem::class);  // Jika item berada di tabel order_items
+    }
+    public function orderDetails()
+    {
+        return $this->hasMany(OrderDetails::class, 'order_id'); // Sesuaikan dengan foreign key di tabel order_details
     }
 }

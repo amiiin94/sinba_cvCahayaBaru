@@ -2,11 +2,11 @@
     <table class="table table-bordered" id="products_table">
         <thead class="thead-dark">
             <tr>
-                <th class="align-middle">Product</th>
-                <th class="align-middle text-center">Quantity</th>
-                <th class="align-middle text-center">Price</th>
+                <th class="align-middle">Produk</th>
+                <th class="align-middle text-center">Kuantitas</th>
+                <th class="align-middle text-center">Harga</th>
                 <th class="align-middle text-center">Total</th>
-                <th class="align-middle text-center">Action</th>
+                <th class="align-middle text-center">Aksi</th>
             </tr>
         </thead>
 
@@ -26,12 +26,11 @@
                                 class="form-control text-center @error('invoiceProducts.' . $index . '.product_id') is-invalid @enderror"
                         >
 
-                            <option value="" class="text-center">-- choose product --</option>
+                            <option value="" class="text-center">-- Pilih Produk --</option>
 
                             @foreach ($allProducts as $product)
                                 <option value="{{ $product->id }}" class="text-center">
                                     {{ $product->category ? $product->category->name : '--' }}
-{{--                                    (${{ number_format($product->buying_price, 2) }})--}}
                                 </option>
                             @endforeach
                         </select>
@@ -61,7 +60,6 @@
                     @endif
                 </td>
 
-                {{--- Unit Price ---}}
                 <td class="align-middle text-center">
                     @if($invoiceProduct['is_saved'])
                         {{ $unit_cost = number_format($invoiceProduct['product_price'], 2) }}
@@ -73,7 +71,6 @@
                     @endif
                 </td>
 
-                {{--- Total ---}}
                 <td class="align-middle text-center">
                     {{ $product_total = $invoiceProduct['product_price'] * $invoiceProduct['quantity'] }}
 
@@ -115,23 +112,7 @@
                     Subtotal
                 </th>
                 <td class="text-center">
-{{--                    ${{ number_format($subtotal, 2) }}--}}
-                    {{ Number::currency($subtotal, 'EUR') }}
-                </td>
-            </tr>
-            <tr>
-                <th colspan="4" class="align-middle text-end">
-                    Taxes
-                </th>
-                <td width="150" class="align-middle text-center">
-                    <input wire:model.blur="taxes" type="number" id="taxes" class="form-control w-75 d-inline" min="0" max="100">
-                    %
-
-                    @error('taxes')
-                    <em class="invalid-feedback">
-                        {{ $message }}
-                    </em>
-                    @enderror
+                    {{ Number::currency($subtotal, 'IDR') }}
                 </td>
             </tr>
             <tr>
@@ -139,11 +120,10 @@
                     Total
                 </th>
                 <td class="text-center">
-                    {{ Number::currency($total, 'EUR') }}
+                    {{ Number::currency($total, 'IDR') }}
                     <input type="hidden" name="total_amount" value="{{ $total }}">
                 </td>
             </tr>
-
         </tbody>
     </table>
 </div>

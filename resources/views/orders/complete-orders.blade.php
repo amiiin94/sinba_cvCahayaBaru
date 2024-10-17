@@ -8,7 +8,7 @@
     }
     .export a {
         display: flex;
-        background-color: rgb(8, 0, 255);
+        background-color: rgb(0,84,166);
         align-items: center;
         width: auto;
         padding: 10px;
@@ -22,7 +22,7 @@
     .export a:hover {
         margin-right: 0;
         margin-left: auto;
-        background-color: rgb(77, 70, 254);
+        background-color: rgb(0,84,166);
     }
 </style>
 <div class="page-body">

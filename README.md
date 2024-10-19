@@ -8,8 +8,9 @@
 8. php artisan storage:link
 9. npm install
 10. npm run dev
-11. php artisan serve
 12. composer require maatwebsite/excel
+11. php artisan serve
+
 
 note:
 admin@admin.com

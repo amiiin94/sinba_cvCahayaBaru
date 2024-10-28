@@ -43,6 +43,7 @@
     <link href="{{ asset('dist/css/tabler-payments.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('dist/css/tabler-vendors.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('dist/css/demo.min.css') }}" rel="stylesheet" />
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rgE4kwOVwNcdmn73G8Ai2f5X7ahf4RZsvdD2S/rnLOe9ACbIUR3s6t5cfw4T9UxM" crossorigin="anonymous">
     <style>
         @import url('https://rsms.me/inter/inter.css');
 

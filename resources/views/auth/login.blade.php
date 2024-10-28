@@ -2,15 +2,15 @@
 
 @section('content')
     <div class="card card-md">
-        <div class="card-body">
+        <div class="card-body rounded-1">
             <h2 class="h2 text-center mb-4">
-                Login to your account
+                Silahkan Login
             </h2>
             <form action="{{ route('login') }}" method="POST" autocomplete="off">
                 @csrf
                 <div class="mb-3">
                     <label for="email" class="form-label">
-                        Email address
+                        Email
                     </label>
                     <input type="email" name="email" id="email"
                         class="form-control @error('email') is-invalid @enderror" placeholder="your@email.com"
@@ -57,10 +57,6 @@
         </div>
     </div>
     <div class="text-center text-secondary mt-3">
-        Don't have account yet? <a href="{{ route('register') }}" tabindex="-1">
-            Sign up
-        </a>
-
         <span class="form-label-description">
             <a href="{{ route('password.request') }}">I forgot password</a>
         </span>

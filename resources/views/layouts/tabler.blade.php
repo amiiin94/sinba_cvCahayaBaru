@@ -266,7 +266,7 @@
                                         </svg>
                                     </span>
                                     <span class="nav-link-title">
-                                        {{ __('Products') }}
+                                        Produk
                                     </span>
                                 </a>
                             </li>
@@ -291,7 +291,7 @@
                                         </svg>
                                     </span>
                                     <span class="nav-link-title">
-                                        {{ __('Orders') }}
+                                        Penjualan
                                     </span>
                                 </a>
                                 <div class="dropdown-menu">
@@ -333,11 +333,11 @@
                                     </span>
                                 </a>
                             </li>
-                            
 
 
 
-                            <li class="nav-item {{ request()->is('quotations*') ? 'active' : null }}">
+
+                            {{-- <li class="nav-item {{ request()->is('quotations*') ? 'active' : null }}">
                                 <a class="nav-link" href="{{ route('quotations.index') }}">
                                     <span
                                         class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/home -->
@@ -355,7 +355,7 @@
                                         {{ __('Quotations') }}
                                     </span>
                                 </a>
-                            </li>
+                            </li> --}}
 
 
 
@@ -382,7 +382,7 @@
                                 <div class="dropdown-menu">
                                     <div class="dropdown-menu-columns">
                                         <div class="dropdown-menu-column">
-                                            
+
                                         </div>
                                     </div>
                                 </div>
@@ -416,16 +416,16 @@
                                                     {{ __('Users') }}
                                                 </a> --}}
                                             <a class="dropdown-item" href="{{ route('categories.index') }}">
-                                                {{ __('Categories') }}
+                                                Kategori
                                             </a>
                                             <a class="dropdown-item" href="{{ route('units.index') }}">
-                                                {{ __('Units') }}
+                                                Unit
                                             </a>
                                             <a class="dropdown-item" href="{{ route('suppliers.index') }}">
-                                                {{ __('Suppliers') }}
+                                                {{ __('Supplier') }}
                                             </a>
                                             <a class="dropdown-item" href="{{ route('customers.index') }}">
-                                                {{ __('Customers') }}
+                                                Pembeli
                                             </a>
                                         </div>
                                     </div>
@@ -476,7 +476,7 @@
                                 <li class="list-inline-item">
                                     <a href="https://github.com/sponsors/codecalm" target="_blank"
                                         class="link-secondary" rel="noopener">
-                                         Download SVG icon from http://tabler-icons.io/i/heart 
+                                         Download SVG icon from http://tabler-icons.io/i/heart
                                         <svg xmlns="http://www.w3.org/2000/svg"
                                             class="icon text-pink icon-filled icon-inline" width="24"
                                             height="24" viewBox="0 0 24 24" stroke-width="2"
@@ -498,7 +498,7 @@
                                     <a href="." class="link-secondary">CV Cahaya Baru</a>.
                                     All rights reserved.
                                 </li>
-                                
+
                             </ul>
                         </div>
                     </div>

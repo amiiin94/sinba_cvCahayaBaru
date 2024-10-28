@@ -2,7 +2,7 @@
     <div class="card-header">
         <div>
             <h3 class="card-title">
-                {{ __('Products') }}
+                {{ __('Produk') }}
             </h3>
         </div>
 
@@ -15,15 +15,15 @@
                 <div class="dropdown-menu dropdown-menu-end" style="">
                     <a href="{{ route('products.create') }}" class="dropdown-item">
                         <x-icon.plus />
-                        {{ __('Create Product') }}
+                        {{ __('Tambah Produk Baru') }}
                     </a>
                     <a href="{{ route('products.import.view') }}" class="dropdown-item">
                         <x-icon.plus />
-                        {{ __('Import Products') }}
+                        {{ __('Import Produk') }}
                     </a>
                     <a href="{{ route('products.export.store') }}" class="dropdown-item">
                         <x-icon.plus />
-                        {{ __('Export Products') }}
+                        {{ __('Export Produk') }}
                     </a>
                 </div>
             </div>
@@ -64,7 +64,7 @@
                         {{ __('No.') }}
                     </th>
                     <th scope="col" class="align-middle text-center">
-                        {{ __('Image') }}
+                        {{ __('Gambar') }}
                     </th>
                     {{-- <th scope="col" class="align-middle text-center">
                         <a wire:click.prevent="sortBy('name')" href="#" role="button">
@@ -86,18 +86,18 @@
                     </th>
                     <th scope="col" class="align-middle text-center">
                         <a wire:click.prevent="sortBy('price')" href="#" role="button">
-                            {{ __('Price') }}
+                            {{ __('Harga') }}
                             @include('inclues._sort-icon', ['field' => 'price'])
                         </a>
                     </th>
                     <th scope="col" class="align-middle text-center">
                         <a wire:click.prevent="sortBy('quantity')" href="#" role="button">
-                            {{ __('Quantity') }}
+                            {{ __('Kuantitas') }}
                             @include('inclues._sort-icon', ['field' => 'quantity'])
                         </a>
                     </th>
                     <th scope="col" class="align-middle text-center">
-                        {{ __('Action') }}
+                        {{ __('Aksi') }}
                     </th>
                 </tr>
             </thead>

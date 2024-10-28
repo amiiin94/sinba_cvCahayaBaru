@@ -2,7 +2,7 @@
     <div class="card-header">
         <div>
             <h3 class="card-title">
-                {{ __('Orders') }}
+                {{ __('Penjualan') }}
             </h3>
         </div>
 
@@ -58,13 +58,13 @@
                     </th>
                     <th scope="col" class="align-middle text-center">
                         <a wire:click.prevent="sortBy('order_date')" href="#" role="button">
-                            {{ __('Date') }}
+                            {{ __('Tanggal') }}
                             @include('inclues._sort-icon', ['field' => 'order_date'])
                         </a>
                     </th>
                     <th scope="col" class="align-middle text-center">
                         <a wire:click.prevent="sortBy('payment_type')" href="#" role="button">
-                            {{ __('Paymet') }}
+                            {{ __('Pembayaran') }}
                             @include('inclues._sort-icon', ['field' => 'payment_type'])
                         </a>
                     </th>
@@ -81,7 +81,7 @@
                         </a>
                     </th>
                     <th scope="col" class="align-middle text-center">
-                        {{ __('Action') }}
+                        {{ __('Aksi') }}
                     </th>
                 </tr>
             </thead>

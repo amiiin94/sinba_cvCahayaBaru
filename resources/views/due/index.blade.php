@@ -13,7 +13,7 @@
         <div class="empty-icon">
             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-mood-happy" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /><path d="M9 9l.01 0" /><path d="M15 9l.01 0" /><path d="M8 13a4 4 0 1 0 8 0h-8" /></svg>
         </div>
-        <p class="empty-title">No due orders found</p>
+        <p class="empty-title">Semua penjualan telah lunas</p>
     </div>
     @else
     <div class="container-xl">
@@ -21,7 +21,7 @@
             <div class="card-header">
                 <div>
                     <h3 class="card-title">
-                        {{ __('Due Order List') }}
+                        {{ __('Penjualan yang belum lunas') }}
                     </h3>
                 </div>
                 <div class="card-actions">
@@ -35,11 +35,11 @@
                             <th scope="col" class="text-center">No.</th>
                             <th scope="col" class="text-center">Invoice No.</th>
                             <th scope="col" class="text-center">Customer</th>
-                            <th scope="col" class="text-center">Date</th>
-                            <th scope="col" class="text-center">Payment</th>
-                            <th scope="col" class="text-center">Pay</th>
-                            <th scope="col" class="text-center">Due</th>
-                            <th scope="col" class="text-center">Action</th>
+                            <th scope="col" class="text-center">Tanggal</th>
+                            <th scope="col" class="text-center">Status</th>
+                            <th scope="col" class="text-center">Dibayar</th>
+                            <th scope="col" class="text-center">Sisa Pembayaran</th>
+                            <th scope="col" class="text-center">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -57,17 +57,21 @@
                             <td class="text-center">
                                 {{ $order->order_date->format('d-m-Y') }}
                             </td>
-                            <td class="text-center">
-                                {{ $order->payment_type }}
+                            <td class="align-middle text-center">
+                                <x-status dot
+                                    color="{{ $order->order_status === \App\Enums\OrderStatus::COMPLETE ? 'green' : ($order->order_status === \App\Enums\OrderStatus::PENDING ? 'orange' : '') }}"
+                                    class="text-uppercase">
+                                    {{ $order->order_status->label() }}
+                                </x-status>
                             </td>
                             <td class="text-center">
                                 <span class="badge bg-green text-white">
-                                    {{ Number::currency($order->pay, 'EUR') }}
+                                    {{ Number::currency($order->pay, 'IDR') }}
                                 </span>
                             </td>
                             <td class="text-center">
                                 <span class="badge bg-yellow text-white">
-                                    {{ Number::currency($order->due, 'EUR') }}
+                                    {{ Number::currency($order->due, 'IDR') }}
                                 </span>
                             </td>
                             <td class="text-center">

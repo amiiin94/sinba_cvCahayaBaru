@@ -62,15 +62,15 @@
                             @include('inclues._sort-icon', ['field' => 'order_date'])
                         </a>
                     </th>
-                    <th scope="col" class="align-middle text-center">
+                    {{-- <th scope="col" class="align-middle text-center">
                         <a wire:click.prevent="sortBy('payment_type')" href="#" role="button">
                             {{ __('Pembayaran') }}
                             @include('inclues._sort-icon', ['field' => 'payment_type'])
                         </a>
-                    </th>
+                    </th> --}}
                     <th scope="col" class="align-middle text-center">
                         <a wire:click.prevent="sortBy('total')" href="#" role="button">
-                            {{ __('Total') }}
+                            {{ __('Total Harga') }}
                             @include('inclues._sort-icon', ['field' => 'total'])
                         </a>
                     </th>
@@ -100,11 +100,11 @@
                         <td class="align-middle text-center">
                             {{ $order->order_date->format('d-m-Y') }}
                         </td>
-                        <td class="align-middle text-center">
+                        {{-- <td class="align-middle text-center">
                             {{ $order->payment_type }}
-                        </td>
+                        </td> --}}
                         <td class="align-middle text-center">
-                            {{ Number::currency($order->total, 'EUR') }}
+                            {{ Number::currency($order->total, 'IDR', 'Rp') }}
                         </td>
                         <td class="align-middle text-center">
                             <x-status dot

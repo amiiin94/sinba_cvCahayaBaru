@@ -7,7 +7,7 @@
             <div class="card-header">
                 <div>
                     <h3 class="card-title">
-                        {{ __('Purchase Edit') }}
+                        {{ __('Detail Pembelian') }}
                     </h3>
                 </div>
 
@@ -21,7 +21,7 @@
             <div class="card-body">
                 <div class="row gx-3 mb-3">
                     <div class="col-md-6">
-                        <label class="small mb-1">Name</label>
+                        <label class="small mb-1">Nama</label>
                         <div class="form-control form-control-solid">{{ $purchase->supplier->name }}</div>
                     </div>
                     <div class="col-md-6">
@@ -35,27 +35,27 @@
                         <div class="form-control form-control-solid">{{ $purchase->supplier->phone }}</div>
                     </div>
                     <div class="col-md-6">
-                        <label class="small mb-1">Order Date</label>
+                        <label class="small mb-1">Tanggal</label>
                         <div class="form-control form-control-solid">{{ $purchase->date }}</div>
                     </div>
                 </div>
                 <div class="row gx-3 mb-3">
                     <div class="col-md-6">
-                        <label class="small mb-1">No Purchase</label>
+                        <label class="small mb-1">No Pembelian</label>
                         <div class="form-control">{{ $purchase->purchase_no }}</div>
                     </div>
                     <div class="col-md-6">
                         <label class="small mb-1">Total</label>
-                        <div class="form-control form-control-solid">{{ $purchase->total_amount }}</div>
+                        <div class="form-control form-control-solid">{{ Number::currency($purchase->total_amount, 'IDR', 'Rp') }}</div>
                     </div>
                 </div>
                 <div class="row gx-3 mb-3">
                     <div class="col-md-6">
-                        <label class="small mb-1">Created By</label>
+                        <label class="small mb-1">Dibuat Oleh</label>
                         <div class="form-control form-control-solid">{{ $purchase->createdBy->name ?? '-' }}</div>
                     </div>
                     <div class="col-md-6">
-                        <label class="small mb-1">Updated By</label>
+                        <label class="small mb-1">Di update oleh</label>
                         <div class="form-control form-control-solid">{{ $purchase->updatedBy->name ?? '-' }}</div>
                     </div>
                 </div>
@@ -70,11 +70,11 @@
                                 <tr>
                                     <th scope="col" class="align-middle text-center">No.</th>
                                     <th scope="col" class="align-middle text-center">Photo</th>
-                                    <th scope="col" class="align-middle text-center">Product Name</th>
-                                    <th scope="col" class="align-middle text-center">Product Code</th>
-                                    <th scope="col" class="align-middle text-center">Current Stock</th>
-                                    <th scope="col" class="align-middle text-center">Quantity</th>
-                                    <th scope="col" class="align-middle text-center">Price</th>
+                                    <th scope="col" class="align-middle text-center">Nama Produk</th>
+                                    <th scope="col" class="align-middle text-center">Kode Produk</th>
+                                    <th scope="col" class="align-middle text-center">Stok Saat ini</th>
+                                    <th scope="col" class="align-middle text-center">Stok yang dibeli</th>
+                                    <th scope="col" class="align-middle text-center">Harga</th>
                                     <th scope="col" class="align-middle text-center">Total</th>
                                 </tr>
                             </thead>
@@ -107,24 +107,24 @@
                                             </span>
                                         </td>
                                         <td class="align-middle text-center">
-                                            {{ number_format($item->unitcost, 2) }}
+                                            {{ Number::currency($item->total / $item->quantity , 'IDR', 'Rp') }}
                                         </td>
                                         <td class="align-middle text-center">
-                                            {{ number_format($item->total, 2) }}
+                                            {{ Number::currency($item->total, 'IDR', 'Rp') }}
                                         </td>
                                     </tr>
                                 @endforeach
                                 {{-- created by --}}
                                 <tr>
                                     <td class="align-middle text-end" colspan="7">
-                                        Created By
+                                        Dibuat Oleh
                                     </td>
                                     <td class="align-middle text-center">
                                         {{ $purchase->user->name }}
                                     </td>
                                 </tr>
 
-                                <tr>
+                                {{-- <tr>
                                     <td class="align-middle text-end" colspan="7">
                                         Tax Percentage
                                     </td>
@@ -139,7 +139,7 @@
                                     <td class="align-middle text-center">
                                         {{ number_format($purchase->tax_amount, 2) }}
                                     </td>
-                                </tr>
+                                </tr> --}}
 
                                 <tr>
                                     <td class="align-middle text-end" colspan="7">

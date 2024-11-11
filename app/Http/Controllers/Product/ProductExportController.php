@@ -12,35 +12,33 @@ class ProductExportController extends Controller
 {
     public function create()
     {
-        $products = Product::all()->sortBy('product_name');
+        // $products = Product::with('category')->all()->sortBy('product_name');
+        $products = Product::with('category')->get()->sortBy('product_name');
+
 
         $product_array[] = array(
-            'Product Name',
-            'Product Slug',
-            'Category Id',
-            'Unit Id',
-            'Product Code',
-            'Stock',
-            "Stock Alert",
-            'Buying Price',
-            'Selling Price',
-            'Product Image',
-            "Note"
+            'Nama Produk',
+            'Kategori',
+            'Kode Produk',
+            'Jumlah Stok',
+            'Stok Minimum',
+            'Harga Beli',
+            'Harga Jual',
+            'Gambar Produk',
+            'Catatan'
         );
 
         foreach ($products as $product) {
             $product_array[] = array(
-                'Product Name' => $product->name,
-                'Product Slug' => $product->slug,
-                'Category Id' => $product->category_id,
-                'Unit Id' => $product->unit_id,
-                'Product Code' => $product->code,
-                'Stock' => $product->quantity,
-                "Stock Alert" => $product->quantity_alert,
-                'Buying Price' => $product->buying_price,
-                'Selling Price' => $product->selling_price,
-                'Product Image' => $product->product_image,
-                "Note" => $product->note
+                $product->name,
+                $product->category->name,
+                $product->code,
+                $product->quantity,
+                $product->quantity_alert,
+                $product->buying_price,
+                $product->selling_price,
+                $product->product_image,
+                $product->notes
             );
         }
 
@@ -58,7 +56,7 @@ class ProductExportController extends Controller
             $spreadSheet->getActiveSheet()->fromArray($products);
             $Excel_writer = new Xls($spreadSheet);
             header('Content-Type: application/vnd.ms-excel');
-            header('Content-Disposition: attachment;filename="products.xls"');
+            header('Content-Disposition: attachment;filename="daftar-produk.xls"');
             header('Cache-Control: max-age=0');
             ob_end_clean();
             $Excel_writer->save('php://output');

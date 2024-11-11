@@ -17,7 +17,7 @@
                     <div class="card-header">
                         <div>
                             <h3 class="card-title">
-                                {{ __('Due Order Details') }}
+                                {{ __('Detail Pembayaran belum lunas') }}
                             </h3>
                         </div>
 
@@ -29,7 +29,7 @@
                                 <div class="dropdown-menu dropdown-menu-end" style="">
                                     <a href="{{ route('due.edit', $order) }}" class="dropdown-item text-warning">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-pencil" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" /><path d="M13.5 6.5l4 4" /></svg>
-                                        {{ __('Edit Order') }}
+                                        {{ __('Edit Penjualan') }}
                                     </a>
                                 </div>
                             </div>
@@ -43,7 +43,7 @@
                         <div class="row row-cards mb-3">
                             <div class="col">
                                 <label for="order_date" class="form-label required">
-                                    {{ __('Order Date') }}
+                                    {{ __('Tanggal Transaksi') }}
                                 </label>
                                 <input type="text"
                                        id="order_date"
@@ -88,9 +88,11 @@
 
                             <div class="col">
                                 <label for="payment_type" class="form-label required">
-                                    {{ __('Payment Type') }}
+                                    {{ __('Tipe Pembayaran') }}
                                 </label>
-                                <input type="text" id="payment_type" class="form-control" value="{{ $order->payment_type }}" disabled>
+                                <input type="text" id="payment_type" class="form-control"
+                                value="{{ $order->payment_type == 'Due' ? 'Dp (Uang Muka)' : 'Bayar Langsung' }}"
+                                disabled>
                             </div>
                         </div>
 
@@ -100,10 +102,10 @@
                                 <tr>
                                     <th scope="col" class="align-middle text-center">No.</th>
                                     <th scope="col" class="align-middle text-center">Photo</th>
-                                    <th scope="col" class="align-middle text-center">Product Name</th>
-                                    <th scope="col" class="align-middle text-center">Product Code</th>
-                                    <th scope="col" class="align-middle text-center">Quantity</th>
-                                    <th scope="col" class="align-middle text-center">Price</th>
+                                    <th scope="col" class="align-middle text-center">Nama Produk</th>
+                                    <th scope="col" class="align-middle text-center">Kode Produk</th>
+                                    <th scope="col" class="align-middle text-center">Jumlah</th>
+                                    <th scope="col" class="align-middle text-center">Harga</th>
                                     <th scope="col" class="align-middle text-center">Total</th>
                                 </tr>
                                 </thead>
@@ -128,30 +130,30 @@
                                             {{ $item->quantity }}
                                         </td>
                                         <td class="align-middle text-center">
-                                            {{ number_format($item->unitcost, 2) }}
+                                            {{ Number::currency($item->unitcost, 'IDR') }}
                                         </td>
                                         <td class="align-middle text-center">
-                                            {{ number_format($item->total, 2) }}
+                                            {{ Number::currency($item->total, 'IDR') }}
                                         </td>
                                     </tr>
                                 @endforeach
                                 <tr>
                                     <td colspan="6" class="text-end">
-                                        Payed amount
+                                        Jumlah yang telah dibayar
                                     </td>
-                                    <td class="text-center">{{ number_format($order->pay, 2) }}</td>
+                                    <td class="text-center">{{ Number::currency($order->pay, 'IDR') }}</td>
                                 </tr>
                                 <tr>
-                                    <td colspan="6" class="text-end">Due</td>
-                                    <td class="text-center">{{ number_format($order->due, 2) }}</td>
+                                    <td colspan="6" class="text-end">Jumlah yang belum dibayar</td>
+                                    <td class="text-center">{{ Number::currency($order->due, 'IDR') }}</td>
                                 </tr>
-                                <tr>
+                                {{-- <tr>
                                     <td colspan="6" class="text-end">VAT</td>
                                     <td class="text-center">{{ number_format($order->vat, 2) }}</td>
-                                </tr>
+                                </tr> --}}
                                 <tr>
                                     <td colspan="6" class="text-end">Total</td>
-                                    <td class="text-center">{{ number_format($order->total, 2) }}</td>
+                                    <td class="text-center">{{ Number::currency($order->total, 'IDR') }}</td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -159,7 +161,7 @@
                     </div>
                     <div class="card-footer text-end">
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-due">
-                            {{ __('Pay Due') }}
+                            {{ __('Bayar Sisa') }}
                         </button>
                     </div>
                 </div>

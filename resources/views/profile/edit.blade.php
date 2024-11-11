@@ -37,7 +37,7 @@
                                 src="{{ $user->photo ? asset('storage/profile//' . $user->photo) : asset('assets/img/illustrations/profiles/profile-1.png') }}"
                                 alt="" id="image-preview" />
                             <!-- Profile picture help block -->
-                            <div class="small font-italic text-muted mb-2">JPG or PNG no larger than 1 MB</div>
+                            <div class="small font-italic text-muted mb-2">JPG atau PNG tidak lebih dari 1 MB</div>
                             <!-- Profile picture input -->
                             <input class="form-control form-control-solid mb-2 @error('photo') is-invalid @enderror"
                                 type="file" id="image" name="photo" accept="image/*" onchange="previewImage();">
@@ -54,7 +54,7 @@
                     <!-- Account details card -->
                     <div class="card mb-4">
                         <div class="card-header">
-                            Account Details
+                            Akun Detail
                         </div>
                         <div class="card-body">
                             <!-- Form Group (username) -->
@@ -83,7 +83,7 @@
                             </div>
                             <div class="mb-3">
                                 <label class="small mb-1" for="email">
-                                    Email address
+                                    Email
                                 </label>
 
                                 <input class="form-control form-control-solid @error('photo') is-invalid @enderror"

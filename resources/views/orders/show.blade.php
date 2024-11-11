@@ -7,7 +7,7 @@
                 <div class="card-header">
                     <div>
                         <h3 class="card-title">
-                            {{ __('Order Details') }}
+                            {{ __('Detail Penjualan') }}
                         </h3>
                     </div>
 
@@ -42,13 +42,13 @@
                                                 <path d="M5 12l5 5l10 -10" />
                                             </svg>
 
-                                            {{ __('Approve Order') }}
+                                            {{ __('Penjualan Selesai') }}
                                         </button>
                                     </form>
                                 </div>
                             </div>
                         @endif
-                        
+
                         <x-action.close route="{{ route('orders.index') }}" />
                     </div>
                 </div>
@@ -57,7 +57,7 @@
                     <div class="row row-cards mb-3">
                         <div class="col">
                             <label for="order_date" class="form-label required">
-                                {{ __('Order Date') }}
+                                {{ __('Tanggal') }}
                             </label>
                             <input type="text" id="order_date" class="form-control"
                                 value="{{ $order->order_date->format('d-m-Y') }}" disabled>
@@ -65,7 +65,7 @@
 
                         <div class="col">
                             <label for="invoice_no" class="form-label required">
-                                {{ __('Invoice No.') }}
+                                {{ __('No Invoice.') }}
                             </label>
                             <input type="text" id="invoice_no" class="form-control" value="{{ $order->invoice_no }}"
                                 disabled>
@@ -81,11 +81,13 @@
 
                         <div class="col">
                             <label for="payment_type" class="form-label required">
-                                {{ __('Payment Type') }}
+                                {{ __('Tipe Pembayaran') }}
                             </label>
 
-                            <input type="text" id="payment_type" class="form-control" value="{{ $order->payment_type }}"
+                            <input type="text" id="payment_type" class="form-control"
+                                value="{{ $order->payment_type == 'Due' ? 'Dp (Uang Muka)' : 'Bayar Langsung' }}"
                                 disabled>
+
                         </div>
                     </div>
 
@@ -95,10 +97,10 @@
                                 <tr>
                                     <th scope="col" class="align-middle text-center">No.</th>
                                     <th scope="col" class="align-middle text-center">Photo</th>
-                                    <th scope="col" class="align-middle text-center">Product Name</th>
-                                    <th scope="col" class="align-middle text-center">Product Code</th>
-                                    <th scope="col" class="align-middle text-center">Quantity</th>
-                                    <th scope="col" class="align-middle text-center">Price</th>
+                                    <th scope="col" class="align-middle text-center">Nama Produk</th>
+                                    <th scope="col" class="align-middle text-center">Kode Produk</th>
+                                    <th scope="col" class="align-middle text-center">Jumlah</th>
+                                    <th scope="col" class="align-middle text-center">Harga</th>
                                     <th scope="col" class="align-middle text-center">Sub Total</th>
                                 </tr>
                             </thead>
@@ -124,30 +126,30 @@
                                             {{ $item->quantity }}
                                         </td>
                                         <td class="align-middle text-center">
-                                            {{ number_format($item->unitcost, 2) }}
+                                            {{ Number::currency($item->unitcost, 'IDR', 'Rp') }}
                                         </td>
                                         <td class="align-middle text-center">
-                                            {{ number_format($item->total, 2) }}
+                                            {{ Number::currency($item->total, 'IDR', 'Rp') }}
                                         </td>
                                     </tr>
                                 @endforeach
                                 <tr>
-                                    <td colspan="6" class="text-end">
+                                    {{-- <td colspan="6" class="text-end">
                                         Payed amount
                                     </td>
-                                    <td class="text-center">{{ number_format($order->pay, 2) }}</td>
+                                    <td class="text-center">{{ number_format($order->pay, 2) }}</td> --}}
                                 </tr>
-                                <tr>
+                                {{-- <tr>
                                     <td colspan="6" class="text-end">Due</td>
                                     <td class="text-center">{{ number_format($order->due, 2) }}</td>
                                 </tr>
                                 <tr>
                                     <td colspan="6" class="text-end">VAT</td>
                                     <td class="text-center">{{ number_format($order->vat, 2) }}</td>
-                                </tr>
+                                </tr> --}}
                                 <tr>
                                     <td colspan="6" class="text-end">Total</td>
-                                    <td class="text-center">{{ number_format($order->total, 2) }}</td>
+                                    <td class="text-center">{{ Number::currency($order->total, 'IDR', 'Rp') }}</td>
                                 </tr>
                                 <tr>
                                     <td colspan="6" class="text-end">Status</td>

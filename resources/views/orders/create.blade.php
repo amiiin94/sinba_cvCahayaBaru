@@ -9,7 +9,7 @@
                         <div class="card-header">
                             <div>
                                 <h3 class="card-title">
-                                    {{ __('New Order') }}
+                                    {{ __('Penjualan Baru') }}
                                 </h3>
                             </div>
                             <div class="card-actions btn-actions">
@@ -23,7 +23,7 @@
                                     @include('partials.session')
                                     <div class="col-md-6">
                                         <label for="purchase_date" class="small my-1">
-                                            {{ __('Tanggal Kirim') }}
+                                            {{ __('Tanggal Transaksi') }}
                                             <span class="text-danger">*</span>
                                         </label>
 
@@ -40,7 +40,7 @@
 
                                     <div class="col-md-6">
                                         <label class="small mb-1" for="customer_id">
-                                            {{ __('Relasi') }}
+                                            {{ __('Customer') }}
                                             <span class="text-danger">*</span>
                                         </label>
 
@@ -48,7 +48,7 @@
                                             class="form-select form-control-solid @error('customer_id') is-invalid @enderror"
                                             id="customer_id" name="customer_id">
                                             <option selected="" disabled="">
-                                                Select a customer:
+                                                Pilih customer:
                                             </option>
 
                                             @foreach ($customers as $customer)
@@ -72,7 +72,7 @@
                                             <tr>
                                                 {{-- <th scope="col">{{ __('Id') }}</th> --}}
                                                 <th scope="col">{{ __('Nama Barang') }}</th>
-                                                <th scope="col" class="text-center">{{ __('Kuantitas') }}</th>
+                                                <th scope="col" class="text-center">{{ __('Jumlah') }}</th>
                                                 <th scope="col" class="text-center">{{ __('Harga/kg') }}</th>
                                                 <th scope="col" class="text-center">{{ __('Total') }}</th>
                                                 <th scope="col" class="text-center">
@@ -122,10 +122,10 @@
                                                         </form>
                                                     </td>
                                                     <td class="text-center">
-                                                        {{ $item->price }}
+                                                        {{ Number::currency($item->price, 'IDR', 'Rp') }}
                                                     </td>
                                                     <td class="text-center">
-                                                        {{ $item->subtotal }}
+                                                        {{ Number::currency($item->subtotal, 'IDR', 'Rp') }}
                                                     </td>
                                                     <td class="text-center">
                                                         <form action="{{ route('pos.deleteCartItem', $item->rowId) }}"
@@ -154,34 +154,34 @@
                                                 </tr>
                                             @empty
                                                 <td colspan="5" class="text-center">
-                                                    {{ __('Add Products') }}
+                                                    {{ __('Tambah Produk') }}
                                                 </td>
                                             @endforelse
 
                                             <tr>
                                                 <td colspan="4" class="text-end">
-                                                    Total Product
+                                                    Total Produk
                                                 </td>
                                                 <td class="text-center">
                                                     {{ Cart::count() }}
                                                 </td>
                                             </tr>
-                                            <tr>
+                                            {{-- <tr>
                                                 <td colspan="4" class="text-end">Subtotal</td>
                                                 <td class="text-center">
                                                     {{ Cart::subtotal() }}
                                                 </td>
-                                            </tr>
-                                            <tr>
+                                            </tr> --}}
+                                            {{-- <tr>
                                                 <td colspan="4" class="text-end">Tax</td>
                                                 <td class="text-center">
                                                     {{ Cart::tax() }}
                                                 </td>
-                                            </tr>
+                                            </tr> --}}
                                             <tr>
                                                 <td colspan="4" class="text-end">Total</td>
                                                 <td class="text-center">
-                                                    {{ Cart::total() }}
+                                                    {{ Number::currency(Cart::total(), 'IDR', 'Rp') }}
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -192,7 +192,7 @@
                             <div class="card-footer text-end">
                                 <button type="submit"
                                     class="btn btn-success add-list mx-1 {{ Cart::count() > 0 ? '' : 'disabled' }}">
-                                    {{ __('Create Invoice') }}
+                                    {{ __('Buat Invoice') }}
                                 </button>
                             </div>
                         </form>
@@ -212,12 +212,14 @@
                                         <thead class="thead-light">
                                             <tr>
                                                 {{-- - <th scope="col">No.</th> - --}}
+                                                <th scope="col">Pilih</th>
                                                 <th scope="col">ID</th>
                                                 <th scope="col">Nama Barang</th>
-                                                <th scope="col">Kuantitas</th>
-                                                <th scope="col">Unit</th>
+                                                <th scope="col">Kategori</th>
+                                                <th scope="col">Jumlah Stok Tersedia</th>
+                                                {{-- <th scope="col">Unit</th> --}}
                                                 <th scope="col">Harga/kg</th>
-                                                <th scope="col">Aksi</th>
+
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -230,42 +232,46 @@
                                                 </div>
                                             </td>
                                             - --}}
+                                            <td>
+                                                <div class="d-flex">
+                                                    <form action="{{ route('pos.addCartItem', $product) }}"
+                                                        method="POST">
+                                                        @csrf
+                                                        <input type="hidden" name="id"
+                                                            value="{{ $product->id }}">
+                                                        {{-- <input type="hidden" name="name"
+                                                            value="{{ $product->category_id }}"> --}}
+                                                        <input type="hidden" name="name"
+                                                            value="{{ $product->name}}">
+                                                        <input type="hidden" name="selling_price"
+                                                            value="{{ $product->selling_price }}">
+
+                                                        <button type="submit"
+                                                            class="btn btn-icon btn-outline-primary">
+                                                            <x-icon.cart />
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                            </td>
                                                     <td class="text-center">
-                                                        {{ $product->category_id }}
+                                                        {{ $product->id }}
                                                     </td>
                                                     <td class="text-center">
-                                                        {{ $product->category ? $product->category->name : '--' }}
+                                                        {{ $product->name}}
+                                                    </td>
+                                                    <td class="text-center">
+                                                        {{ $product->category->name}}
                                                     </td>
                                                     <td class="text-center">
                                                         {{ $product->quantity }}
                                                     </td>
-                                                    <td class="text-center">
+                                                    {{-- <td class="text-center">
                                                         {{ $product->unit->name }}
-                                                    </td>
+                                                    </td> --}}
                                                     <td class="text-center">
                                                         {{ number_format($product->selling_price, 2) }}
                                                     </td>
-                                                    <td>
-                                                        <div class="d-flex">
-                                                            <form action="{{ route('pos.addCartItem', $product) }}"
-                                                                method="POST">
-                                                                @csrf
-                                                                <input type="hidden" name="id"
-                                                                    value="{{ $product->id }}">
-                                                                {{-- <input type="hidden" name="name"
-                                                                    value="{{ $product->category_id }}"> --}}
-                                                                <input type="hidden" name="name"
-                                                                    value="{{ $product->category ? $product->category->name : '--' }}">
-                                                                <input type="hidden" name="selling_price"
-                                                                    value="{{ $product->selling_price }}">
 
-                                                                <button type="submit"
-                                                                    class="btn btn-icon btn-outline-primary">
-                                                                    <x-icon.cart />
-                                                                </button>
-                                                            </form>
-                                                        </div>
-                                                    </td>
                                                 </tr>
                                             @empty
                                                 <tr>

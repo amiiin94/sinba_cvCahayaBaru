@@ -10,7 +10,7 @@
                 @csrf
 
                 <div class="row">
-                    <div class="col-lg-4">
+                    {{-- <div class="col-lg-4">
                         <div class="card">
                             <div class="card-body">
                                 <h3 class="card-title">
@@ -39,14 +39,14 @@
                                 @enderror
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
 
-                    <div class="col-lg-8">
+                    <div class="">
                         <div class="card">
                             <div class="card-header">
                                 <div>
                                     <h3 class="card-title">
-                                        {{ __('Product Create') }}
+                                        {{ __('Buat Produk Baru') }}
                                     </h3>
                                 </div>
 
@@ -58,19 +58,19 @@
                             </div>
                             <div class="card-body">
                                 <div class="row row-cards">
-                                    {{-- <div class="col-md-12">
+                                    <div class="col-md-12">
 
                                         <x-input name="name"
                                                  id="name"
-                                                 placeholder="Product name"
+                                                 placeholder="Nama Produk"
                                                  value="{{ old('name') }}"
                                         />
-                                    </div> --}}
+                                    </div>
 
                                     <div class="col-sm-6 col-md-6">
                                         <div class="mb-3">
                                             <label for="category_id" class="form-label">
-                                                Product category
+                                                Kategori Produk
                                                 <span class="text-danger">*</span>
                                             </label>
 
@@ -117,8 +117,8 @@
                                             </label>
 
                                             @if ($units->count() === 1)
-                                                <select name="category_id" id="category_id"
-                                                        class="form-select @error('category_id') is-invalid @enderror"
+                                                <select name="unit_id" id="unit_id"
+                                                        class="form-select @error('unit_id') is-invalid @enderror"
                                                         readonly
                                                 >
                                                     @foreach ($units as $unit)
@@ -149,9 +149,10 @@
                                         </div>
                                     </div>
 
+
                                     <div class="col-sm-6 col-md-6">
                                         <x-input type="number"
-                                                 label="Buying Price"
+                                                 label="Harga Beli"
                                                  name="buying_price"
                                                  id="buying_price"
                                                  placeholder="0"
@@ -161,7 +162,7 @@
 
                                     <div class="col-sm-6 col-md-6">
                                         <x-input type="number"
-                                                 label="Selling Price"
+                                                 label="Harga Jual"
                                                  name="selling_price"
                                                  id="selling_price"
                                                  placeholder="0"
@@ -171,7 +172,7 @@
 
                                     <div class="col-sm-6 col-md-6">
                                         <x-input type="number"
-                                                 label="Quantity"
+                                                 label="Jumlah stok"
                                                  name="quantity"
                                                  id="quantity"
                                                  placeholder="0"
@@ -181,7 +182,7 @@
 
                                     <div class="col-sm-6 col-md-6">
                                         <x-input type="number"
-                                                 label="Quantity Alert"
+                                                 label="Jumlah stok minimum"
                                                  name="quantity_alert"
                                                  id="quantity_alert"
                                                  placeholder="0"
@@ -189,7 +190,7 @@
                                         />
                                     </div>
 
-                                    <div class="col-sm-6 col-md-6">
+                                    {{-- <div class="col-sm-6 col-md-6">
                                         <x-input type="number"
                                                  label="Tax"
                                                  name="tax"
@@ -221,7 +222,7 @@
                                             </div>
                                             @enderror
                                         </div>
-                                    </div>
+                                    </div> --}}
 
                                     <div class="col-md-12">
                                         <div class="mb-3">
@@ -248,11 +249,11 @@
 
                             <div class="card-footer text-end">
                                 <x-button.save type="submit">
-                                    {{ __('Save') }}
+                                    {{ __('Simpan') }}
                                 </x-button.save>
 
                                 <a class="btn btn-warning" href="{{ url()->previous() }}">
-                                    {{ __('Cancel') }}
+                                    {{ __('Batal') }}
                                 </a>
                             </div>
                         </div>

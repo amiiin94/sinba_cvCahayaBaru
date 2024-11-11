@@ -14,13 +14,14 @@ class ProductSeeder extends Seeder
     {
         $products = collect([
             [
-                'slug' => 'ta-product-0',
+                'name' => 'TA',
+                'slug' => 'ta',
                 'code' => 001,
-                'quantity' => 10,
-                'buying_price' => 900,
-                'selling_price' => 1400,
+                'quantity' => 100,
+                'buying_price' => 15000,
+                'selling_price' => 20000,
                 'quantity_alert' => 10,
-                'tax' => 24,
+                'tax' => 0,
                 'tax_type' => 1,
                 'notes' => null,
                 'category_id' => 1, // TA
@@ -30,85 +31,90 @@ class ProductSeeder extends Seeder
                 'product_image' => 'assets/img/products/ip14.png'
             ],
             [
-                'slug' => 'ta-potong-product-002',
+                'name' => 'TA Potong',
+                'slug' => 'ta-potong',
                 'code' => 002,
-                'quantity' => 10,
-                'buying_price' => 900,
-                'selling_price' => 1400,
+                'quantity' => 100,
+                'buying_price' => 15000,
+                'selling_price' => 20000,
                 'quantity_alert' => 10,
-                'tax' => 24,
+                'tax' => 0,
                 'tax_type' => 1,
                 'notes' => null,
-                'category_id' => 2, // TA POTONG
+                'category_id' => 1, // TA POTONG
                 'unit_id' => 1,
                 'user_id'=>1,
                 'uuid'=>Str::uuid(),
                 'product_image' => 'assets/img/products/ip14.png'
             ],
             [
-                'slug' => 'tred-product-003',
+                'name' => 'TRED',
+                'slug' => 'tred',
                 'code' => 003,
-                'quantity' => 10,
-                'buying_price' => 900,
-                'selling_price' => 1400,
+                'quantity' => 100,
+                'buying_price' => 15000,
+                'selling_price' => 20000,
                 'quantity_alert' => 10,
-                'tax' => 24,
+                'tax' => 0,
                 'tax_type' => 1,
                 'notes' => null,
-                'category_id' => 3, // TRED
+                'category_id' => 1, // TRED
                 'unit_id' => 1,
                 'user_id'=>1,
                 'uuid'=>Str::uuid(),
                 'product_image' => 'assets/img/products/keyboard.jpg'
             ],
             [
-                'slug' => 'benang-product-004',
-                'code' => 004,
-                'quantity' => 10,
-                'buying_price' => 900,
-                'selling_price' => 1400,
+                'name' => 'Benang',
+                'slug' => 'benang',
+                'code' => 003,
+                'quantity' => 100,
+                'buying_price' => 15000,
+                'selling_price' => 20000,
                 'quantity_alert' => 10,
-                'tax' => 24,
+                'tax' => 0,
                 'tax_type' => 1,
                 'notes' => null,
-                'category_id' => 4, // BENANG
+                'category_id' => 1, // TRED
                 'unit_id' => 1,
                 'user_id'=>1,
                 'uuid'=>Str::uuid(),
-                'product_image' => 'assets/img/products/speaker.png'
+                'product_image' => 'assets/img/products/keyboard.jpg'
             ],
             [
-                'slug' => 'kelotokan-product-005',
-                'code' => 005,
-                'quantity' => 10,
-                'buying_price' => 900,
-                'selling_price' => 1400,
+                'name' => 'Klotokan',
+                'slug' => 'klotokan',
+                'code' => 003,
+                'quantity' => 100,
+                'buying_price' => 15000,
+                'selling_price' => 20000,
                 'quantity_alert' => 10,
-                'tax' => 24,
+                'tax' => 0,
                 'tax_type' => 1,
                 'notes' => null,
-                'category_id' => 5, // KELOTOKAN
+                'category_id' => 1, // TRED
                 'unit_id' => 1,
                 'user_id'=>1,
                 'uuid'=>Str::uuid(),
-                'product_image' => 'assets/img/products/autocard.png'
+                'product_image' => 'assets/img/products/keyboard.jpg'
             ],
             [
-                'slug' => 'kawat-product-005',
-                'code' => 006,
-                'quantity' => 10,
-                'buying_price' => 900,
-                'selling_price' => 1400,
+                'name' => 'Kawat',
+                'slug' => 'kawat',
+                'code' => 003,
+                'quantity' => 100,
+                'buying_price' => 15000,
+                'selling_price' => 20000,
                 'quantity_alert' => 10,
-                'tax' => 24,
+                'tax' => 0,
                 'tax_type' => 1,
                 'notes' => null,
-                'category_id' => 6, // KAWAT
+                'category_id' => 1, // TRED
                 'unit_id' => 1,
                 'user_id'=>1,
                 'uuid'=>Str::uuid(),
-                'product_image' => 'assets/img/products/autocard.png'
-            ]
+                'product_image' => 'assets/img/products/keyboard.jpg'
+            ],
         ]);
 
         $products->each(function ($product){

@@ -39,7 +39,7 @@
                                 <div class="row">
                                     <div class="col-sm-6 mb-50">
                                         <div class="invoice-number">
-                                            <h4 class="inv-title-1">Invoice date:</h4>
+                                            <h4 class="inv-title-1">Tanggal Invoice:</h4>
                                             <p class="invo-addr-1">
                                             {{ isset($order_date) ? \Carbon\Carbon::parse($order_date)->format('M d, Y') : \Carbon\Carbon::now()->format('M d, Y') }}
                                             </p>
@@ -68,9 +68,10 @@
                                     <table class="default-table invoice-table">
                                         <thead>
                                             <tr>
-                                                <th class="text-center">Item</th>
-                                                <th class="text-center">Price</th>
-                                                <th class="text-center">Quantity</th>
+                                                <th class="text-center">Nama Barang</th>
+                                                {{-- <th class="text-center">Kategori</th> --}}
+                                                <th class="text-center">Harga</th>
+                                                <th class="text-center">Jumlah</th>
                                                 <th class="text-center">Subtotal</th>
                                             </tr>
                                         </thead>
@@ -78,24 +79,25 @@
                                             @foreach ($carts as $item)
                                             <tr>
                                                 <td class="text-center">{{ $item->name }}</td>
+                                                {{-- <td class="text-center">{{ $item->category->name }}</td> --}}
                                                 <td class="text-center">{{ $item->price }}</td>
                                                 <td class="text-center">{{ $item->qty }}</td>
                                                 <td class="text-center">{{ $item->subtotal }}</td>
                                             </tr>
                                             @endforeach
-                                            <tr>
+                                            {{-- <tr>
                                                 <td colspan="3" class="text-end"><strong>Subtotal</strong></td>
                                                 <td class="text-center">
                                                     <strong>{{ Cart::subtotal() }}</strong>
                                                 </td>
-                                            </tr>
-                                            <tr>
+                                            </tr> --}}
+                                            {{-- <tr>
                                                 <td colspan="3" class="text-end"><strong>Tax</strong></td>
                                                 <td class="text-center">
                                                     <strong>{{ Cart::tax() }}</strong>
                                                 </td>
                                             </tr>
-                                            <tr>
+                                            <tr> --}}
                                                 <td colspan="3" class="text-end"><strong>Total</strong></td>
                                                 <td class="text-center">
                                                     <strong>{{ Cart::total() }}</strong>
@@ -116,12 +118,19 @@
 
                         <div class="invoice-btn-section clearfix d-print-none">
                             <a href="{{ url()->previous() }}" class="btn btn-warning">
-                                {{ __('Back to previous') }}
+                                {{ __('Kembali') }}
                             </a>
 
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal">
-                                {{ __('Pay Now') }}
-                            </button>
+                            {{-- <form action="{{ route('orders.store') }}" method="POST" style="display: inline;">
+                                @csrf --}}
+                                <input type="hidden" name="customer_id" value="{{ $customer->id }}">
+                                <input type="hidden" name="payment_type" value="HandCash">
+                                <input type="hidden" name="pay" value="{{ Cart::total() }}">
+                                <!-- Replace the existing Bayar button with this -->
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal">
+                                    {{ __('Bayar') }}
+                                </button>
+                            {{-- </form> --}}
                         </div>
                     </div>
                 </div>
@@ -133,7 +142,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title">
-                            {{ __('Pay Order') }}
+                            {{ __('Pembayaran') }}
                         </h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
@@ -153,14 +162,14 @@
                                 <div class="col-lg-6">
                                     <div class="mb-3">
                                         <label for="payment_type" class="form-label required">
-                                            {{ __('Payment') }}
+                                            {{ __('Pembayaran') }}
                                         </label>
 
                                         <select class="form-control @error('payment_type') is-invalid @enderror" id="payment_type" name="payment_type">
-                                            <option selected="" disabled="">Select a payment:</option>
-                                            <option value="HandCash">HandCash</option>
-                                            <option value="Cheque">Cheque</option>
-                                            <option value="Due">Due</option>
+                                            <option selected="" disabled="">Pilih Pembayaran...</option>
+                                            <option value="HandCash">Bayar Langsung</option>
+                                            {{-- <option value="Cheque">Cheque</option> --}}
+                                            <option value="Due">Dp (Uang muka)</option>
                                         </select>
 
                                         @error('payment_type')
@@ -173,7 +182,7 @@
 
                                 <div class="col-lg-12">
                                     <label for="pay" class="form-label required">
-                                        {{ __('Pay Now') }}
+                                        {{ __('Bayar Sekarang') }}
                                     </label>
 
                                     <input type="number"
@@ -195,10 +204,10 @@
 
                         <div class="modal-footer">
                             <button type="button" class="btn me-auto" data-bs-dismiss="modal">
-                                {{ __('Cancel') }}
+                                {{ __('Batalkan') }}
                             </button>
                             <button class="btn btn-primary" type="submit">
-                                {{ __('Pay') }}
+                                {{ __('Bayar') }}
                             </button>
                         </div>
                     </form>
@@ -207,5 +216,34 @@
         </div>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <script>
+            // When modal opens
+            document.getElementById('modal').addEventListener('show.bs.modal', function () {
+                const paymentType = document.getElementById('payment_type');
+                const payInput = document.getElementById('pay');
+                const total = {{ Cart::total() }};
+
+                // Reset payment type selection
+                paymentType.selectedIndex = 0;
+
+                // Reset pay input
+                payInput.value = '';
+                payInput.readOnly = false;
+            });
+
+            // When payment type changes
+            document.getElementById('payment_type').addEventListener('change', function() {
+                const payInput = document.getElementById('pay');
+                const total = {{ Cart::total() }};
+
+                if (this.value === 'HandCash') {
+                    payInput.value = total;
+                    payInput.readOnly = true;
+                } else {
+                    payInput.value = '';
+                    payInput.readOnly = false;
+                }
+            });
+        </script>
     </body>
 </html>

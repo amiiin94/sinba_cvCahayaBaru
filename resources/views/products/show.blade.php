@@ -76,23 +76,23 @@
                                 <table class="table table-bordered card-table table-vcenter text-nowrap datatable">
                                     <tbody>
                                         <tr>
-                                            <td>Name</td>
+                                            <td>Nama Produk</td>
                                             <td>{{ $product->name }}</td>
                                         </tr>
-                                        <tr>
+                                        {{-- <tr>
                                             <td>Slug</td>
                                             <td>{{ $product->slug }}</td>
-                                        </tr>
+                                        </tr> --}}
                                         <tr>
-                                            <td><span class="text-secondary">Code</span></td>
+                                            <td><span class="text-secondary">Kode Produk</span></td>
                                             <td>{{ $product->code }}</td>
                                         </tr>
-                                        <tr>
+                                        {{-- <tr>
                                             <td>Barcode</td>
                                             <td>{!! $barcode !!}</td>
-                                        </tr>
+                                        </tr> --}}
                                         <tr>
-                                            <td>Category</td>
+                                            <td>Kategori</td>
                                             <td>
                                                 <a href="{{ route('categories.show', $product->category) }}"
                                                     class="badge bg-blue-lt">
@@ -111,11 +111,11 @@
                                         </tr>
 
                                         <tr>
-                                            <td>Quantity</td>
+                                            <td>Jumlah Stok</td>
                                             <td>{{ $product->quantity }}</td>
                                         </tr>
                                         <tr>
-                                            <td>Quantity Alert</td>
+                                            <td>Stok Minimum</td>
                                             <td>
                                                 <span class="badge bg-red-lt">
                                                     {{ $product->quantity_alert }}
@@ -124,25 +124,25 @@
                                         </tr>
 
                                         <tr>
-                                            <td>Buying Price</td>
-                                            <td>{{ $product->buying_price }}</td>
+                                            <td>Harga Beli</td>
+                                            <td>{{ Number::currency($product->buying_price, 'IDR', 'Rp') }}</td>
                                         </tr>
                                         <tr>
-                                            <td>Selling Price</td>
-                                            <td>{{ $product->selling_price }}</td>
+                                            <td>Harga Jual</td>
+                                            <td>{{ Number::currency($product->selling_price, 'IDR', 'Rp') }}</td>
                                         </tr>
-                                        <tr>
+                                        {{-- <tr>
                                             <td>Tax</td>
                                             <td>
                                                 <span class="badge bg-red-lt">
                                                     {{ $product->tax }} %
                                                 </span>
                                             </td>
-                                        </tr>
-                                        <tr>
+                                        </tr> --}}
+                                        {{-- <tr>
                                             <td>Tax Type</td>
                                             <td>{{ $product->tax_type->label() }}</td>
-                                        </tr>
+                                        </tr> --}}
                                         <tr>
                                             <td>{{ __('Notes') }}</td>
                                             <td>{{ $product->notes }}</td>

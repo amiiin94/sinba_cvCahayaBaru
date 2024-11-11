@@ -25,4 +25,13 @@ class StoreInvoiceRequest extends FormRequest
             'customer_id' => 'required'
         ];
     }
+
+    public function messages(): array
+    {
+    return [
+        'customer_id.required' => 'Silakan pilih pelanggan',
+        'customer_id.integer' => 'Pelanggan yang dipilih tidak valid',
+        'customer_id.exists' => 'Pelanggan yang dipilih tidak ditemukan atau telah dihapus'
+    ];
+    }
 }

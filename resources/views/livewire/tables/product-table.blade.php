@@ -17,13 +17,13 @@
                         <x-icon.plus />
                         {{ __('Tambah Produk Baru') }}
                     </a>
-                    <a href="{{ route('products.import.view') }}" class="dropdown-item">
+                    {{-- <a href="{{ route('products.import.view') }}" class="dropdown-item">
                         <x-icon.plus />
                         {{ __('Import Produk') }}
-                    </a>
+                    </a>--}}
                     <a href="{{ route('products.export.store') }}" class="dropdown-item">
                         <x-icon.plus />
-                        {{ __('Export Produk') }}
+                        {{ __('Ekspor Produk ke excel') }}
                     </a>
                 </div>
             </div>
@@ -63,15 +63,15 @@
                     <th class="align-middle text-center w-1">
                         {{ __('No.') }}
                     </th>
-                    <th scope="col" class="align-middle text-center">
-                        {{ __('Gambar') }}
-                    </th>
                     {{-- <th scope="col" class="align-middle text-center">
+                        {{ __('Gambar') }}
+                    </th> --}}
+                    <th scope="col" class="align-middle text-center">
                         <a wire:click.prevent="sortBy('name')" href="#" role="button">
-                            {{ __('Name') }}
+                            {{ __('Nama Produk') }}
                             @include('inclues._sort-icon', ['field' => 'name'])
                         </a>
-                    </th> --}}
+                    </th>
                     {{-- <th scope="col" class="align-middle text-center">
                         <a wire:click.prevent="sortBy('code')" href="#" role="button">
                             {{ __('Code') }}
@@ -86,13 +86,19 @@
                     </th>
                     <th scope="col" class="align-middle text-center">
                         <a wire:click.prevent="sortBy('price')" href="#" role="button">
-                            {{ __('Harga') }}
+                            {{ __('Harga Beli') }}
+                            @include('inclues._sort-icon', ['field' => 'price'])
+                        </a>
+                    </th>
+                    <th scope="col" class="align-middle text-center">
+                        <a wire:click.prevent="sortBy('price')" href="#" role="button">
+                            {{ __('Harga Jual') }}
                             @include('inclues._sort-icon', ['field' => 'price'])
                         </a>
                     </th>
                     <th scope="col" class="align-middle text-center">
                         <a wire:click.prevent="sortBy('quantity')" href="#" role="button">
-                            {{ __('Kuantitas') }}
+                            {{ __('Jumlah Stok') }}
                             @include('inclues._sort-icon', ['field' => 'quantity'])
                         </a>
                     </th>
@@ -107,14 +113,14 @@
                         <td class="align-middle text-center">
                             {{ $loop->iteration }}
                         </td>
-                        <td class="align-middle text-center">
+                        {{-- <td class="align-middle text-center">
                             <img style="width: 90px;"
                                 src="{{ $product->product_image ? asset('storage/' . $product->product_image) : asset('assets/img/products/default.webp') }}"
                                 alt="">
-                        </td>
-                        {{-- <td class="align-middle text-center">
-                            {{ $product->name }}
                         </td> --}}
+                        <td class="align-middle text-center">
+                            {{ $product->name }}
+                        </td>
                         {{-- <td class="align-middle text-center">
                             {{ $product->code }}
                         </td> --}}
@@ -122,7 +128,10 @@
                             {{ $product->category ? $product->category->name : '--' }}
                         </td>
                         <td class="align-middle text-center">
-                            {{ $product->buying_price }}
+                            {{ Number::currency($product->buying_price, 'IDR', 'Rp') }}
+                        </td>
+                        <td class="align-middle text-center">
+                            {{ Number::currency($product->selling_price, 'IDR', 'Rp') }}
                         </td>
                         <td class="align-middle text-center">
                             {{ $product->quantity }}

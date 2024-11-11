@@ -2,8 +2,8 @@
     <table class="table table-bordered" id="products_table">
         <thead class="thead-dark">
             <tr>
-                <th class="align-middle">Produk</th>
-                <th class="align-middle text-center">Kuantitas</th>
+                <th class="align-middle">Nama Produk</th>
+                <th class="align-middle text-center">Jumlah</th>
                 <th class="align-middle text-center">Harga</th>
                 <th class="align-middle text-center">Total</th>
                 <th class="align-middle text-center">Aksi</th>
@@ -30,7 +30,7 @@
 
                             @foreach ($allProducts as $product)
                                 <option value="{{ $product->id }}" class="text-center">
-                                    {{ $product->category ? $product->category->name : '--' }}
+                                    {{ $product->name }}
                                 </option>
                             @endforeach
                         </select>
@@ -112,7 +112,7 @@
                     Subtotal
                 </th>
                 <td class="text-center">
-                    {{ Number::currency($subtotal, 'IDR') }}
+                    {{ Number::currency($subtotal, 'IDR', 'Rp') }}
                 </td>
             </tr>
             <tr>
@@ -120,7 +120,7 @@
                     Total
                 </th>
                 <td class="text-center">
-                    {{ Number::currency($total, 'IDR') }}
+                    {{ Number::currency($total, 'IDR', 'Rp') }}
                     <input type="hidden" name="total_amount" value="{{ $total }}">
                 </td>
             </tr>

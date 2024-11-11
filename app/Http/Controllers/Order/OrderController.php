@@ -47,52 +47,56 @@ class OrderController extends Controller
     }
 
     public function store(OrderStoreRequest $request)
-    {
-        $order_date = Carbon::now();
+{
+    $order_date = Carbon::now();
 
-        $order = Order::create([
-            'customer_id' => $request->customer_id,
-            'payment_type' => $request->payment_type,
-            'pay' => $request->pay,
-            'order_date' => $order_date,
-            'order_status' => OrderStatus::PENDING->value,
-            'total_products' => Cart::count(),
-            'sub_total' => Cart::subtotal(),
-            'vat' => Cart::tax(),
-            'total' => Cart::total(),
-            'invoice_no' => IdGenerator::generate([
-                'table' => 'orders',
-                'field' => 'invoice_no',
-                'length' => 10,
-                'prefix' => 'INV-'
-            ]),
-            'due' => (Cart::total() - $request->pay),
-            'user_id' => auth()->id(),
-            'uuid' => Str::uuid(),
-        ]);
+    // Determine order status based on payment type
+    $order_status = $request->payment_type === 'HandCash'
+        ? OrderStatus::COMPLETE->value
+        : OrderStatus::PENDING->value;
 
-        // Create Order Details
-        $contents = Cart::content();
-        $oDetails = [];
+    $order = Order::create([
+        'customer_id' => $request->customer_id,
+        'payment_type' => $request->payment_type,
+        'pay' => $request->pay,
+        'order_date' => $order_date,
+        'order_status' => $order_status,  // Use the determined status
+        'total_products' => Cart::count(),
+        'sub_total' => Cart::subtotal(),
+        'vat' => Cart::tax(),
+        'total' => Cart::total(),
+        'invoice_no' => IdGenerator::generate([
+            'table' => 'orders',
+            'field' => 'invoice_no',
+            'length' => 10,
+            'prefix' => 'INV-'
+        ]),
+        'due' => (Cart::total() - $request->pay),
+        'user_id' => auth()->id(),
+        'uuid' => Str::uuid(),
+    ]);
 
-        foreach ($contents as $content) {
-            $oDetails['order_id'] = $order['id'];
-            $oDetails['product_id'] = $content->id;
-            $oDetails['quantity'] = $content->qty;
-            $oDetails['unitcost'] = $content->price;
-            $oDetails['total'] = $content->subtotal;
-            $oDetails['created_at'] = Carbon::now();
+    // Rest of your code remains the same
+    $contents = Cart::content();
+    $oDetails = [];
 
-            OrderDetails::insert($oDetails);
-        }
+    foreach ($contents as $content) {
+        $oDetails['order_id'] = $order['id'];
+        $oDetails['product_id'] = $content->id;
+        $oDetails['quantity'] = $content->qty;
+        $oDetails['unitcost'] = $content->price;
+        $oDetails['total'] = $content->subtotal;
+        $oDetails['created_at'] = Carbon::now();
 
-        // Delete Cart Sopping History
-        Cart::destroy();
-
-        return redirect()
-            ->route('orders.index')
-            ->with('success', 'Order has been created!');
+        OrderDetails::insert($oDetails);
     }
+
+    Cart::destroy();
+
+    return redirect()
+        ->route('orders.index')
+        ->with('success', 'Order has been created!');
+}
 
     public function show($uuid)
     {

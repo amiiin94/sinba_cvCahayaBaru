@@ -6,7 +6,7 @@
             <div class="row g-2 align-items-center mb-3">
                 <div class="col">
                     <h2 class="page-title">
-                        {{ __('Edit Product') }}
+                        {{ __('Edit Produk') }}
                     </h2>
                 </div>
             </div>
@@ -28,7 +28,7 @@
                             <div class="card">
                                 <div class="card-body">
                                     <h3 class="card-title">
-                                        {{ __('Product Image') }}
+                                        {{ __('Gambar Produk') }}
                                     </h3>
 
                                     <img class="img-account-profile mb-2"
@@ -36,7 +36,7 @@
                                         alt="" id="image-preview">
 
                                     <div class="small font-italic text-muted mb-2">
-                                        JPG or PNG no larger than 2 MB
+                                        JPG atau PNG tidak lebih dari 2 MB
                                     </div>
 
                                     <input type="file" accept="image/*" id="image" name="product_image"
@@ -56,15 +56,15 @@
 
                             <div class="card">
                                 <div class="card-body">
-                                    {{-- <h3 class="card-title">
-                                        {{ __('Product Details') }}
-                                    </h3> --}}
+                                    <h3 class="card-title">
+                                        {{ __('Detail Produk') }}
+                                    </h3>
 
                                     <div class="row row-cards">
-                                        {{-- <div class="col-md-12">
+                                        <div class="col-md-12">
                                             <div class="mb-3">
                                                 <label for="name" class="form-label">
-                                                    {{ __('Name') }}
+                                                    {{ __('Nama Produk') }}
                                                     <span class="text-danger">*</span>
                                                 </label>
 
@@ -78,18 +78,18 @@
                                                     </div>
                                                 @enderror
                                             </div>
-                                        </div> --}}
+                                        </div>
 
                                         <div class="col-sm-6 col-md-6">
                                             <div class="mb-3">
                                                 <label for="category_id" class="form-label">
-                                                    Product category
+                                                    Kategori
                                                     <span class="text-danger">*</span>
                                                 </label>
 
                                                 <select name="category_id" id="category_id"
                                                     class="form-select @error('category_id') is-invalid @enderror">
-                                                    <option selected="" disabled="">Select a category:</option>
+                                                    <option selected="" disabled="">Pilih Kategori:</option>
                                                     @foreach ($categories as $category)
                                                         <option value="{{ $category->id }}"
                                                             @if (old('category_id', $product->category_id) == $category->id) selected="selected" @endif>
@@ -116,7 +116,7 @@
                                                 <select name="unit_id" id="unit_id"
                                                     class="form-select @error('unit_id') is-invalid @enderror">
                                                     <option selected="" disabled="">
-                                                        Select a unit:
+                                                        Pilih unit:
                                                     </option>
 
                                                     @foreach ($units as $unit)
@@ -137,7 +137,7 @@
                                         <div class="col-sm-6 col-md-6">
                                             <div class="mb-3">
                                                 <label class="form-label" for="buying_price">
-                                                    Buying price
+                                                    Harga Beli
                                                     <span class="text-danger">*</span>
                                                 </label>
 
@@ -157,7 +157,7 @@
                                         <div class="col-sm-6 col-md-6">
                                             <div class="mb-3">
                                                 <label for="selling_price" class="form-label">
-                                                    Selling price
+                                                    Harga Jual
                                                     <span class="text-danger">*</span>
                                                 </label>
 
@@ -177,7 +177,7 @@
                                         <div class="col-sm-6 col-md-6">
                                             <div class="mb-3">
                                                 <label for="quantity" class="form-label">
-                                                    {{ __('Quantity') }}
+                                                    {{ __('Jumlah Stok') }}
                                                 </label>
 
                                                 <input class="form-control" name="quantity" type="text" readonly value="{{ old('quantity', $product->quantity) }}"  required="true" aria-required="true" style="color: var(--tblr-secondary);background-color: var(--tblr-bg-surface-secondary); opacity: 1;"/>
@@ -193,7 +193,7 @@
                                         <div class="col-sm-6 col-md-6">
                                             <div class="mb-3">
                                                 <label for="quantity_alert" class="form-label">
-                                                    {{ __('Quantity Alert') }}
+                                                    {{ __('Jumlah stok minimum') }}
                                                     <span class="text-danger">*</span>
                                                 </label>
 
@@ -210,7 +210,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="col-sm-6 col-md-6">
+                                        {{-- <div class="col-sm-6 col-md-6">
                                             <div class="mb-3">
                                                 <label for="tax" class="form-label">
                                                     {{ __('Tax') }}
@@ -227,9 +227,9 @@
                                                     </div>
                                                 @enderror
                                             </div>
-                                        </div>
+                                        </div> --}}
 
-                                        <div class="col-sm-6 col-md-6">
+                                        {{-- <div class="col-sm-6 col-md-6">
                                             <div class="mb-3">
                                                 <label class="form-label" for="tax_type">
                                                     {{ __('Tax Type') }}
@@ -251,7 +251,7 @@
                                                     </div>
                                                 @enderror
                                             </div>
-                                        </div>
+                                        </div> --}}
 
                                         <div class="col-md-12">
                                             <div class="mb-3 mb-0">
@@ -274,11 +274,11 @@
 
                                 <div class="card-footer text-end">
                                     <button class="btn btn-primary" type="submit">
-                                        {{ __('Update') }}
+                                        {{ __('Ubah') }}
                                     </button>
 
                                     <a class="btn btn-danger" href="{{ url()->previous() }}">
-                                        {{ __('Cancel') }}
+                                        {{ __('Batalkan') }}
                                     </a>
                                 </div>
                             </div>

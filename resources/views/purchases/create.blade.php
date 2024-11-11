@@ -57,9 +57,9 @@
 
 
                                         <x-tom-select label="Suppliers" id="supplier_id" name="supplier_id"
-                                            placeholder="Select Customer" :data="$suppliers" />
+                                            placeholder="Pilih supplier" :data="$suppliers" />
 
-                                        
+
                                     </div>
 
                                     @livewire('purchase-form')
@@ -69,7 +69,7 @@
                                     {{-- - onclick="return confirm('Are you sure you want to purchase?')" - --}}
                                     {{-- - @disabled($errors->isNotEmpty()) - --}}
                                     <button type="submit" class="btn btn-primary">
-                                        Beli Bahan
+                                        Beli Produk
                                     </button>
                                 </div>
                             </div>

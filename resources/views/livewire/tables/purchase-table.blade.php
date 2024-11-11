@@ -2,7 +2,7 @@
     <div class="card-header">
         <div>
             <h3 class="card-title">
-                {{ __('Pembelian Bahan') }}
+                {{ __('Pembelian Produk') }}
             </h3>
         </div>
 
@@ -67,12 +67,12 @@
                             @include('inclues._sort-icon', ['field' => 'total_amount'])
                         </a>
                     </th>
-                    <th scope="col" class="align-middle text-center">
+                    {{-- <th scope="col" class="align-middle text-center">
                         <a wire:click.prevent="sortBy('status')" href="#" role="button">
                             {{ __('Status') }}
                             @include('inclues._sort-icon', ['field' => 'status'])
                         </a>
-                    </th>
+                    </th> --}}
                     <th scope="col" class="align-middle text-center">
                         {{ __('Aksi') }}
                     </th>
@@ -94,30 +94,28 @@
                         {{ $purchase->date->format('d-m-Y') }}
                     </td>
                     <td class="align-middle text-center">
-                        {{ Number::currency($purchase->total_amount, 'IDR') }}
+                        {{ Number::currency($purchase->total_amount, 'IDR', 'Rp') }}
                     </td>
 
                     @if ($purchase->status === \App\Enums\PurchaseStatus::APPROVED)
-                        <td class="align-middle text-center">
+                        {{-- <td class="align-middle text-center">
                             <span class="badge bg-green text-white text-uppercase">
                                 {{ __('APPROVED') }}
                             </span>
-                        </td>
+                        </td> --}}
                         <td class="align-middle text-center">
                             <x-button.show class="btn-icon" route="{{ route('purchases.edit', $purchase->uuid) }}"/>
                         </td>
                     @else
-                        <td class="align-middle text-center">
+                        {{-- <td class="align-middle text-center">
                             <span class="badge bg-orange text-white text-uppercase">
                                 {{ __('PENDING') }}
                             </span>
-                        </td>
+                        </td> --}}
                         <td class="align-middle text-center" style="width: 10%">
-                            
-                            {{-- <x-button.show class="btn-icon bg-azure-lt" route="{{ route('purchases.show', $purchase->uuid) }}"/> --}}
-                                
+
+
                             <x-button.show class="btn-icon" route="{{ route('purchases.edit', $purchase->uuid) }}"/>
-                            {{-- <x-button.complete class="btn-icon"  onclick="return confirm('Are you sure to approve purchase no. {{ $purchase->purchase_no }}!') route="{{ route('purchases.update', $purchase->uuid) }}"/> --}}
                             <x-button.complete class="btn-icon" route="{{ route('purchases.update', $purchase->uuid) }}" onclick="return confirm('Are you sure to approve purchase no. {{ $purchase->purchase_no }}?')"/>
                             <x-button.delete class="btn-icon" onclick="return confirm('Are you sure!')" route="{{ route('purchases.delete', $purchase->uuid) }}"/>
                         </td>
@@ -126,7 +124,7 @@
                 @empty
                 <tr>
                     <td class="align-middle text-center" colspan="7">
-                        No results found
+                        Hasil tidak ditemukan
                     </td>
                 </tr>
             @endforelse

@@ -8,7 +8,7 @@
                 <div class="card-header">
                     <div>
                         <h3 class="card-title">
-                            {{ __('Purchase Details') }}
+                            {{ __('Pembelian Detail') }}
                         </h3>
                     </div>
 

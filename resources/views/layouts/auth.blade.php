@@ -65,7 +65,7 @@
         <div class="container container-tight py-4">
 
             <div class="text-center mb-4">
-                <h1 class="">CV CAHAYA BARU</h1>
+                <h1 class="">SINBA | CV Cahaya Baru</h1>
             </div>
 
             @include('components.alert')

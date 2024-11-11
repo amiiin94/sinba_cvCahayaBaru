@@ -45,6 +45,8 @@ class ProductController extends Controller
 
     public function store(StoreProductRequest $request)
     {
+        // dd($request->all());
+
         /**
          * Handle upload image
          */
@@ -71,7 +73,7 @@ class ProductController extends Controller
             'tax_type' => $request->tax_type,
             'notes' => $request->notes,
             "user_id" => auth()->id(),
-            // 'name' => $request->name, // Hapus baris ini jika tidak diperlukan
+            'name' => $request->name, // Hapus baris ini jika tidak diperlukan
             "slug" => Str::slug($request->name, '-'),
             "uuid" => Str::uuid()
         ]);

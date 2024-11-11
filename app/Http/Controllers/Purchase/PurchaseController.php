@@ -75,52 +75,68 @@ class PurchaseController extends Controller
 
     public function store(StorePurchaseRequest $request)
     {
-        if ($request->invoiceProducts == null || $request->invoiceProducts[0]['total'] == 0) {
+        if (empty($request->invoiceProducts) || $request->invoiceProducts[0]['total'] == 0) {
             return redirect()
-            ->back()
-            ->with('error', 'Please add product!');
+                ->back()
+                ->with('error', 'Please add product!');
         }
-        $purchase = Purchase::create([
-            'purchase_no' => IdGenerator::generate([
-                'table' => 'purchases',
-                'field' => 'purchase_no',
-                'length' => 10,
-                'prefix' => 'PRS-'
-            ]),
-            'status'     => PurchaseStatus::APPROVED->value,
-            'created_by' => auth()->user()->id,
-            'supplier_id.required' =>$request->required,
-            'supplier_id'   =>$request->supplier_id,
-            'date'          =>$request->date,
-            'total_amount'  =>$request->total_amount,
-            'uuid'=>Str::uuid(),
-            'user_id'=>auth()->id()
-        ]);
 
-        /*
-         * TODO: Must validate that
-         */
-        if (! $request->invoiceProducts == null)
-        {
-            $pDetails = [];
+        DB::beginTransaction();
+        try {
+            $purchase = Purchase::create([
+                'purchase_no' => IdGenerator::generate([
+                    'table' => 'purchases',
+                    'field' => 'purchase_no',
+                    'length' => 10,
+                    'prefix' => 'PRS-'
+                ]),
+                'status' => PurchaseStatus::APPROVED->value,
+                'created_by' => auth()->user()->id,
+                'supplier_id' => $request->supplier_id,
+                'date' => $request->date,
+                'total_amount' => $request->total_amount,
+                'uuid' => Str::uuid(),
+                'user_id' => auth()->id()
+            ]);
 
-            foreach ($request->invoiceProducts as $product)
-            {
-                $pDetails['purchase_id']    = $purchase['id'];
-                $pDetails['product_id']     = $product['product_id'];
-                $pDetails['quantity']       = $product['quantity'];
-                $pDetails['unitcost']       = intval($product['unitcost']);
-                $pDetails['total']          = $product['total'];
-                $pDetails['created_at']     = Carbon::now();
+            foreach ($request->invoiceProducts as $product) {
+                // Create purchase detail
+                $purchase->details()->create([
+                    'product_id' => $product['product_id'],
+                    'quantity' => $product['quantity'],
+                    'unitcost' => intval($product['unitcost']),
+                    'total' => $product['total'],
+                ]);
 
-                //PurchaseDetails::insert($pDetails);
-                $purchase->details()->insert($pDetails);
+                // Update product quantity
+                $this->updateProductQuantity($product['product_id'], $product['quantity']);
             }
+
+            DB::commit();
+            return redirect()
+                ->route('purchases.index')
+                ->with('success', 'Purchase has been created and inventory updated!');
+
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect()
+                ->back()
+                ->with('error', 'Error occurred: ' . $e->getMessage());
+        }
+    }
+
+    private function updateProductQuantity($productId, $quantity)
+    {
+        $product = Product::findOrFail($productId);
+
+        if ($quantity <= 0) {
+            throw new \Exception('Quantity must be greater than zero');
         }
 
-        return redirect()
-            ->route('purchases.index')
-            ->with('success', 'Purchase has been created!');
+        $product->update([
+            'quantity' => DB::raw('quantity + ' . $quantity),
+            'last_purchase_date' => now(),
+        ]);
     }
 
     public function update($uuid)

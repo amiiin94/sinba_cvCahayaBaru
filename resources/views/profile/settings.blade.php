@@ -25,7 +25,7 @@
         @include('partials.session')
 
         <div class="row">
-            <div class="col-lg-8">
+            <div class="col">
                 <div class="card mb-4">
                     <div class="card-header">
                         <div>
@@ -49,7 +49,7 @@
                 </div>
             </div>
 
-            <div class="col-lg-4">
+            {{-- <div class="col-lg-4">
                 <div class="card mb-4">
                     <div class="card-header">
                         Two-Factor Authentication
@@ -88,7 +88,7 @@
                         </button>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
 @endsection

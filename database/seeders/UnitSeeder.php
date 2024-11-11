@@ -14,19 +14,14 @@ class UnitSeeder extends Seeder
     public function run(): void
     {
         $units = collect([
+
             [
-                'name' => 'Kilometer',
-                'slug' => 'Kilometer',
-                'short_code' => 'kg',
+                'name' => 'bahan/kg',
+                'slug' => 'bahan/kg',
+                'short_code' => 'bahan/kg',
                 'user_id'=>1
             ],
-            [
-                'name' => 'kg',
-                'slug' => 'kg',
-                'short_code' => 'kg',
-                'user_id'=>1
-            ],
-            
+
         ]);
 
         $units->each(function ($unit){

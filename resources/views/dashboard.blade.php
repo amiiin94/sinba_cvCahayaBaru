@@ -218,7 +218,7 @@
                                                 {{ $orders }} Penjualan
                                             </div>
                                             <div class="text-muted">
-                                                {{ $todayOrders }} shipped
+                                                {{ $todayOrders }} Hari ini
                                             </div>
                                         </div>
                                     </div>

@@ -167,7 +167,7 @@
                                     </path>
                                     <path d="M12 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0"></path>
                                 </svg>
-                                Account
+                                Profile
                             </a>
                             <form action="{{ route('logout') }}" method="post">
                                 @csrf
@@ -182,7 +182,7 @@
                                         <path d="M9 12h12l-3 -3" />
                                         <path d="M18 15l3 -3" />
                                     </svg>
-                                    Logout
+                                    Keluar
                                 </button>
                             </form>
                         </div>
@@ -423,7 +423,7 @@
                                         </svg>
                                     </span>
                                     <span class="nav-link-title">
-                                        {{ __('Settings') }}
+                                        {{ __('Pengaturan') }}
                                     </span>
                                 </a>
                                 <div class="dropdown-menu">

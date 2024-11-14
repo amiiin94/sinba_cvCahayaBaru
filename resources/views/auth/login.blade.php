@@ -56,9 +56,9 @@
             </form>
         </div>
     </div>
-    <div class="text-center text-secondary mt-3">
+<!--     <div class="text-center text-secondary mt-3">
         <span class="form-label-description">
             <a href="{{ route('password.request') }}">Lupa kata sandi?</a>
         </span>
-    </div>
+    </div> -->
 @endsection

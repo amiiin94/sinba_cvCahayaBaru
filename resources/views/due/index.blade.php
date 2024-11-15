@@ -34,7 +34,7 @@
                         <tr>
                             <th scope="col" class="text-center">No.</th>
                             <th scope="col" class="text-center">Invoice No.</th>
-                            <th scope="col" class="text-center">Customer</th>
+                            <th scope="col" class="text-center">Pelanggan</th>
                             <th scope="col" class="text-center">Tanggal</th>
                             <th scope="col" class="text-center">Status</th>
                             <th scope="col" class="text-center">Dibayar</th>

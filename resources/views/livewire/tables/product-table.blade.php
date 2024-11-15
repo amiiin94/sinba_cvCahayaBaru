@@ -20,7 +20,7 @@
                     {{-- <a href="{{ route('products.import.view') }}" class="dropdown-item">
                         <x-icon.plus />
                         {{ __('Import Produk') }}
-                    </a>--}}
+                    </a> --}}
                     <a href="{{ route('products.export.store') }}" class="dropdown-item">
                         <x-icon.plus />
                         {{ __('Ekspor Produk ke excel') }}
@@ -33,7 +33,7 @@
     <div class="card-body border-bottom py-3">
         <div class="d-flex">
             <div class="text-secondary">
-                Show
+                Tampilkan
                 <div class="mx-2 d-inline-block">
                     <select wire:model.live="perPage" class="form-select form-select-sm" aria-label="result per page">
                         <option value="5">5</option>
@@ -42,10 +42,10 @@
                         <option value="25">25</option>
                     </select>
                 </div>
-                entries
+                Entri
             </div>
             <div class="ms-auto text-secondary">
-                Search:
+                cari:
                 <div class="ms-2 d-inline-block">
                     <input type="text" wire:model.live="search" class="form-control form-control-sm"
                         aria-label="Search invoice">
@@ -146,7 +146,7 @@
                 @empty
                     <tr>
                         <td class="align-middle text-center" colspan="7">
-                            No results found
+                            Tidak ada hasil
                         </td>
                     </tr>
                 @endforelse
@@ -156,8 +156,8 @@
 
     <div class="card-footer d-flex align-items-center">
         <p class="m-0 text-secondary">
-            Showing <span>{{ $products->firstItem() }}</span>
-            to <span>{{ $products->lastItem() }}</span> of <span>{{ $products->total() }}</span> entries
+            Menampilkan <span>{{ $products->firstItem() }}</span>
+            hingga <span>{{ $products->lastItem() }}</span> dari total <span>{{ $products->total() }}</span> entri
         </p>
 
         <ul class="pagination m-0 ms-auto">

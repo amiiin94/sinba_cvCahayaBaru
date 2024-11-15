@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 
 <head>
     <title>
@@ -7,15 +7,15 @@
     </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
-    <!-- External CSS libraries -->
+    <!-- CSS Eksternal -->
     <link type="text/css" rel="stylesheet" href="{{ asset('assets/invoice/css/bootstrap.min.css') }}">
     <link type="text/css" rel="stylesheet"
         href="{{ asset('assets/invoice/fonts/font-awesome/css/font-awesome.min.css') }}">
-    <!-- Google fonts -->
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
         rel="stylesheet">
-    <!-- Custom Stylesheet -->
+    <!-- Stylesheet Kustom -->
     <link type="text/css" rel="stylesheet" href="{{ asset('assets/invoice/css/style.css') }}">
 </head>
 
@@ -35,7 +35,7 @@
                                 <div class="col-lg-6 col-sm-6">
                                     <div class="invoice">
                                         <h1>
-                                            Invoice # <span>{{ $order->invoice_no }}</span>
+                                            Faktur # <span>{{ $order->invoice_no }}</span>
                                         </h1>
                                     </div>
                                 </div>
@@ -46,7 +46,7 @@
                                 <div class="col-sm-6 mb-50">
                                     <div class="invoice-number">
                                         <h4 class="inv-title-1">
-                                            Invoice date:
+                                            Tanggal Faktur:
                                         </h4>
                                         <p class="invo-addr-1">
                                             {{ $order->order_date }}
@@ -56,7 +56,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-sm-6 mb-50">
-                                    <h4 class="inv-title-1">Customer</h4>
+                                    <h4 class="inv-title-1">Pelanggan</h4>
                                     <p class="inv-from-1">{{ $order->customer->name }}</p>
                                     <p class="inv-from-1">{{ $order->customer->phone }}</p>
                                     <p class="inv-from-1">{{ $order->customer->email }}</p>
@@ -66,7 +66,7 @@
                                     $user = auth()->user();
                                 @endphp
                                 <div class="col-sm-6 text-end mb-50">
-                                    <h4 class="inv-title-1">Store</h4>
+                                    <h4 class="inv-title-1">Toko</h4>
                                     <p class="inv-from-1">{{ Str::title($user->store_name) }}</p>
                                     <p class="inv-from-1">{{ $user->store_phone }}</p>
                                     <p class="inv-from-1">{{ $user->store_email }}</p>
@@ -80,27 +80,26 @@
                                     <thead>
                                         <tr>
                                             <th class="align-middle">Item</th>
-                                            <th class="align-middle text-center">Price</th>
-                                            <th class="align-middle text-center">Quantity</th>
+                                            <th class="align-middle text-center">Harga</th>
+                                            <th class="align-middle text-center">Jumlah</th>
                                             <th class="align-middle text-center">Subtotal</th>
                                         </tr>
                                     </thead>
 
                                     <tbody>
-                                        {{--                                            @foreach ($orderDetails as $item) --}}
                                         @foreach ($order->details as $item)
                                             <tr>
                                                 <td class="align-middle">
                                                     {{ $item->product->name }}
                                                 </td>
                                                 <td class="align-middle text-center">
-                                                    {{ Number::currency($item->unitcost, 'EUR') }}
+                                                    {{ Number::currency($item->unitcost, 'IDR') }}
                                                 </td>
                                                 <td class="align-middle text-center">
                                                     {{ $item->quantity }}
                                                 </td>
                                                 <td class="align-middle text-center">
-                                                    {{ Number::currency($item->total, 'EUR') }}
+                                                    {{ Number::currency($item->total, 'IDR') }}
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -113,17 +112,17 @@
                                             </td>
                                             <td class="align-middle text-center">
                                                 <strong>
-                                                    {{ Number::currency($order->sub_total, 'EUR') }}
+                                                    {{ Number::currency($order->sub_total, 'IDR') }}
                                                 </strong>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td colspan="3" class="text-end">
-                                                <strong>Tax</strong>
+                                                <strong>Pajak</strong>
                                             </td>
                                             <td class="align-middle text-center">
                                                 <strong>
-                                                    {{ Number::currency($order->vat, 'EUR') }}
+                                                    {{ Number::currency($order->vat, 'IDR') }}
                                                 </strong>
                                             </td>
                                         </tr>
@@ -133,7 +132,7 @@
                                             </td>
                                             <td class="align-middle text-center">
                                                 <strong>
-                                                    {{ Number::currency($order->total, 'EUR') }}
+                                                    {{ Number::currency($order->total, 'IDR') }}
                                                 </strong>
                                             </td>
                                         </tr>
@@ -141,30 +140,23 @@
                                 </table>
                             </div>
                         </div>
-                        {{-- <div class="invoice-informeshon-footer">
-                                <ul>
-                                    <li><a href="#">www.website.com</a></li>
-                                    <li><a href="mailto:sales@hotelempire.com">info@example.com</a></li>
-                                    <li><a href="tel:+088-01737-133959">+62 123 123 123</a></li>
-                                </ul>
-                            </div> --}}
                     </div>
                     <div class="invoice-btn-section clearfix d-print-none">
                         <a href="javascript:window.print()" class="btn btn-lg btn-print">
                             <i class="fa fa-print"></i>
-                            Print Invoice
+                            Cetak Faktur
                         </a>
                         <a id="invoice_download_btn" class="btn btn-lg btn-download">
                             <i class="fa fa-download"></i>
-                            Download Invoice
+                            Unduh Faktur
                         </a>
                     </div>
 
-                    {{-- back button --}}
+                    {{-- Tombol Kembali --}}
                     <div class="invoice-btn-section clearfix d-print-none">
                         <a href="{{ route('orders.index') }}" class="btn btn-lg btn-print">
                             <i class="fa fa-arrow-left"></i>
-                            Back
+                            Kembali
                         </a>
                     </div>
                 </div>

@@ -12,27 +12,28 @@
         @endif
 
         <div class="table-responsive position-relative">
-            <div wire:loading.flex class="col-12 position-absolute justify-content-center align-items-center" style="top:0;right:0;left:0;bottom:0;background-color: rgba(255,255,255,0.5);z-index: 99;">
+            <div wire:loading.flex class="col-12 position-absolute justify-content-center align-items-center"
+                style="top:0;right:0;left:0;bottom:0;background-color: rgba(255,255,255,0.5);z-index: 99;">
                 <div class="spinner-border text-primary" role="status">
                     <span class="sr-only"></span>
                 </div>
             </div>
             <table class="table table-bordered">
                 <thead class="thead-dark">
-                <tr>
-                    <th class="align-middle">Product</th>
-                    <th class="align-middle text-center">Net Unit Price</th>
-                    <th class="align-middle text-center">Stock</th>
-                    <th class="align-middle text-center">Quantity</th>
-                    <th class="align-middle text-center">Discount</th>
-                    <th class="align-middle text-center">Tax</th>
-                    <th class="align-middle text-center">Sub Total</th>
-                    <th class="align-middle text-center">Action</th>
-                </tr>
+                    <tr>
+                        <th class="align-middle">Produk</th>
+                        <th class="align-middle text-center">Harga Satuan</th>
+                        <th class="align-middle text-center">Stok</th>
+                        <th class="align-middle text-center">Jumlah</th>
+                        <th class="align-middle text-center">Diskon</th>
+                        <th class="align-middle text-center">Pajak</th>
+                        <th class="align-middle text-center">Total Semua</th>
+                        <th class="align-middle text-center">Aksi</th>
+                    </tr>
                 </thead>
                 <tbody>
-                    @if($cart_items->isNotEmpty())
-                        @foreach($cart_items as $cart_item)
+                    @if ($cart_items->isNotEmpty())
+                        @foreach ($cart_items as $cart_item)
                             <tr>
                                 <td class="align-middle">
                                     {{ $cart_item->name }} <br>
@@ -43,7 +44,8 @@
                                 </td>
 
                                 <td x-data="{ open{{ $cart_item->id }}: false }" class="align-middle text-center">
-                                    <span x-show="!open{{ $cart_item->id }}" @click="open{{ $cart_item->id }} = !open{{ $cart_item->id }}">
+                                    <span x-show="!open{{ $cart_item->id }}"
+                                        @click="open{{ $cart_item->id }} = !open{{ $cart_item->id }}">
                                         {{ format_currency($cart_item->price) }}
                                     </span>
 
@@ -57,7 +59,7 @@
                                         {{ $cart_item->options->stock . ' ' . $cart_item->options->unit }}
                                     </span>
 
-{{--                                    {{ $cart_item->options->stock . ' ' . $cart_item->options->unit }}--}}
+                                    {{--                                    {{ $cart_item->options->stock . ' ' . $cart_item->options->unit }} --}}
                                 </td>
 
                                 <td class="align-middle text-center">
@@ -77,13 +79,24 @@
                                 </td>
 
                                 <td class="align-middle text-center">
-{{--                                    <a href="#" wire:click.prevent="removeItem('{{ $cart_item->rowId }}')">--}}
-{{--                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 7l16 0" /><path d="M10 11l0 6" /><path d="M14 11l0 6" /><path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" /><path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" /></svg>--}}
-{{--                                        Del--}}
-{{--                                    </a>--}}
+                                    {{--                                    <a href="#" wire:click.prevent="removeItem('{{ $cart_item->rowId }}')"> --}}
+                                    {{--                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 7l16 0" /><path d="M10 11l0 6" /><path d="M14 11l0 6" /><path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" /><path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" /></svg> --}}
+                                    {{--                                        Del --}}
+                                    {{--                                    </a> --}}
 
-                                    <a href="#" wire:click.prevent="removeItem('{{ $cart_item->rowId }}')" class="btn btn-icon btn-outline-danger">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 7l16 0" /><path d="M10 11l0 6" /><path d="M14 11l0 6" /><path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" /><path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" /></svg>
+                                    <a href="#" wire:click.prevent="removeItem('{{ $cart_item->rowId }}')"
+                                        class="btn btn-icon btn-outline-danger">
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                            class="icon icon-tabler icon-tabler-trash" width="24" height="24"
+                                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                            stroke-linecap="round" stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                            <path d="M4 7l16 0" />
+                                            <path d="M10 11l0 6" />
+                                            <path d="M14 11l0 6" />
+                                            <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
+                                            <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
+                                        </svg>
                                     </a>
                                 </td>
                             </tr>
@@ -91,9 +104,9 @@
                     @else
                         <tr>
                             <td colspan="8" class="text-center">
-                        <span class="text-danger">
-                            Please search & select products!
-                        </span>
+                                <span class="text-danger">
+                                    Tolong cari dan pilih produk!
+                                </span>
                             </td>
                         </tr>
                     @endif
@@ -107,22 +120,22 @@
             <div class="table-responsive">
                 <table class="table table-striped">
                     <tr>
-                        <th>Tax ({{ $global_tax }}%)</th>
+                        <th>Pajak ({{ $global_tax }}%)</th>
                         <td>(+) {{ format_currency(Cart::instance($cart_instance)->tax()) }}</td>
                     </tr>
                     <tr>
-                        <th>Discount ({{ $global_discount }}%)</th>
+                        <th>Diskon ({{ $global_discount }}%)</th>
                         <td>(-) {{ format_currency(Cart::instance($cart_instance)->discount()) }}</td>
                     </tr>
                     <tr>
-                        <th>Shipping</th>
+                        <th>Kirim</th>
                         <input type="hidden" value="{{ $shipping }}" name="shipping_amount">
                         <td>(+) {{ format_currency($shipping) }}</td>
                     </tr>
                     <tr>
-                        <th>Grand Total</th>
+                        <th>Total Semua</th>
                         @php
-                            $total_with_shipping = Cart::instance($cart_instance)->total() + (float) $shipping
+                            $total_with_shipping = Cart::instance($cart_instance)->total() + (float) $shipping;
                         @endphp
                         <th>
                             (=) {{ format_currency($total_with_shipping) }}
@@ -141,24 +154,20 @@
                 Tax (%)
             </label>
 
-            <input type="number"
-                   id="tax_percentage"
-                   name="tax_percentage"
-                   wire:model.blur="global_tax"
-                   class="form-control"
-                   min="0" max="100" value="{{ $global_tax }}"
-                   required
-            >
+            <input type="number" id="tax_percentage" name="tax_percentage" wire:model.blur="global_tax"
+                class="form-control" min="0" max="100" value="{{ $global_tax }}" required>
         </div>
 
         <div class="col">
-            <label for="discount_percentage" class="small mb-1">Discount (%)</label>
-            <input wire:model.blur="global_discount" type="number" class="form-control" name="discount_percentage" id="discount_percentage" min="0" max="100" value="{{ $global_discount }}" required>
+            <label for="discount_percentage" class="small mb-1">Diskon (%)</label>
+            <input wire:model.blur="global_discount" type="number" class="form-control" name="discount_percentage"
+                id="discount_percentage" min="0" max="100" value="{{ $global_discount }}" required>
         </div>
 
         <div class="col">
-            <label for="shipping_amount" class="small mb-1">Shipping</label>
-            <input wire:model.blur="shipping" type="number" class="form-control" name="shipping_amount" id="shipping_amount" min="0" value="0" required step="0.01">
+            <label for="shipping_amount" class="small mb-1">Pengiriman</label>
+            <input wire:model.blur="shipping" type="number" class="form-control" name="shipping_amount"
+                id="shipping_amount" min="0" value="0" required step="0.01">
         </div>
     </div>
 </div>

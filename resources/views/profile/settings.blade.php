@@ -8,7 +8,7 @@
                     <div class="col-auto mb-3">
                         <h1 class="page-header-title">
                             <div class="page-header-icon"><i data-feather="user"></i></div>
-                            Account Settings - Settings
+                            Pengaturan Akun - Pengaturan
                         </h1>
                     </div>
                 </div>
@@ -18,7 +18,6 @@
 
     <div class="container-xl px-4 mt-4">
         @include('profile.component.menu')
-
 
         <hr class="mt-0 mb-4" />
 
@@ -30,20 +29,20 @@
                     <div class="card-header">
                         <div>
                             <h3 class="card-title">
-                                {{ __('Change Password') }}
+                                {{ __('Ubah Kata Sandi') }}
                             </h3>
                         </div>
                     </div>
 
                     <x-form action="{{ route('password.update') }}" method="PUT">
                         <div class="card-body">
-                            <x-input type="password" name="current_password" label="Current Password" required />
-                            <x-input type="password" name="password" label="New Password" required />
-                            <x-input type="password" name="password_confirmation" label="Confirm Password" required />
+                            <x-input type="password" name="current_password" label="Kata Sandi Saat Ini" required />
+                            <x-input type="password" name="password" label="Kata Sandi Baru" required />
+                            <x-input type="password" name="password_confirmation" label="Konfirmasi Kata Sandi" required />
                         </div>
 
                         <div class="card-footer text-end">
-                            <x-button type="submit">{{ __('Save') }}</x-button>
+                            <x-button type="submit">{{ __('Simpan') }}</x-button>
                         </div>
                     </x-form>
                 </div>
@@ -52,23 +51,23 @@
             {{-- <div class="col-lg-4">
                 <div class="card mb-4">
                     <div class="card-header">
-                        Two-Factor Authentication
+                        Otentikasi Dua Faktor
                     </div>
                     <div class="card-body">
                         <p>
-                            Add another level of security to your account by enabling two-factor authentication.
-                            We will send you a text message to verify your login attempts on unrecognized devices and
-                            browsers.
+                            Tambahkan lapisan keamanan ekstra ke akun Anda dengan mengaktifkan otentikasi dua faktor.
+                            Kami akan mengirimkan pesan teks untuk memverifikasi upaya login Anda pada perangkat dan
+                            browser yang tidak dikenal.
                         </p>
                         <form>
                             <div class="form-check">
                                 <input class="form-check-input" id="twoFactorOn" type="radio" name="twoFactor"
                                     checked="" />
-                                <label class="form-check-label" for="twoFactorOn">On</label>
+                                <label class="form-check-label" for="twoFactorOn">Aktif</label>
                             </div>
                             <div class="form-check">
                                 <input class="form-check-input" id="twoFactorOff" type="radio" name="twoFactor" />
-                                <label class="form-check-label" for="twoFactorOff">Off</label>
+                                <label class="form-check-label" for="twoFactorOff">Nonaktif</label>
                             </div>
                         </form>
                     </div>
@@ -76,15 +75,15 @@
 
                 <div class="card mb-4">
                     <div class="card-header">
-                        Delete Account
+                        Hapus Akun
                     </div>
                     <div class="card-body">
                         <p>
-                            Deleting your account is a permanent action and cannot be undone. If you are sure you want to
-                            delete your account, select the button below.
+                            Menghapus akun Anda adalah tindakan permanen dan tidak dapat dibatalkan. Jika Anda yakin ingin
+                            menghapus akun Anda, pilih tombol di bawah ini.
                         </p>
                         <button type="button" class="btn btn-danger-soft text-danger">
-                            I understand, delete my account
+                            Saya mengerti, hapus akun saya
                         </button>
                     </div>
                 </div>

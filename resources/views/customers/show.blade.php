@@ -50,27 +50,27 @@
                                         <td>{{ $customer->name }}</td>
                                     </tr>
                                     <tr>
-                                        <td>Email address</td>
+                                        <td>Alamat Email</td>
                                         <td>{{ $customer->email }}</td>
                                     </tr>
                                     <tr>
-                                        <td>Phone number</td>
+                                        <td>Nomor Hp</td>
                                         <td>{{ $customer->phone }}</td>
                                     </tr>
                                     <tr>
-                                        <td>Address</td>
+                                        <td>Alamat</td>
                                         <td>{{ $customer->address }}</td>
                                     </tr>
                                     <tr>
-                                        <td>Account holder</td>
+                                        <td>Nama Pemilik Akun</td>
                                         <td>{{ $customer->account_holder }}</td>
                                     </tr>
                                     <tr>
-                                        <td>Account number</td>
+                                        <td>Nomor Rekening</td>
                                         <td>{{ $customer->account_number }}</td>
                                     </tr>
                                     <tr>
-                                        <td>Bank name</td>
+                                        <td>Nama Bank</td>
                                         <td>{{ $customer->bank_name }}</td>
                                     </tr>
                                     </tbody>

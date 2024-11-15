@@ -52,7 +52,7 @@
                     <a href="{{ url('/') }}" class="col">
                         {{-- <img src="{{ asset('static/logo.svg') }}" width="110" height="32" alt="Tabler"
                             class="navbar-brand-image"> --}}
-                            <h2 class="m-0">SINBA | CV Cahaya Baru</h2>
+                        <h2 class="m-0">SINBA | CV Cahaya Baru</h2>
                     </a>
                 </h1>
                 <div class="navbar-nav flex-row order-md-last">
@@ -147,9 +147,9 @@
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link d-flex lh-1 text-reset p-0" data-bs-toggle="dropdown"
                             aria-label="Open user menu">
-                            <span class="avatar avatar-sm shadow-none"
+                            {{-- <span class="avatar avatar-sm shadow-none"
                                 style="background-image: url({{ Auth::user()->photo ? asset('storage/profile/' . Auth::user()->photo) : asset('assets/img/illustrations/profiles/admin.jpg') }})">
-                            </span>
+                            </span> --}}
 
                             <div class="d-none d-xl-block ps-2">
                                 <div>{{ Auth::user()->name }}</div>
@@ -168,7 +168,7 @@
                                     </path>
                                     <path d="M12 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0"></path>
                                 </svg>
-                                Profile
+                                Profil
                             </a>
                             <form action="{{ route('logout') }}" method="post">
                                 @csrf
@@ -229,9 +229,8 @@
                                     <span
                                         class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/home -->
                                         <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24"
-                                            height="24" viewBox="0 0 24 24" stroke-width="2"
-                                            stroke="currentColor" fill="none" stroke-linecap="round"
-                                            stroke-linejoin="round">
+                                            height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                                            fill="none" stroke-linecap="round" stroke-linejoin="round">
                                             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                             <path d="M5 12l-2 0l9 -9l9 9l-2 0" />
                                             <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
@@ -320,10 +319,15 @@
 
 
                             <li class="nav-item dropdown {{ request()->is('purchases*') ? 'active' : null }}">
-                                <a class="nav-link dropdown-toggle" href="#navbar-pembelian" data-bs-toggle="dropdown"
-                                    data-bs-auto-close="outside" role="button" aria-expanded="false">
+                                <a class="nav-link dropdown-toggle" href="#navbar-pembelian"
+                                    data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button"
+                                    aria-expanded="false">
                                     <span class="nav-link-icon d-md-none d-lg-inline-block">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-package-import" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                            class="icon icon-tabler icon-tabler-package-import" width="24"
+                                            height="24" viewBox="0 0 24 24" stroke-width="2"
+                                            stroke="currentColor" fill="none" stroke-linecap="round"
+                                            stroke-linejoin="round">
                                             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                             <path d="M12 21l-8 -4.5v-9l8 -4.5l8 4.5v4.5" />
                                             <path d="M12 12l8 -4.5" />
@@ -340,7 +344,8 @@
                                 <div class="dropdown-menu">
                                     <div class="dropdown-menu-columns">
                                         <div class="dropdown-menu-column">
-                                            <a class="dropdown-item text-blue" href="{{ route('purchases.create') }}">
+                                            <a class="dropdown-item text-blue"
+                                                href="{{ route('purchases.create') }}">
                                                 {{ __('Tambah Pembelian') }}
                                             </a>
                                             <a class="dropdown-item" href="{{ route('purchases.index') }}">

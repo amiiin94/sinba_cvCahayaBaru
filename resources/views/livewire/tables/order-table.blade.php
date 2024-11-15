@@ -14,7 +14,7 @@
     <div class="card-body border-bottom py-3">
         <div class="d-flex">
             <div class="text-secondary">
-                Show
+                Tampilkan
                 <div class="mx-2 d-inline-block">
                     <select wire:model.live="perPage" class="form-select form-select-sm" aria-label="result per page">
                         <option value="5">5</option>
@@ -23,10 +23,10 @@
                         <option value="25">25</option>
                     </select>
                 </div>
-                entries
+                entri
             </div>
             <div class="ms-auto text-secondary">
-                Search:
+                Cari:
                 <div class="ms-2 d-inline-block">
                     <input type="text" wire:model.live="search" class="form-control form-control-sm"
                         aria-label="Search invoice">
@@ -131,7 +131,7 @@
                 @empty
                     <tr>
                         <td class="align-middle text-center" colspan="8">
-                            No results found
+                            Tidak ada hasil
                         </td>
                     </tr>
                 @endforelse
@@ -141,8 +141,8 @@
 
     <div class="card-footer d-flex align-items-center">
         <p class="m-0 text-secondary">
-            Showing <span>{{ $orders->firstItem() }}</span> to <span>{{ $orders->lastItem() }}</span> of
-            <span>{{ $orders->total() }}</span> entries
+            Menampilkan <span>{{ $orders->firstItem() }}</span> to <span>{{ $orders->lastItem() }}</span> of
+            <span>{{ $orders->total() }}</span> entri
         </p>
 
         <ul class="pagination m-0 ms-auto">

@@ -24,7 +24,7 @@
                     @method('put')
 
                     <div class="row">
-                        <div class="col-lg-4">
+                        {{-- <div class="col-lg-4">
                             <div class="card">
                                 <div class="card-body">
                                     <h3 class="card-title">
@@ -50,9 +50,9 @@
                                     @enderror
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
 
-                        <div class="col-lg-8">
+                        <div class="col">
 
                             <div class="card">
                                 <div class="card-body">

@@ -276,7 +276,7 @@
                                             @empty
                                                 <tr>
                                                     <th colspan="6" class="text-center">
-                                                        Data not found!
+                                                        Data tidak ada!
                                                     </th>
                                                 </tr>
                                             @endforelse

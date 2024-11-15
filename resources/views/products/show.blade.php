@@ -19,7 +19,7 @@
         <div class="container-xl">
             <div class="row row-cards">
                 <div class="row">
-                    <div class="col-lg-4">
+                    {{-- <div class="col-lg-4">
                         <div class="card">
                             <div class="card-body">
                                 <h3 class="card-title">
@@ -31,7 +31,7 @@
                                     alt="" class="img-account-profile mb-2">
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                     <!---
                     <div class="col-lg-8">
                         <div class="card">
@@ -65,7 +65,7 @@
                     </div>
                     --->
 
-                    <div class="col-lg-8">
+                    <div class="col">
                         <div class="card">
                             <div class="card-header">
                                 <h3 class="card-title">

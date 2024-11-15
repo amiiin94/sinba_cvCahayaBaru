@@ -80,9 +80,9 @@
                                             <tr>
                                                 <td class="text-center">{{ $item->name }}</td>
                                                 {{-- <td class="text-center">{{ $item->category->name }}</td> --}}
-                                                <td class="text-center">{{ $item->price }}</td>
+                                                <td class="text-center">{{ Number::currency($item->price, 'IDR', 'Rp') }}</td>
                                                 <td class="text-center">{{ $item->qty }}</td>
-                                                <td class="text-center">{{ $item->subtotal }}</td>
+                                                <td class="text-center">{{  Number::currency($item->subtotal, 'IDR', 'Rp') }}</td>
                                             </tr>
                                             @endforeach
                                             {{-- <tr>
@@ -100,7 +100,7 @@
                                             <tr> --}}
                                                 <td colspan="3" class="text-end"><strong>Total</strong></td>
                                                 <td class="text-center">
-                                                    <strong>{{ Cart::total() }}</strong>
+                                                    <strong>{{ Number::currency(Cart::total(), 'IDR', 'Rp') }}</strong>
                                                 </td>
                                             </tr>
                                         </tbody>

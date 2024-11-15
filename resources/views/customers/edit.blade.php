@@ -34,7 +34,7 @@
                                         src="{{ $customer->photo ? asset('storage/' . $customer->photo) : asset('assets/img/demo/user-placeholder.svg') }}"
                                         alt="" id="image-preview" />
 
-                                    <div class="small font-italic text-muted mb-2">JPG or PNG no larger than 2 MB</div>
+                                    <div class="small font-italic text-muted mb-2">JPG atau PNG ukuran kurang dari 2MB</div>
 
                                     <input class="form-control @error('photo') is-invalid @enderror" type="file"
                                         id="image" name="photo" accept="image/*" onchange="previewImage();">
@@ -75,7 +75,7 @@
 
                                             <select class="form-select @error('bank_name') is-invalid @enderror"
                                                 id="bank_name" name="bank_name">
-                                                <option selected="" disabled>Select a bank:</option>
+                                                <option selected="" disabled>Pilih Bank:</option>
                                                 <option value="BRI"
                                                     @if (old('bank_name', $customer->bank_name) == 'BRI') selected="selected" @endif>BRI
                                                 </option>

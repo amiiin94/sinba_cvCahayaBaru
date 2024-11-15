@@ -15,19 +15,18 @@
                         <div class="col-lg-6">
                             <div class="mb-3">
                                 <label for="payed" class="form-label required">
-                                    {{ __('Payed') }}
+                                    {{ __('Sudah Dibayar') }}
                                 </label>
 
                                 <input type="text" id="payed" class="form-control"
-                                       value="{{ Number::currency($order->pay, 'IDR') }}" disabled
-                                >
+                                       value="{{ Number::currency($order->pay, 'IDR') }}" disabled>
                             </div>
                         </div>
 
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label for="due" class="form-label required">
-                                    {{ __('Due') }}
+                                    {{ __('Belum Dibayar') }}
                                 </label>
 
                                 <input type="text" id="due" class="form-control"
@@ -37,10 +36,10 @@
 
                         <div class="col-lg-12">
                             <label for="pay_now" class="form-label required">
-                                {{ __('Pay Now') }}
+                                {{ __('Bayar sisa') }}
                             </label>
 
-                            <input type="text"
+                            <input type="number"
                                    id="pay_now"
                                    name="pay"
                                    class="form-control @error('pay') is-invalid @enderror"
@@ -58,15 +57,27 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn me-auto" data-bs-dismiss="modal">
-                        {{ __('Cancel') }}
+                        {{ __('Batal') }}
                     </button>
 
-{{--                    <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">--}}
-                    <button type="submit" class="btn btn-primary">
-                        {{ __('Pay') }}
+                    <button type="submit" class="btn btn-primary" onclick="return validatePayment()">
+                        {{ __('Bayar') }}
                     </button>
                 </div>
             </div>
         </form>
     </div>
 </div>
+
+<script>
+function validatePayment() {
+    const payNowInput = document.getElementById('pay_now').value;
+    const dueInput = {{ $order->due }};
+
+    if (parseFloat(payNowInput) > parseFloat(dueInput)) {
+        alert('Pembayaran melebihi total pembayaran');
+        return false; // Prevent form submission
+    }
+    return true; // Allow form submission
+}
+</script>

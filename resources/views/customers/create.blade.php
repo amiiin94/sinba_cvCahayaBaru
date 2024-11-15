@@ -31,7 +31,7 @@
 
                                 <img class="img-account-profile rounded-circle mb-2" src="{{ asset('assets/img/demo/user-placeholder.svg') }}" alt="" id="image-preview" />
 
-                                <div class="small font-italic text-muted mb-2">JPG or PNG no larger than 2 MB</div>
+                                <div class="small font-italic text-muted mb-2">JPG atau PNG ukuran kurang dari 2MB</div>
 
                                 <input class="form-control @error('photo') is-invalid @enderror" type="file"  id="image" name="photo" accept="image/*" onchange="previewImage();">
 
@@ -68,7 +68,7 @@
                                         </label>
 
                                         <select class="form-select form-control-solid @error('bank_name') is-invalid @enderror" id="bank_name" name="bank_name">
-                                            <option selected="" disabled="">Select a bank:</option>
+                                            <option selected="" disabled="">Pilih Bank:</option>
                                             <option value="BRI" @if(old('bank_name') == 'BRI')selected="selected"@endif>BRI</option>
                                             <option value="BNI" @if(old('bank_name') == 'BNI')selected="selected"@endif>BNI</option>
                                             <option value="BCA" @if(old('bank_name') == 'BCA')selected="selected"@endif>BCA</option>
@@ -94,7 +94,7 @@
 
                                     <div class="mb-3">
                                         <label for="address" class="form-label required">
-                                            Address
+                                            Alamat
                                         </label>
 
                                         <textarea name="address"

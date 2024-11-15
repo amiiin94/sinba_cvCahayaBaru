@@ -126,6 +126,7 @@ class ProductController extends Controller
 
         // Update semua field produk
         $product->update([
+            'name' => $request->name,
             'category_id' => $request->category_id,
             'unit_id' => $request->unit_id,
             'quantity' => $request->quantity,

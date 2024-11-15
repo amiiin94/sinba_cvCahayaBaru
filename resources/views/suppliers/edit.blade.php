@@ -9,17 +9,17 @@
                 @csrf
                 @method('put')
                 <div class="row">
-                    <div class="col-lg-4">
+                    {{-- <div class="col-lg-4">
                         <div class="card">
                             <div class="card-body">
                                 <h3 class="card-title">
-                                    {{ __('Profile Image') }}
+                                    {{ __('Foto Profil') }}
                                 </h3>
 
                                 <img class="img-account-profile mb-2" src="{{ $supplier->photo ? asset('storage/'.$supplier->photo) : asset('assets/img/demo/user-placeholder.svg') }}" alt="" id="image-preview" />
-                                <!-- Profile picture help block -->
-                                <div class="small font-italic text-muted mb-2">JPG or PNG no larger than 1 MB</div>
-                                <!-- Profile picture input -->
+                                <!-- Blok bantuan foto profil -->
+                                <div class="small font-italic text-muted mb-2">JPG atau PNG tidak lebih dari 1 MB</div>
+                                <!-- Input foto profil -->
                                 <input class="form-control form-control-solid mb-2 @error('photo') is-invalid @enderror" type="file"  id="image" name="photo" accept="image/*" onchange="previewImage();">
                                 @error('photo')
                                 <div class="invalid-feedback">
@@ -28,9 +28,9 @@
                                 @enderror
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
 
-                    <div class="col-lg-8">
+                    <div class="col">
                         <div class="card">
                             <div class="card-header">
                                 <div>
@@ -46,15 +46,15 @@
                             <div class="card-body">
                                 <div class="row row-cards">
                                     <div class="col-md-12">
-                                        <x-input name="name" :value="old('name', $supplier->name)" :required="true"/>
-                                        <x-input name="email" label="Email address" :value="old('email', $supplier->email)" :required="true"/>
-                                        <x-input name="shopname" label="Shop name" :value="old('shopname', $supplier->shopname)" :required="true"/>
-                                        <x-input name="phone" label="Phone number" :value="old('phone', $supplier->phone)" :required="true"/>
+                                        <x-input name="name" label="Nama" :value="old('name', $supplier->name)" :required="true"/>
+                                        <x-input name="email" label="Alamat Email" :value="old('email', $supplier->email)" :required="true"/>
+                                        <x-input name="shopname" label="Nama Toko/Usaha" :value="old('shopname', $supplier->shopname)" :required="true"/>
+                                        <x-input name="phone" label="Nomor Telepon" :value="old('phone', $supplier->phone)" :required="true"/>
                                     </div>
 
                                     <div class="col-sm-6 col-md-6">
                                         <label for="type" class="form-label required">
-                                            Type of supplier
+                                            Jenis Supplier
                                         </label>
 
                                         <select class="form-select @error('type') is-invalid @enderror" id="type" name="type">
@@ -74,11 +74,11 @@
 
                                     <div class="col-sm-6 col-md-6">
                                         <label for="bank_name" class="form-label required">
-                                            Bank Name
+                                            Nama Bank
                                         </label>
 
                                         <select class="form-select @error('bank_name') is-invalid @enderror" id="bank_name" name="bank_name">
-                                            <option selected="" disabled="">Select a bank:</option>
+                                            <option selected="" disabled="">Pilih bank:</option>
                                             <option value="BRI" @if(old('bank_name', $supplier->bank_name) == 'BRI')selected="selected"@endif>BRI</option>
                                             <option value="BNI" @if(old('bank_name', $supplier->bank_name) == 'BNI')selected="selected"@endif>BNI</option>
                                             <option value="BCA" @if(old('bank_name', $supplier->bank_name) == 'BCA')selected="selected"@endif>BCA</option>
@@ -95,14 +95,14 @@
 
                                     <div class="col-sm-6 col-md-6">
                                         <x-input name="account_holder"
-                                                 label="Account holder"
+                                                 label="Nama Pemilik Rekening"
                                                  :value="old('account_holder', $supplier->account_holder)"
                                         />
                                     </div>
 
                                     <div class="col-sm-6 col-md-6">
                                         <x-input name="account_number"
-                                                 label="Account number"
+                                                 label="Nomor Rekening"
                                                  :value="old('account_number', $supplier->account_number)"
                                         />
                                     </div>
@@ -110,7 +110,7 @@
                                     <div class="col-md-12">
                                         <div class="mb-3">
                                             <label for="address" class="form-label required">
-                                                {{ __('Address ') }}
+                                                {{ __('Alamat') }}
                                             </label>
 
                                             <textarea id="address"
@@ -130,7 +130,7 @@
                             </div>
                             <div class="card-footer text-end">
                                 <x-button type="submit">
-                                    {{ __('Save') }}
+                                    {{ __('Simpan') }}
                                 </x-button>
                             </div>
                         </div>

@@ -8,7 +8,7 @@
                     <div class="col-auto mb-3">
                         <h1 class="page-header-title">
                             <div class="page-header-icon"><i data-feather="user"></i></div>
-                            Toko - Pengaturan
+                            Pengaturan Perusahaan
                         </h1>
                     </div>
                 </div>
@@ -26,21 +26,41 @@
                     <div class="card-header">
                         <div>
                             <h3 class="card-title">
-                                {{ __('Perbarui Informasi Toko') }}
+                                {{ __('Perbarui Informasi Perusahaan') }}
                             </h3>
                         </div>
                     </div>
 
                     <x-form action="{{ route('profile.store.settings.store') }}" method="POST">
                         <div class="card-body">
-                            <x-input type="text" name="store_name" label="Nama Toko" value="{{ $user->store_name }}"
-                                required />
-                            <x-input type="tel" name="store_phone" label="Telepon Toko" value="{{ $user->store_phone }}"
-                                required />
-                            <x-input type="email" name="store_email" label="Email Toko" value="{{ $user->store_email }}"
-                                required />
-                            <x-input type="text" name="store_address" label="Alamat Toko"
-                                value="{{ $user->store_address }}" required />
+                            <x-input
+                                type="text"
+                                name="store_name"
+                                label="Nama Perusahaan"
+                                value="{{ old('store_name', $user->store_name) }}"
+                                required
+                            />
+                            <x-input
+                                type="tel"
+                                name="store_phone"
+                                label="Telepon Perusahaan"
+                                value="{{ old('store_phone', $user->store_phone) }}"
+                                required
+                            />
+                            <x-input
+                                type="email"
+                                name="store_email"
+                                label="Email Perusahaan"
+                                value="{{ old('store_email', $user->store_email) }}"
+                                required
+                            />
+                            <x-input
+                                type="text"
+                                name="store_address"
+                                label="Alamat Perusahaan"
+                                value="{{ old('store_address', $user->store_address) }}"
+                                required
+                            />
                         </div>
 
                         <div class="card-footer text-end">

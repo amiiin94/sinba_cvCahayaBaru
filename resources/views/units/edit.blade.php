@@ -23,7 +23,7 @@
 
                 <div class="card-body">
                     <x-input
-                        label="{{ __('Unit Name') }}"
+                        label="{{ __('Nama') }}"
                         id="name"
                         name="name"
                         :value="old('name', $unit->name)"
@@ -31,7 +31,7 @@
                     />
 
                     <x-input
-                        label="{{ __('Short Code') }}"
+                        label="{{ __('Singkatan') }}"
                         id="short_code"
                         name="short_code"
                         :value="old('short_code', $unit->short_code)"
@@ -40,7 +40,7 @@
                 </div>
                 <div class="card-footer text-end">
                     <x-button type="submit">
-                        {{ __('Update') }}
+                        {{ __('Ubah') }}
                     </x-button>
                 </div>
             </form>

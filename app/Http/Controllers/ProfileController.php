@@ -72,26 +72,40 @@ class ProfileController extends Controller
     }
 
     public function store_settings_store(Request $request)
-    {
-
-        $request->validate([
+{
+    $request->validate(
+        [
             'store_name' => 'required|max:50',
             'store_address' => 'required|max:50',
-            "store_phone" => 'required|min:10',
+            'store_phone' => 'required|min:10',
             'store_email' => 'required|email|max:50|unique:users,store_email,' . auth()->id(),
-        ]);
+        ],
+        [
+            'store_name.required' => 'Nama perusahaan wajib diisi.',
+            'store_name.max' => 'Nama perusahaan tidak boleh lebih dari 50 karakter.',
+            'store_address.required' => 'Alamat perusahaan wajib diisi.',
+            'store_address.max' => 'Alamat perusahaan tidak boleh lebih dari 50 karakter.',
+            'store_phone.required' => 'Nomor telepon perusahaan wajib diisi.',
+            'store_phone.min' => 'Nomor telepon perusahaan harus memiliki setidaknya 10 angka.',
+            'store_email.required' => 'Email perusahaan wajib diisi.',
+            'store_email.email' => 'Email perusahaan harus berupa alamat email yang valid.',
+            'store_email.max' => 'Email perusahaan tidak boleh lebih dari 50 karakter.',
+            'store_email.unique' => 'Email perusahaan sudah terdaftar.',
+        ]
+    );
 
-        User::find(auth()->id())->update([
-            "store_name" => $request->store_name,
-            "store_address" => $request->store_address,
-            "store_phone" => $request->store_phone,
-            "store_email" => $request->store_email,
-        ]);
+    User::find(auth()->id())->update([
+        'store_name' => $request->store_name,
+        'store_address' => $request->store_address,
+        'store_phone' => $request->store_phone,
+        'store_email' => $request->store_email,
+    ]);
 
-        return redirect()
-            ->route('profile.store.settings')
-            ->with('success', 'Store Information has been updated!');
-    }
+    return redirect()
+        ->route('profile.store.settings')
+        ->with('success', 'Informasi perusahaan berhasil diperbarui!');
+}
+
 
     public function store_settings()
     {

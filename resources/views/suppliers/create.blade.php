@@ -6,7 +6,7 @@
         <div class="row g-2 align-items-center mb-3">
             <div class="col">
                 <h2 class="page-title">
-                    {{ __('Create Supplier') }}
+                    {{ __('Buat Suplier') }}
                 </h2>
             </div>
         </div>
@@ -22,7 +22,7 @@
             <form action="{{ route('suppliers.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="row">
-                    <div class="col-lg-4">
+                    {{-- <div class="col-lg-4">
                         <div class="card">
                             <div class="card-body">
                                 <h3 class="card-title">
@@ -42,34 +42,34 @@
                                 @enderror
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
 
-                    <div class="col-lg-8">
+                    <div class="col">
                         <div class="card">
                             <div class="card-body">
                                 <h3 class="card-title">
-                                    {{ __('Supplier Details') }}
+                                    {{ __('Supplier Detail') }}
                                 </h3>
 
                                 <div class="row row-cards">
                                     <div class="col-md-12">
-                                        <x-input name="name" :required="true" />
+                                        <x-input name="name" label="Nama" :required="true" />
 
-                                        <x-input name="email" label="Email address" :required="true" />
+                                        <x-input name="email" label="Email" :required="true" />
 
-                                        <x-input name="shopname" label="Shop name" :required="true" />
+                                        <x-input name="shopname" label="Nama Usaha/toko" :required="true" />
 
-                                        <x-input name="phone" label="Phone number" :required="true" />
+                                        <x-input name="phone" label="Nomor Telepon" :required="true" />
                                     </div>
 
 
                                     <div class="col-sm-6 col-md-6">
                                         <label for="type" class="form-label required">
-                                            Type of supplier
+                                            Tipe Supplier
                                         </label>
 
                                         <select class="form-select @error('type') is-invalid @enderror" id="type" name="type">
-                                            <option selected="" disabled="">Select a type:</option>
+                                            <option selected="" disabled="">Pilih Tipe:</option>
 
                                             @foreach(\App\Enums\SupplierType::cases() as $supplierType)
                                                 <option value="{{ $supplierType->value }}" @selected(old('type') == $supplierType->value)>
@@ -87,11 +87,11 @@
 
                                     <div class="col-sm-6 col-md-6">
                                         <label for="bank_name" class="form-label required">
-                                            Bank Name
+                                            Nama Bank
                                         </label>
 
                                         <select class="form-select @error('bank_name') is-invalid @enderror" id="bank_name" name="bank_name">
-                                            <option selected="" disabled="">Select a bank:</option>
+                                            <option selected="" disabled="">Pilih bank:</option>
                                             <option value="BRI" @if(old('bank_name') == 'BRI')selected="selected"@endif>BRI</option>
                                             <option value="BNI" @if(old('bank_name') == 'BNI')selected="selected"@endif>BNI</option>
                                             <option value="BCA" @if(old('bank_name') == 'BCA')selected="selected"@endif>BCA</option>
@@ -106,17 +106,17 @@
                                     </div>
 
                                     <div class="col-sm-6 col-md-6">
-                                        <x-input name="account_holder" label="Account holder"/>
+                                        <x-input name="account_holder" label="Nama Pemilik ATM"/>
                                     </div>
 
                                     <div class="col-sm-6 col-md-6">
-                                        <x-input name="account_number" label="Account number"/>
+                                        <x-input name="account_number" label="Nomor ATM"/>
                                     </div>
 
                                     <div class="col-md-12">
                                         <div class="mb-3">
                                             <label for="address" class="form-label required">
-                                                {{ __('Address') }}
+                                                {{ __('Alamat') }}
                                             </label>
 
                                             <textarea id="address"
@@ -136,11 +136,11 @@
                             </div>
                             <div class="card-footer text-end">
                                 <button class="btn btn-primary" type="submit">
-                                    {{ __('Save') }}
+                                    {{ __('Simpan') }}
                                 </button>
 
                                 <a class="btn btn-outline-warning" href="{{ route('suppliers.index') }}">
-                                    {{ __('Cancel') }}
+                                    {{ __('Batalkan') }}
                                 </a>
                             </div>
                         </div>

@@ -42,40 +42,40 @@
             <thead class="thead-light">
                 <tr>
                     <th class="align-middle text-center w-1">
-                        {{ __('ID.') }}
+                        {{ __('No.') }}
                     </th>
                     <th scope="col" class="align-middle text-center">
                         <a wire:click.prevent="sortBy('name')" href="#" role="button">
-                            {{ __('Name') }}
+                            {{ __('Nama') }}
                             @include('inclues._sort-icon', ['field' => 'name'])
                         </a>
                     </th>
                     <th scope="col" class="align-middle text-center">
                         <a wire:click.prevent="sortBy('email')" href="#" role="button">
-                            {{ __('Email address') }}
+                            {{ __('Alamat Email') }}
                             @include('inclues._sort-icon', ['field' => 'email'])
                         </a>
                     </th>
                     <th scope="col" class="align-middle text-center">
                         <a wire:click.prevent="sortBy('shopname')" href="#" role="button">
-                            {{ __('Shop name') }}
+                            {{ __('Nama usaha/toko') }}
                             @include('inclues._sort-icon', ['field' => 'shopname'])
                         </a>
                     </th>
                     <th scope="col" class="align-middle text-center">
                         <a wire:click.prevent="sortBy('type')" href="#" role="button">
-                            {{ __('Type') }}
+                            {{ __('Tipe') }}
                             @include('inclues._sort-icon', ['field' => 'type'])
                         </a>
                     </th>
                     <th scope="col" class="align-middle text-center">
                         <a wire:click.prevent="sortBy('created_at')" href="#" role="button">
-                            {{ __('Created at') }}
+                            {{ __('Dibuat tanggal') }}
                             @include('inclues._sort-icon', ['field' => 'created_at'])
                         </a>
                     </th>
                     <th scope="col" class="align-middle text-center">
-                        {{ __('Action') }}
+                        {{ __('Aksi') }}
                     </th>
                 </tr>
             </thead>
@@ -108,7 +108,7 @@
                             <x-button.show class="btn-icon" route="{{ route('suppliers.show', $supplier->uuid) }}" />
                             <x-button.edit class="btn-icon" route="{{ route('suppliers.edit', $supplier->uuid) }}" />
                             <x-button.delete class="btn-icon" route="{{ route('suppliers.destroy', $supplier->uuid) }}"
-                                onclick="return confirm('Are you sure to remove supplier {{ $supplier->name }} ?!')" />
+                                onclick="return confirm('Apakah kamu yakin ingin menghapus suplier {{ $supplier->name }} ?!')" />
                         </td>
                     </tr>
                 @empty

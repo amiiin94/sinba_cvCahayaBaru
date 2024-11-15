@@ -16,9 +16,9 @@ class UnitSeeder extends Seeder
         $units = collect([
 
             [
-                'name' => 'bahan/kg',
-                'slug' => 'bahan/kg',
-                'short_code' => 'bahan/kg',
+                'name' => 'Kilogram',
+                'slug' => 'kilogram',
+                'short_code' => 'kg',
                 'user_id'=>1
             ],
 

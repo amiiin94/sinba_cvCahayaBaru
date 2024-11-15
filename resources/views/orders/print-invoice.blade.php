@@ -104,7 +104,7 @@
                                             </tr>
                                         @endforeach
 
-                                        <tr>
+                                        {{-- <tr>
                                             <td colspan="3" class="text-end">
                                                 <strong>
                                                     Subtotal
@@ -115,8 +115,8 @@
                                                     {{ Number::currency($order->sub_total, 'IDR') }}
                                                 </strong>
                                             </td>
-                                        </tr>
-                                        <tr>
+                                        </tr> --}}
+                                        {{-- <tr>
                                             <td colspan="3" class="text-end">
                                                 <strong>Pajak</strong>
                                             </td>
@@ -125,7 +125,7 @@
                                                     {{ Number::currency($order->vat, 'IDR') }}
                                                 </strong>
                                             </td>
-                                        </tr>
+                                        </tr> --}}
                                         <tr>
                                             <td colspan="3" class="text-end">
                                                 <strong>Total</strong>
@@ -144,11 +144,11 @@
                     <div class="invoice-btn-section clearfix d-print-none">
                         <a href="javascript:window.print()" class="btn btn-lg btn-print">
                             <i class="fa fa-print"></i>
-                            Cetak Faktur
+                            Cetak Invoice
                         </a>
                         <a id="invoice_download_btn" class="btn btn-lg btn-download">
                             <i class="fa fa-download"></i>
-                            Unduh Faktur
+                            Unduh Invoice
                         </a>
                     </div>
 

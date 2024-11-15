@@ -28,7 +28,7 @@
             <div class="ms-auto text-secondary">
                 Cari:
                 <div class="ms-2 d-inline-block">
-                    <input type="text" wire:model.live="search" class="form-control form-control-sm"
+                    <input type="text" wire:model.live="search" class="form-control form-contro"
                         aria-label="Search invoice">
                 </div>
             </div>
@@ -46,7 +46,7 @@
                     </th>
                     <th scope="col" class="align-middle text-center">
                         <a wire:click.prevent="sortBy('name')" href="#" role="button">
-                            {{ __('Name') }}
+                            {{ __('Nama') }}
                             @include('inclues._sort-icon', ['field' => 'name'])
                         </a>
                     </th>
@@ -58,12 +58,12 @@
                     </th>
                     <th scope="col" class="align-middle text-center">
                         <a wire:click.prevent="sortBy('short_code')" href="#" role="button">
-                            {{ __('Short Code') }}
+                            {{ __('Singkatan') }}
                             @include('inclues._sort-icon', ['field' => 'short_code'])
                         </a>
                     </th>
                     <th scope="col" class="align-middle text-center">
-                        {{ __('Action') }}
+                        {{ __('Aksi') }}
                     </th>
                 </tr>
             </thead>

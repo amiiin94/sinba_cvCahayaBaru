@@ -212,25 +212,25 @@ class PurchaseController extends Controller
             'purchases.purchase_no',
             'purchases.updated_at',
             'suppliers.name as supplier_name', // Get the supplier name
-            'products.code',
+            // 'products.code',
             'products.name',
             'purchase_details.quantity',
-            'purchase_details.unitcost',
+            // 'purchase_details.unitcost',
             'purchase_details.total',
             'users.name as created_by'
         )
         ->get();
 
     $purchase_array[] = array(
-        'Date',
-        'No Purchase',
+        'Tanggal',
+        'ID Pembelian',
         'Supplier', // Change this to 'Supplier Name' if desired
-        'Product Code',
-        'Product',
-        'Quantity',
-        'Unitcost',
+        // 'Product Code',
+        'Nama Produk',
+        'Jumlah',
+        // 'Unitcost',
         'Total',
-        'Created By'
+        'Dibuat oleh'
     );
 
     foreach ($purchases as $purchase) {
@@ -238,10 +238,10 @@ class PurchaseController extends Controller
             'Date' => $purchase->updated_at,
             'No Purchase' => $purchase->purchase_no,
             'Supplier' => $purchase->supplier_name, // Use supplier name
-            'Product Code' => $purchase->code,
+            // 'Product Code' => $purchase->code,
             'Product' => $purchase->name,
             'Quantity' => $purchase->quantity,
-            'Unitcost' => $purchase->unitcost,
+            // 'Unitcost' => $purchase->unitcost,
             'Total' => $purchase->total,
             'Created By' => $purchase->created_by
         );

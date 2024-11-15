@@ -75,7 +75,7 @@ function validatePayment() {
     const dueInput = {{ $order->due }};
 
     if (parseFloat(payNowInput) > parseFloat(dueInput)) {
-        alert('Pembayaran melebihi total pembayaran');
+        alert('Pembayaran melebihi sisa tagihan');
         return false; // Prevent form submission
     }
     return true; // Allow form submission

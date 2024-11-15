@@ -17,11 +17,11 @@
 <div class="page-body">
     <div class="container-xl">
         <div class="row row-cards">
-            <div class="col-lg-4">
+            {{-- <div class="col-lg-4">
                 <div class="card">
                     <div class="card-body">
                         <h3 class="card-title">
-                            {{ __('Profile Image') }}
+                            {{ __('Foto Profil') }}
                         </h3>
 
                         <img id="image-preview"
@@ -31,14 +31,14 @@
                         >
                     </div>
                 </div>
-            </div>
+            </div> --}}
 
-            <div class="col-lg-8">
+            <div class="col">
                 <div class="card">
                     <div class="card-header">
                         <div>
                             <h3 class="card-title">
-                                {{ __('Supplier Details') }}
+                                {{ __('Detail Supplier') }}
                             </h3>
                         </div>
 
@@ -50,39 +50,39 @@
                         <table class="table table-bordered card-table table-vcenter text-nowrap datatable">
                             <tbody>
                                 <tr>
-                                    <td>Name</td>
+                                    <td>Nama</td>
                                     <td>{{ $supplier->name }}</td>
                                 </tr>
                                 <tr>
-                                    <td>Email address</td>
+                                    <td>Alamat Email</td>
                                     <td>{{ $supplier->email }}</td>
                                 </tr>
                                 <tr>
-                                    <td>Phone number</td>
+                                    <td>Nomor Telepon</td>
                                     <td>{{ $supplier->phone }}</td>
                                 </tr>
                                 <tr>
-                                    <td>Address</td>
+                                    <td>Alamat</td>
                                     <td>{{ $supplier->address }}</td>
                                 </tr>
                                 <tr>
-                                    <td>Shop name</td>
+                                    <td>Nama Toko</td>
                                     <td>{{ $supplier->shopname }}</td>
                                 </tr>
                                 <tr>
-                                    <td>Type</td>
+                                    <td>Tipe</td>
                                     <td>{{ $supplier->type->label() }}</td>
                                 </tr>
                                 <tr>
-                                    <td>Account holder</td>
+                                    <td>Pemegang Rekening</td>
                                     <td>{{ $supplier->account_holder }}</td>
                                 </tr>
                                 <tr>
-                                    <td>Account number</td>
+                                    <td>Nomor Rekening</td>
                                     <td>{{ $supplier->account_number }}</td>
                                 </tr>
                                 <tr>
-                                    <td>Bank name</td>
+                                    <td>Nama Bank</td>
                                     <td>{{ $supplier->bank_name }}</td>
                                 </tr>
                             </tbody>
@@ -92,10 +92,10 @@
                     <div class="card-footer text-end">
                         <a class="btn btn-info" href="{{ route('suppliers.index') }}">
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 12l14 0" /><path d="M5 12l6 6" /><path d="M5 12l6 -6" /></svg>
-                            {{ __('Back') }}
+                            {{ __('Kembali') }}
                         </a>
                         <x-button.edit class="btn btn-outline-warning" route="{{ route('suppliers.edit', $supplier->uuid) }}">
-                            {{ __('Edit') }}
+                            {{ __('Ubah') }}
                         </x-button.edit>
                     </div>
                 </div>

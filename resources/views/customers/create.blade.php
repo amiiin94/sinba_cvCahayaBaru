@@ -22,7 +22,7 @@
             <form action="{{ route('customers.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="row">
-                    <div class="col-lg-4">
+                    {{-- <div class="col-lg-4">
                         <div class="card">
                             <div class="card-body">
                                 <h3 class="card-title">
@@ -42,29 +42,29 @@
                                 @enderror
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
 
-                    <div class="col-lg-8">
+                    <div class="col">
                         <div class="card">
                             <div class="card-body">
                                 <h3 class="card-title">
-                                    {{ __('Customer Details') }}
+                                    {{ __('Detail Pembeli') }}
                                 </h3>
 
                                 <div class="row row-cards">
                                     <div class="col-md-12">
                                         <x-input name="name" :required="true"/>
 
-                                        <x-input name="email" label="Email address" :required="true"/>
+                                        <x-input name="email" label="Email" :required="true"/>
                                     </div>
 
                                     <div class="col-sm-6 col-md-6">
-                                        <x-input label="Phone Number" name="phone" :required="true"/>
+                                        <x-input label="Nomor Telepon" name="phone" :required="true"/>
                                     </div>
 
                                     <div class="col-sm-6 col-md-6">
                                         <label for="bank_name" class="form-label">
-                                            Bank Name
+                                            Nama Bank
                                         </label>
 
                                         <select class="form-select form-control-solid @error('bank_name') is-invalid @enderror" id="bank_name" name="bank_name">
@@ -85,11 +85,11 @@
 
 
                                     <div class="col-sm-6 col-md-6">
-                                        <x-input label="Account holder" name="account_holder" />
+                                        <x-input label="Nama Pemilik Rekening" name="account_holder" />
                                     </div>
 
                                     <div class="col-sm-6 col-md-6">
-                                        <x-input label="Account number" name="account_number" />
+                                        <x-input label="Nomor Rekening" name="account_number" />
                                     </div>
 
                                     <div class="mb-3">
@@ -113,11 +113,11 @@
                             </div>
                             <div class="card-footer text-end">
                                 <button class="btn btn-primary" type="submit">
-                                    {{ __('Save') }}
+                                    {{ __('Simpan') }}
                                 </button>
 
                                 <a class="btn btn-outline-warning" href="{{ route('customers.index') }}">
-                                    {{ __('Cancel') }}
+                                    {{ __('Batalkan') }}
                                 </a>
                             </div>
                         </div>

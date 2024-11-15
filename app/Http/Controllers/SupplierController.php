@@ -33,7 +33,6 @@ class SupplierController extends Controller
         Supplier::create([
             "user_id" => auth()->id(),
             "uuid" => Str::uuid(),
-            'photo' => $image,
             'name' => $request->name,
             'email' => $request->email,
             'phone' => $request->phone,
@@ -105,19 +104,28 @@ class SupplierController extends Controller
     }
 
     public function destroy($uuid)
-    {
-        $supplier = Supplier::where("uuid", $uuid)->firstOrFail();
-        /**
-         * Delete photo if exists.
-         */
-        if ($supplier->photo) {
-            unlink(public_path('storage/suppliers/') . $supplier->photo);
-        }
+{
+    $supplier = Supplier::where("uuid", $uuid)->firstOrFail();
 
-        $supplier->delete();
-
+    // Check if the supplier is linked to any purchase records
+    if ($supplier->purchases()->exists()) {
         return redirect()
             ->route('suppliers.index')
-            ->with('success', 'Supplier has been deleted!');
+            ->with('error', 'Cannot delete this supplier because it is associated with existing purchase records.');
     }
+
+    /**
+     * Delete photo if exists.
+     */
+    if ($supplier->photo) {
+        unlink(public_path('storage/suppliers/') . $supplier->photo);
+    }
+
+    $supplier->delete();
+
+    return redirect()
+        ->route('suppliers.index')
+        ->with('success', 'Supplier has been deleted!');
+}
+
 }

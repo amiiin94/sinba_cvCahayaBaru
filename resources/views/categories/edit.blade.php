@@ -7,7 +7,7 @@
             <div class="card-header">
                 <div>
                     <h3 class="card-title">
-                        {{ __('Edit Category') }}
+                        {{ __('Edit Kategori') }}
                     </h3>
                 </div>
 
@@ -20,7 +20,7 @@
                 @method('put')
                 <div class="card-body">
                     <x-input
-                        label="{{ __('Name') }}"
+                        label="{{ __('Nama') }}"
                         id="name"
                         name="name"
                         :value="old('name', $category->name)"
@@ -29,7 +29,7 @@
                 </div>
                 <div class="card-footer text-end">
                     <x-button type="submit">
-                        {{ __('Update') }}
+                        {{ __('Ubah') }}
                     </x-button>
                 </div>
             </form>

@@ -51,7 +51,7 @@ class OrderController extends Controller
     $order_date = Carbon::now();
 
     // Determine order status based on payment type
-    $order_status = $request->payment_type === 'HandCash'
+    $order_status = $request->pay === number_format(Cart::total(), 0, '.', '')
         ? OrderStatus::COMPLETE->value
         : OrderStatus::PENDING->value;
 
@@ -60,7 +60,7 @@ class OrderController extends Controller
         'payment_type' => $request->payment_type,
         'pay' => $request->pay,
         'order_date' => $order_date,
-        'order_status' => $order_status,  // Use the determined status
+        'order_status' => $order_status,
         'total_products' => Cart::count(),
         'sub_total' => Cart::subtotal(),
         'vat' => Cart::tax(),
@@ -76,11 +76,11 @@ class OrderController extends Controller
         'uuid' => Str::uuid(),
     ]);
 
-    // Rest of your code remains the same
     $contents = Cart::content();
     $oDetails = [];
 
     foreach ($contents as $content) {
+        // Create order details
         $oDetails['order_id'] = $order['id'];
         $oDetails['product_id'] = $content->id;
         $oDetails['quantity'] = $content->qty;
@@ -89,6 +89,19 @@ class OrderController extends Controller
         $oDetails['created_at'] = Carbon::now();
 
         OrderDetails::insert($oDetails);
+
+        // Reduce product quantity
+        $product = Product::find($content->id);
+        if ($product) {
+            if ($product->quantity >= $content->qty) {
+                $product->decrement('quantity', $content->qty);
+            } else {
+                // Handle insufficient quantity error
+                return redirect()
+                    ->back()
+                    ->with('error', "Insufficient quantity for product: {$product->name}");
+            }
+        }
     }
 
     Cart::destroy();

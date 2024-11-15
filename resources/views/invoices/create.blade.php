@@ -147,7 +147,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
 
-                    <form action="{{ route('orders.store') }}" method="POST">
+                    <form action="{{ route('orders.store') }}" method="POST" onsubmit="return validatePay()">
                         @csrf
                         <div class="modal-body">
                             <div class="row">
@@ -166,9 +166,8 @@
                                         </label>
 
                                         <select class="form-control @error('payment_type') is-invalid @enderror" id="payment_type" name="payment_type">
-                                            <option selected="" disabled="">Pilih Pembayaran...</option>
+                                            <option selected disabled>Pilih Pembayaran...</option>
                                             <option value="HandCash">Bayar Langsung</option>
-                                            {{-- <option value="Cheque">Cheque</option> --}}
                                             <option value="Due">Dp (Uang muka)</option>
                                         </select>
 
@@ -191,6 +190,7 @@
                                            class="form-control @error('pay') is-invalid @enderror"
                                            value="{{ old('pay') }}"
                                            required
+                                           data-total="{{ Cart::total() }}"
                                     >
 
                                     @error('pay')
@@ -211,6 +211,7 @@
                             </button>
                         </div>
                     </form>
+
                 </div>
             </div>
         </div>
@@ -244,6 +245,18 @@
                     payInput.readOnly = false;
                 }
             });
+
+            function validatePay() {
+    const payInput = document.getElementById('pay');
+    const payValue = parseFloat(payInput.value);
+    const total = parseFloat(payInput.getAttribute('data-total'));
+
+    if (payValue > total) {
+        alert('Jumlah pembayaran tidak boleh lebih besar dari total keranjang: ' + total);
+        return false;
+    }
+    return true;
+}
         </script>
     </body>
 </html>

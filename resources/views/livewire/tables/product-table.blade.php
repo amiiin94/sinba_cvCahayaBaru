@@ -63,21 +63,12 @@
                     <th class="align-middle text-center w-1">
                         {{ __('No.') }}
                     </th>
-                    {{-- <th scope="col" class="align-middle text-center">
-                        {{ __('Gambar') }}
-                    </th> --}}
                     <th scope="col" class="align-middle text-center">
                         <a wire:click.prevent="sortBy('name')" href="#" role="button">
                             {{ __('Nama Produk') }}
                             @include('inclues._sort-icon', ['field' => 'name'])
                         </a>
                     </th>
-                    {{-- <th scope="col" class="align-middle text-center">
-                        <a wire:click.prevent="sortBy('code')" href="#" role="button">
-                            {{ __('Code') }}
-                            @include('inclues._sort-icon', ['field' => 'code'])
-                        </a>
-                    </th> --}}
                     <th scope="col" class="align-middle text-center">
                         <a wire:click.prevent="sortBy('category_id')" href="#" role="button">
                             {{ __('Nama kategori') }}
@@ -85,15 +76,15 @@
                         </a>
                     </th>
                     <th scope="col" class="align-middle text-center">
-                        <a wire:click.prevent="sortBy('price')" href="#" role="button">
+                        <a wire:click.prevent="sortBy('buying_price')" href="#" role="button">
                             {{ __('Harga Beli') }}
-                            @include('inclues._sort-icon', ['field' => 'price'])
+                            @include('inclues._sort-icon', ['field' => 'buying_price'])
                         </a>
                     </th>
                     <th scope="col" class="align-middle text-center">
-                        <a wire:click.prevent="sortBy('price')" href="#" role="button">
+                        <a wire:click.prevent="sortBy('selling_price')" href="#" role="button">
                             {{ __('Harga Jual') }}
-                            @include('inclues._sort-icon', ['field' => 'price'])
+                            @include('inclues._sort-icon', ['field' => 'selling_price'])
                         </a>
                     </th>
                     <th scope="col" class="align-middle text-center">
@@ -113,17 +104,9 @@
                         <td class="align-middle text-center">
                             {{ $loop->iteration }}
                         </td>
-                        {{-- <td class="align-middle text-center">
-                            <img style="width: 90px;"
-                                src="{{ $product->product_image ? asset('storage/' . $product->product_image) : asset('assets/img/products/default.webp') }}"
-                                alt="">
-                        </td> --}}
                         <td class="align-middle text-center">
                             {{ $product->name }}
                         </td>
-                        {{-- <td class="align-middle text-center">
-                            {{ $product->code }}
-                        </td> --}}
                         <td class="align-middle text-center">
                             {{ $product->category ? $product->category->name : '--' }}
                         </td>

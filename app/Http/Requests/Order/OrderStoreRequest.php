@@ -25,4 +25,12 @@ class OrderStoreRequest extends FormRequest
         ];
     }
 
+    public function withValidator($validator)
+    {
+        $validator->after(function ($validator) {
+            if ($this->pay > Cart::total()) {
+                $validator->errors()->add('pay', 'The pay amount cannot be greater than the total cart amount.');
+            }
+        });
+    }
 }

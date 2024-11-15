@@ -11,9 +11,9 @@ enum OrderStatus: int
     public function label(): string
     {
         return match ($this) {
-            self::PENDING => __('Pending'),
-            self::COMPLETE => __('Complete'),
-            self::CANCEL => __('Cancel'),
+            self::PENDING => __('Belum Lunas'),
+            self::COMPLETE => __('Lunas'),
+            self::CANCEL => __('Batalkan'),
         };
     }
 }

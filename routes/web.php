@@ -79,6 +79,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     //Route::post('/pos/invoice', [PosController::class, 'createInvoice'])->name('pos.createInvoice');
     Route::post('invoice/create/', [InvoiceController::class, 'create'])->name('invoice.create');
+    
 
     // Route Orders
     Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');

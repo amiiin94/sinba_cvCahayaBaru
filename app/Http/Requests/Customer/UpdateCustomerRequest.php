@@ -59,4 +59,28 @@ class UpdateCustomerRequest extends FormRequest
             ],
         ];
     }
+
+    public function messages(): array
+{
+    return [
+        'name.required' => 'Nama pelanggan wajib diisi.',
+        'name.max' => 'Nama pelanggan tidak boleh lebih dari 50 karakter.',
+        
+        'email.required' => 'Email pelanggan wajib diisi.',
+        'email.email' => 'Format email tidak valid.',
+        'email.max' => 'Email tidak boleh lebih dari 50 karakter.',
+        'email.unique' => 'Email sudah terdaftar untuk pelanggan lain.',
+        
+        'phone.required' => 'Nomor telepon wajib diisi.',
+        'phone.max' => 'Nomor telepon tidak boleh lebih dari 25 karakter.',
+        
+        'bank_name.required' => 'Bank wajib dipilih.',
+        
+        'account_holder.max' => 'Nama pemegang rekening tidak boleh lebih dari 50 karakter.',
+        'account_number.max' => 'Nomor rekening tidak boleh lebih dari 25 karakter.',
+        
+        'address.required' => 'Alamat pelanggan wajib diisi.',
+        'address.max' => 'Alamat tidak boleh lebih dari 100 karakter.'
+    ];
+}
 }

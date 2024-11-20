@@ -12,7 +12,7 @@
             <div class="container-xl">
                 <div class="d-flex justify-content-end mt-3 mb-3">
                     <a class="btn btn-primary" href="{{ route('purchases.purchaseReport') }}">
-                        Export Pembelian
+                        Expor Pembelian
                     </a>
                 </div>
                 @livewire('tables.purchase-table')

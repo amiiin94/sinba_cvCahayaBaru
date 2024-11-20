@@ -9,7 +9,7 @@
             button_label="{{ __('Add your first Unit') }}"
             button_route="{{ route('units.create') }}"
         />
-    @else
+        @else
         <div class="container-xl">
             @if (session('success'))
                 <div class="alert alert-success alert-dismissible" role="alert">
@@ -19,6 +19,16 @@
                     <a class="btn-close" data-bs-dismiss="alert" aria-label="close"></a>
                 </div>
             @endif
+
+            @if (session('error'))
+                <div class="alert alert-danger alert-dismissible" role="alert">
+                    <h3 class="mb-1">Error</h3>
+                    <p>{{ session('error') }}</p>
+
+                    <a class="btn-close" data-bs-dismiss="alert" aria-label="close"></a>
+                </div>
+            @endif
+
             @livewire('tables.unit-table')
         </div>
     @endif

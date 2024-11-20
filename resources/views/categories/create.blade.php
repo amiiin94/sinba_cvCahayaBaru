@@ -7,7 +7,7 @@
                 <div class="card-header">
                     <div>
                         <h3 class="card-title">
-                            {{ __('Create Category') }}
+                            {{ __('Buat Kategori Baru') }}
                         </h3>
                     </div>
                     <div class="card-actions">
@@ -21,7 +21,7 @@
                     </div>
                     <div class="card-footer text-end">
                         <x-button type="submit">
-                            {{ __('Create') }}
+                            {{ __('Buat') }}
                         </x-button>
                     </div>
                 </form>

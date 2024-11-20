@@ -40,7 +40,7 @@
 
                                     <div class="col-md-6">
                                         <label class="small mb-1" for="customer_id">
-                                            {{ __('Customer') }}
+                                            {{ __('Pembeli') }}
                                             <span class="text-danger">*</span>
                                         </label>
 
@@ -48,7 +48,7 @@
                                             class="form-select form-control-solid @error('customer_id') is-invalid @enderror"
                                             id="customer_id" name="customer_id">
                                             <option selected="" disabled="">
-                                                Pilih customer:
+                                                Pilih Pembeli:
                                             </option>
 
                                             @foreach ($customers as $customer)
@@ -133,7 +133,7 @@
                                                             @method('delete')
                                                             @csrf
                                                             <button type="submit" class="btn btn-icon btn-outline-danger "
-                                                                onclick="return confirm('Are you sure you want to delete this record?')">
+                                                                onclick="return confirm('Apakah anda yakin ingin menghapus produk ini dari keranjang?')">
                                                                 <svg xmlns="http://www.w3.org/2000/svg"
                                                                     class="icon icon-tabler icon-tabler-trash"
                                                                     width="24" height="24" viewBox="0 0 24 24"

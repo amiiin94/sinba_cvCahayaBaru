@@ -78,7 +78,7 @@ class ProductController extends Controller
             "uuid" => Str::uuid()
         ]);
 
-        return to_route('products.index')->with('success', 'Product has been created!');
+        return to_route('products.index')->with('success', 'Produk berhasil dibuat!');
     }
 
 
@@ -142,7 +142,7 @@ class ProductController extends Controller
         // Redirect dengan pesan sukses
         return redirect()
             ->route('products.index') // Tidak perlu menggunakan route(route: ...)
-            ->with('success', 'Product has been updated!');
+            ->with('success', 'Produk berhasil diedit!');
     }
 
 
@@ -163,6 +163,6 @@ class ProductController extends Controller
 
         return redirect()
             ->route('products.index')
-            ->with('success', 'Product has been deleted!');
+            ->with('success', 'Produk berhasil dihapus!');
     }
 }

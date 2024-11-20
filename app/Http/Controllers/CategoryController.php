@@ -33,7 +33,7 @@ class CategoryController extends Controller
 
         return redirect()
             ->route('categories.index')
-            ->with('success', 'Category has been created!');
+            ->with('success', 'Kategori berhasil dibuat!');
     }
 
     public function show(Category $category)
@@ -59,15 +59,22 @@ class CategoryController extends Controller
 
         return redirect()
             ->route('categories.index')
-            ->with('success', 'Category has been updated!');
+            ->with('success', 'Kategori berhasil diedit!');
     }
 
     public function destroy(Category $category)
     {
+        // Check if the unit is associated with any product
+    if ($category->products()->exists()) {
+        return redirect()
+            ->route('categories.index')
+            ->with('error', "Tidak dapat menghapus Kategori ini karena Kategori ini terkait dengan produk.");
+    }
+
         $category->delete();
 
         return redirect()
             ->route('categories.index')
-            ->with('success', 'Category has been deleted!');
+            ->with('success', 'Kategori berhasil dihapus!');
     }
 }

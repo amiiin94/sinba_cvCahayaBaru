@@ -10,8 +10,14 @@ class InvoiceController extends Controller
 {
     public function create(StoreInvoiceRequest $request, Customer $customer)
     {
+        $validatedData = $request->validate([
+            'customer_id' => 'required|exists:customers,id',
+        ]);
+        
         $customer = Customer::where('id', $request->get('customer_id'))
             ->first();
+        
+        
 
         $carts = Cart::content();
 

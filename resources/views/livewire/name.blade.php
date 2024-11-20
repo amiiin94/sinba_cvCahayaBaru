@@ -1,6 +1,6 @@
 <div class="mb-3">
     <label for="name" class="form-label required">
-        {{ __('Name') }}
+        {{ __('Nama') }}
     </label>
 
     <input type="text"
@@ -8,7 +8,7 @@
            name="name"
            wire:model.blur="name"
            wire:keyup="selectedName"
-           placeholder="Enter name"
+           placeholder="Masukkan nama"
            class="form-control @error('name') is-invalid @enderror"
     />
 

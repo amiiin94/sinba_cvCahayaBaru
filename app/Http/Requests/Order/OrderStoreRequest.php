@@ -29,7 +29,7 @@ class OrderStoreRequest extends FormRequest
     {
         $validator->after(function ($validator) {
             if ($this->pay > Cart::total()) {
-                $validator->errors()->add('pay', 'The pay amount cannot be greater than the total cart amount.');
+                $validator->errors()->add('pay', 'Jumlah pembayaran tidak boleh lebih besar dari total jumlah keranjang..');
             }
         });
     }

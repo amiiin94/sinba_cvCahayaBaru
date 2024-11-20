@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>CV Chaya Baru</title>
+    <title>CV Cahaya Baru</title>
 
     <!-- CSS files -->
     <link href="{{ asset('dist/css/tabler.min.css') }}" rel="stylesheet" />

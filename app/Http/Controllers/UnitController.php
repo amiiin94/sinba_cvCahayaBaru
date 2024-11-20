@@ -44,7 +44,7 @@ class UnitController extends Controller
 
         return redirect()
             ->route('units.index')
-            ->with('success', 'Unit has been created!');
+            ->with('success', 'Unit Berhasil dibuat!');
     }
 
     public function edit(Unit $unit)
@@ -68,11 +68,19 @@ class UnitController extends Controller
     }
 
     public function destroy(Unit $unit)
-    {
-        $unit->delete();
-
+{
+    // Check if the unit is associated with any product
+    if ($unit->products()->exists()) {
         return redirect()
             ->route('units.index')
-            ->with('success', 'Unit has been deleted!');
+            ->with('error', "Tidak dapat menghapus unit ini karena unit ini terkait dengan produk.");
     }
+
+    // Proceed with deletion if no associated products
+    $unit->delete();
+
+    return redirect()
+        ->route('units.index')
+        ->with('success', 'Unit Berhasil Dihapus');
+}
 }

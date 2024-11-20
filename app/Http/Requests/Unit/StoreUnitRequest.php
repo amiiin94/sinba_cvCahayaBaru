@@ -26,4 +26,18 @@ class StoreUnitRequest extends FormRequest
             'short_code' => 'required'
         ];
     }
+
+    /**
+     * Custom messages for validation errors.
+     *
+     * @return array
+     */
+    public function messages(): array
+    {
+        return [
+            'name.required' => 'Nama unit wajib diisi.',
+            'name.unique' => 'Nama unit sudah terdaftar.',
+            'short_code.required' => 'Kode singkat unit wajib diisi.'
+        ];
+    }
 }

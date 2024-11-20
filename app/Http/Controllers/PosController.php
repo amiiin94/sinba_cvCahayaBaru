@@ -24,32 +24,42 @@ class PosController extends Controller
         ]);
     }
 
-    public function addCartItem (Request $request)
-    {
-        $request->all();
-        //dd($request);
+    public function addCartItem(Request $request)
+{
+    // Validate the incoming request data
+    $rules = [
+        'id' => 'required|numeric|exists:products,id',
+        'name' => 'required|string',
+        'selling_price' => 'required|numeric',
+    ];
 
-        $rules = [
-            'id' => 'required|numeric',
-            'name' => 'required|string',
-            'selling_price' => 'required|numeric',
-        ];
+    $validatedData = $request->validate($rules);
 
-        $validatedData = $request->validate($rules);
+    // Retrieve the product from the database
+    $product = Product::find($validatedData['id']);
 
-        Cart::add(
-            $validatedData['id'],
-            $validatedData['name'],
-            1,
-            $validatedData['selling_price'],
-            1,
-            (array)$options = null
-        );
-
+    // Check if the product quantity is greater than 0
+    if ($product->quantity <= 0) {
         return redirect()
             ->back()
-            ->with('success', 'Product has been added to cart!');
+            ->with('error', 'Produk tidak dapat ditambahkan ke keranjang karena stok habis.');
     }
+
+    // Add the product to the cart
+    Cart::add(
+        $validatedData['id'],
+        $validatedData['name'],
+        1, // quantity added to the cart
+        $validatedData['selling_price'],
+        1,
+        (array)$options = null
+    );
+
+    return redirect()
+        ->back()
+        ->with('success', 'Produk telah dimasukkan ke dalam keranjang!');
+}
+
 
     public function updateCartItem(Request $request, $rowId)
     {
@@ -62,7 +72,7 @@ class PosController extends Controller
         if ($validatedData['qty'] > Product::where('id', intval($validatedData['product_id']))->value('quantity')) {
             return redirect()
             ->back()
-            ->with('error', 'The requested quantity is not available in stock.');
+            ->with('error', 'Jumlah produk tidak tersedia pada stok.');
         }
         
 
@@ -70,7 +80,7 @@ class PosController extends Controller
 
         return redirect()
             ->back()
-            ->with('success', 'Product has been updated from cart!');
+            ->with('success', 'Produk telah diubah pada keranjang!');
     }
 
     public function deleteCartItem(String $rowId)
@@ -79,6 +89,6 @@ class PosController extends Controller
 
         return redirect()
             ->back()
-            ->with('success', 'Product has been deleted from cart!');
+            ->with('success', 'Produk telah dihapus dalam keranjang!');
     }
 }

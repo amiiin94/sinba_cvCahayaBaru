@@ -1,5 +1,3 @@
-<?php
-
 namespace App\Http\Requests\Category;
 
 use Illuminate\Validation\Rule;
@@ -8,7 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 class UpdateCategoryRequest extends FormRequest
 {
     /**
-     * Determine if the user is authorized to make this request.
+     * Tentukan apakah pengguna diizinkan untuk membuat permintaan ini.
      */
     public function authorize(): bool
     {
@@ -16,7 +14,7 @@ class UpdateCategoryRequest extends FormRequest
     }
 
     /**
-     * Get the validation rules that apply to the request.
+     * Dapatkan aturan validasi yang berlaku untuk permintaan ini.
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array|string>
      */
@@ -27,6 +25,19 @@ class UpdateCategoryRequest extends FormRequest
                 'required',
                 Rule::unique('categories')->ignore($this->category)
             ]
+        ];
+    }
+
+    /**
+     * Mendapatkan pesan validasi dalam bahasa Indonesia.
+     *
+     * @return array<string, string>
+     */
+    public function messages(): array
+    {
+        return [
+            'name.required' => 'Nama kategori harus diisi.',
+            'name.unique' => 'Nama kategori sudah digunakan, silakan pilih nama lain.'
         ];
     }
 }

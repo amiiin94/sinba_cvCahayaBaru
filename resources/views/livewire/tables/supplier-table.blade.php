@@ -108,7 +108,7 @@
                             <x-button.show class="btn-icon" route="{{ route('suppliers.show', $supplier->uuid) }}" />
                             <x-button.edit class="btn-icon" route="{{ route('suppliers.edit', $supplier->uuid) }}" />
                             <x-button.delete class="btn-icon" route="{{ route('suppliers.destroy', $supplier->uuid) }}"
-                                onclick="return confirm('Apakah kamu yakin ingin menghapus suplier {{ $supplier->name }} ?!')" />
+                                onclick="return confirm('Apakah anda yakin ingin menghapus suplier {{ $supplier->name }} ?!')" />
                         </td>
                     </tr>
                 @empty

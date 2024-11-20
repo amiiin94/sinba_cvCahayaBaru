@@ -28,4 +28,17 @@ class StoreCategoryRequest extends FormRequest
             ]
         ];
     }
+
+    /**
+     * Get custom messages for validation errors.
+     *
+     * @return array<string, string>
+     */
+    public function messages(): array
+    {
+        return [
+            'name.required' => 'Nama kategori wajib diisi.',
+            'name.unique' => 'Nama kategori sudah digunakan, silakan pilih nama lain.'
+        ];
+    }
 }

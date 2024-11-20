@@ -64,6 +64,6 @@ class ProductImportController extends Controller
 
         return redirect()
             ->route('products.index')
-            ->with('success', 'Data product has been imported!');
+            ->with('success', 'Data produk berhasil di impor');
     }
 }

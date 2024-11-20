@@ -78,7 +78,7 @@ class PurchaseController extends Controller
         if (empty($request->invoiceProducts) || $request->invoiceProducts[0]['total'] == 0) {
             return redirect()
                 ->back()
-                ->with('error', 'Please add product!');
+                ->with('error', 'Silahkan tambah produk');
         }
 
         DB::beginTransaction();
@@ -115,7 +115,7 @@ class PurchaseController extends Controller
             DB::commit();
             return redirect()
                 ->route('purchases.index')
-                ->with('success', 'Purchase has been created and inventory updated!');
+                ->with('success', 'Pembayaran berhasil dibuat');
 
         } catch (\Exception $e) {
             DB::rollBack();
@@ -130,7 +130,7 @@ class PurchaseController extends Controller
         $product = Product::findOrFail($productId);
 
         if ($quantity <= 0) {
-            throw new \Exception('Quantity must be greater than zero');
+            throw new \Exception('Jumlah barang harus lebih dari nol');
         }
 
         $product->update([
@@ -158,7 +158,7 @@ class PurchaseController extends Controller
 
         return redirect()
             ->back()
-            ->with('success', 'Purchase has been approved!');
+            ->with('success', 'Pembayaran telah disetujui!');
     }
 
     public function destroy($uuid)
@@ -168,7 +168,7 @@ class PurchaseController extends Controller
 
         return redirect()
             ->route('purchases.index')
-            ->with('success', 'Purchase has been deleted!');
+            ->with('success', 'Pembayaran berhasil di hapus');
     }
 
 

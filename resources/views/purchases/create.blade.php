@@ -58,6 +58,11 @@
 
                                         <x-tom-select label="Suppliers" id="supplier_id" name="supplier_id"
                                             placeholder="Pilih supplier" :data="$suppliers" />
+                                            @error('suppliers')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
 
 
                                     </div>

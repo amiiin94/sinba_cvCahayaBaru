@@ -62,6 +62,7 @@
                         </ul>
                     </div>
                 @endif
+                
                 @if (session('success'))
                     <div class="alert alert-success alert-dismissible" role="alert">
                         <h3 class="mb-1">Berhasil</h3>
@@ -70,6 +71,7 @@
                         <a class="btn-close" data-bs-dismiss="alert" aria-label="close"></a>
                     </div>
                 @endif
+                
                 <livewire:tables.order-table />
             </div>
         @endif

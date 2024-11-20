@@ -96,7 +96,7 @@
                             <thead class="thead-light">
                                 <tr>
                                     <th scope="col" class="align-middle text-center">No.</th>
-                                    <th scope="col" class="align-middle text-center">Photo</th>
+                                    <!-- <th scope="col" class="align-middle text-center">Photo</th> -->
                                     <th scope="col" class="align-middle text-center">Nama Produk</th>
                                     <th scope="col" class="align-middle text-center">Kode Produk</th>
                                     <th scope="col" class="align-middle text-center">Jumlah</th>
@@ -110,12 +110,12 @@
                                         <td class="align-middle text-center">
                                             {{ $loop->iteration }}
                                         </td>
-                                        <td class="align-middle text-center">
+                                        <!-- <td class="align-middle text-center">
                                             <div style="max-height: 80px; max-width: 80px;">
                                                 <img class="img-fluid"
                                                     src="{{ $item->product->product_image ? asset('storage/' . $item->product->product_image) : asset('assets/img/products/default.webp') }}">
                                             </div>
-                                        </td>
+                                        </td> -->
                                         <td class="align-middle text-center">
                                             {{ $item->product->name }}
                                         </td>

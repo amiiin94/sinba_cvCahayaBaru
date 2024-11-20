@@ -63,6 +63,12 @@
                         </a>
                     </th>
                     <th scope="col" class="align-middle text-center">
+                        <a wire:click.prevent="sortBy('short_code')" href="#" role="button">
+                            {{ __('Jumlah Produk') }}
+                            @include('inclues._sort-icon', ['field' => 'short_code'])
+                        </a>
+                    </th>
+                    <th scope="col" class="align-middle text-center">
                         {{ __('Aksi') }}
                     </th>
                 </tr>
@@ -83,9 +89,13 @@
                         {{ $unit->short_code }}
                     </td>
                     <td class="align-middle text-center" style="width: 15%">
+                    {{ $unit->products->count() }}
+                    </td>
+                    
+                    <td class="align-middle text-center" style="width: 15%">
                         {{-- <x-button.show class="btn-icon" route="{{ route('units.show', $unit) }}"/> --}}
                         <x-button.edit class="btn-icon" route="{{ route('units.edit', $unit) }}"/>
-                        <x-button.delete class="btn-icon" route="{{ route('units.destroy', $unit) }}"/>
+                        <x-button.delete class="btn-icon" route="{{ route('units.destroy', $unit) }}" onclick="return confirm('Apakah yakin ingin menghapus unit {{ $unit->name }}?')"/>
                     </td>
                 </tr>
             @empty

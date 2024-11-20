@@ -51,7 +51,7 @@ class CustomerController extends Controller
 
         return redirect()
             ->route('customers.index')
-            ->with('success', 'New customer has been created!');
+            ->with('success', 'Pembeli baru berhasil dibuat!');
     }
 
     public function show($uuid)
@@ -102,20 +102,31 @@ class CustomerController extends Controller
 
         return redirect()
             ->route('customers.index')
-            ->with('success', 'Customer has been updated!');
+            ->with('success', 'Pembeli berhasil diedit');
     }
 
     public function destroy($uuid)
     {
         $customer = Customer::where('uuid', $uuid)->firstOrFail();
+        
+        // Delete the customer's photo if it exists
         if ($customer->photo) {
             unlink(public_path('storage/') . $customer->photo);
         }
+        
+        // Check if the customer has any associated purchase records
+        if ($customer->orders()->exists()) {
+            return redirect()
+                ->route('suppliers.index')  // Assuming suppliers.index is the correct route
+                ->with('error', 'Tidak dapat menghapus pemasok ini karena terkait dengan catatan penjualan yang sudah ada.');
+        }
 
+        // If no associated purchase records, delete the customer
         $customer->delete();
 
         return redirect()
             ->back()
-            ->with('success', 'Customer has been deleted!');
+            ->with('success', 'Pemasok berhasil dihapus!');
     }
+
 }

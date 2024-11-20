@@ -71,102 +71,67 @@
                         <div class="form-control form-control-solid">{{ $purchase->supplier->address }}</div>
                     </div>
                     <div class="col-lg-12">
-                        <div class="table-responsive">
-                            <table class="table table-bordered table-striped align-middle">
-                                <thead class="thead-light">
-                                    <tr>
-                                        <th scope="col" class="align-middle text-center">No.</th>
-                                        <th scope="col" class="align-middle text-center">Foto</th>
-                                        <th scope="col" class="align-middle text-center">Nama Produk</th>
-                                        <th scope="col" class="align-middle text-center">Kode Produk</th>
-                                        <th scope="col" class="align-middle text-center">Stok Saat Ini</th>
-                                        <th scope="col" class="align-middle text-center">Stok yang Dibeli</th>
-                                        <th scope="col" class="align-middle text-center">Harga</th>
-                                        <th scope="col" class="align-middle text-center">Total</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($purchase->details as $item)
-                                        <tr>
-                                            <td class="align-middle text-center">{{ $loop->iteration }}</td>
-                                            <td class="align-middle justify-content-center text-center">
-                                                <div style="max-height: 80px; max-width: 80px;">
-                                                    <img class="img-fluid"
-                                                        src="{{ $item->product->product_image ? asset('storage/' . $item->product->product_image) : asset('assets/img/products/default.webp') }}">
-                                                </div>
-                                            </td>
-                                            <td class="align-middle text-center">
-                                                {{ $item->product->name }}
-                                            </td>
-                                            <td class="align-middle text-center">
-                                                <span class="badge bg-indigo-lt">
-                                                    {{ $item->product->code }}
-                                                </span>
-                                            </td>
-                                            <td class="align-middle text-center">
-                                                <span class="badge bg-primary-lt">
-                                                    {{ $item->product->quantity }}
-                                                </span>
-                                            </td>
-                                            <td class="align-middle text-center">
-                                                <span class="badge bg-primary-lt">
-                                                    {{ $item->quantity }}
-                                                </span>
-                                            </td>
-                                            <td class="align-middle text-center">
-                                                {{ Number::currency($item->total / $item->quantity, 'IDR', 'Rp') }}
-                                            </td>
-                                            <td class="align-middle text-center">
-                                                {{ Number::currency($item->total, 'IDR', 'Rp') }}
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                    {{-- created by --}}
-                                    <tr>
-                                        <td class="align-middle text-end" colspan="7">
-                                            Dibuat Oleh
-                                        </td>
-                                        <td class="align-middle text-center">
-                                            {{ $purchase->user->name }}
-                                        </td>
-                                    </tr>
+                    <div class="table-responsive">
+    <table class="table table-bordered table-striped align-middle">
+        <thead class="thead-light">
+            <tr>
+                <th class="text-center">No.</th>
+                <th class="text-center">Nama Produk</th>
+                <th class="text-center">Kode Produk</th>
+                <th class="text-center">Stok Saat Ini</th>
+                <th class="text-center">Stok yang Dibeli</th>
+                <th class="text-center">Harga Satuan</th>
+                <th class="text-center">Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            @forelse ($purchase->details as $item)
+                <tr>
+                    <td class="text-center">{{ $loop->iteration }}</td>
+                    <td class="text-center">{{ $item->product->name }}</td>
+                    <td class="text-center">
+                        <span class="badge bg-indigo-lt">{{ $item->product->code }}</span>
+                    </td>
+                    <td class="text-center">
+                        <span class="badge bg-primary-lt">{{ $item->product->quantity }}</span>
+                    </td>
+                    <td class="text-center">
+                        <span class="badge bg-primary-lt">{{ $item->quantity }}</span>
+                    </td>
+                    <td class="text-center">
+                        {{ Number::currency($item->total / $item->quantity, 'IDR', 'Rp') }}
+                    </td>
+                    <td class="text-center">
+                        {{ Number::currency($item->total, 'IDR', 'Rp') }}
+                    </td>
+                </tr>
+            @empty
+                <tr>
+                    <td colspan="7" class="text-center">Tidak ada detail pembelian</td>
+                </tr>
+            @endforelse
 
-                                    {{-- <tr>
-                                    <td class="align-middle text-end" colspan="7">
-                                        Persentase Pajak
-                                    </td>
-                                    <td class="align-middle text-center">
-                                        {{ number_format($purchase->tax_percentage, 2) }}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="align-middle text-end" colspan="7">
-                                        Jumlah Pajak
-                                    </td>
-                                    <td class="align-middle text-center">
-                                        {{ number_format($purchase->tax_amount, 2) }}
-                                    </td>
-                                </tr> --}}
+            <tr>
+                <td class="text-end" colspan="6">Dibuat Oleh</td>
+                <td class="text-center">{{ $purchase->user->name }}</td>
+            </tr>
 
-                                    <tr>
-                                        <td class="align-middle text-end" colspan="7">
-                                            Status
-                                        </td>
-                                        <td class="align-middle text-center">
-                                            @if ($purchase->status->value == 1)
-                                                <span class="badge bg-success-lt">
-                                                    Disetujui
-                                                </span>
-                                            @elseif ($purchase->status->value == 0)
-                                                <span class="badge bg-warning-lt">
-                                                    Tertunda
-                                                </span>
-                                            @endif
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+            <tr>
+                <td class="text-end" colspan="6">Status</td>
+                <td class="text-center">
+                    @switch($purchase->status->value)
+                        @case(1)
+                            <span class="badge bg-success-lt">Disetujui</span>
+                            @break
+                        @case(0)
+                            <span class="badge bg-warning-lt">Tertunda</span>
+                            @break
+                    @endswitch
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
                     </div>
                 </div>
 

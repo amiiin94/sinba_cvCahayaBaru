@@ -20,7 +20,7 @@
                                 <img class="img-account-profile mb-2" src="{{ asset('assets/img/products/default.webp') }}" alt="" id="image-preview" />
 
                                 <div class="small font-italic text-muted mb-2">
-                                    JPG or PNG no larger than 2 MB
+                                    JPG atau PNG tidak lebih dari 2 MB
                                 </div>
 
                                 <input
@@ -66,7 +66,7 @@
                                     <div class="row row-cards">
                                         <div class="col-md-12">
 
-                                            <x-input name="name" id="name" placeholder="Nama Produk"
+                                            <x-input name="name" label="Nama" id="name" placeholder="Nama Produk"
                                                 value="{{ old('name') }}" />
                                         </div>
 
@@ -209,11 +209,11 @@
                                         <div class="col-md-12">
                                             <div class="mb-3">
                                                 <label for="notes" class="form-label">
-                                                    {{ __('Notes') }}
+                                                    {{ __('Catatan') }}
                                                 </label>
 
                                                 <textarea name="notes" id="notes" rows="5" class="form-control @error('notes') is-invalid @enderror"
-                                                    placeholder="Product notes"></textarea>
+                                                    placeholder="Catata Produk"></textarea>
 
                                                 @error('notes')
                                                     <div class="invalid-feedback">

@@ -25,7 +25,7 @@
                     <div class="dropdown-menu dropdown-menu-end" style="">
                         <a href="{{ route('products.create', ['category' => $category]) }}" class="dropdown-item">
                             <x-icon.plus />
-                            {{ __('Add Product') }}
+                            {{ __('Tambah Produk') }}
                         </a>
                     </div>
                 </div>

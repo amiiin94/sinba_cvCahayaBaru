@@ -7,7 +7,7 @@
             <div class="card-header">
                 <div>
                     <h3 class="card-title">
-                        {{ __('Create Unit') }}
+                        {{ __('Membuat Unit') }}
                     </h3>
                 </div>
 
@@ -22,7 +22,7 @@
                     <livewire:name />
 
                     <x-input
-                        label="{{ __('Short Code') }}"
+                        label="{{ __('Singkatan') }}"
                         id="short_code"
                         name="short_code"
                         :value="old('short_code')"
@@ -31,7 +31,7 @@
                 </div>
                 <div class="card-footer text-end">
                     <x-button type="submit">
-                        {{ __('Create') }}
+                        {{ __('Buat') }}
                     </x-button>
                 </div>
             </form>

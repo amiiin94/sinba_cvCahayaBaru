@@ -46,7 +46,7 @@ class SupplierController extends Controller
 
         return redirect()
             ->route('suppliers.index')
-            ->with('success', 'New supplier has been created!');
+            ->with('success', 'Suplier baru berhasil ditambahkan!');
     }
 
     public function show($uuid)
@@ -100,7 +100,7 @@ class SupplierController extends Controller
 
         return redirect()
             ->route('suppliers.index')
-            ->with('success', 'Supplier has been updated!');
+            ->with('success', 'Suplier berhasil diedit!');
     }
 
     public function destroy($uuid)
@@ -111,7 +111,7 @@ class SupplierController extends Controller
     if ($supplier->purchases()->exists()) {
         return redirect()
             ->route('suppliers.index')
-            ->with('error', 'Cannot delete this supplier because it is associated with existing purchase records.');
+            ->with('error', 'Tidak dapat menghapus suplier ini karena terkait dengan catatan pembelian yang sudah ada.');
     }
 
     /**
@@ -125,7 +125,7 @@ class SupplierController extends Controller
 
     return redirect()
         ->route('suppliers.index')
-        ->with('success', 'Supplier has been deleted!');
+        ->with('success', 'Suplier berhasil dihapus');
 }
 
 }

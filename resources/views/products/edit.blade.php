@@ -277,9 +277,10 @@
                                         {{ __('Ubah') }}
                                     </button>
 
-                                    <a class="btn btn-danger" href="{{ url()->previous() }}">
+                                    <a class="btn btn-danger" href="{{ route('products.index') }}">
                                         {{ __('Batalkan') }}
                                     </a>
+
                                 </div>
                             </div>
                         </div>

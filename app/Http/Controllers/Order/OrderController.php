@@ -99,7 +99,7 @@ class OrderController extends Controller
                 // Handle insufficient quantity error
                 return redirect()
                     ->back()
-                    ->with('error', "Insufficient quantity for product: {$product->name}");
+                    ->with('error', "Jumlah stok produk kurang untuk produk: {$product->name}");
             }
         }
     }
@@ -108,7 +108,7 @@ class OrderController extends Controller
 
     return redirect()
         ->route('orders.index')
-        ->with('success', 'Order has been created!');
+        ->with('success', 'Penjualan Berhasil Dibuat');
 }
 
     public function show($uuid)
@@ -154,7 +154,7 @@ class OrderController extends Controller
 
         return redirect()
             ->route('orders.complete')
-            ->with('success', 'Order has been completed!');
+            ->with('success', 'Penjualan telah selesai');
     }
 
     public function destroy($uuid)
@@ -193,6 +193,6 @@ class OrderController extends Controller
             ->route('orders.index', [
                 'orders' => $orders
             ])
-            ->with('success', 'Order has been canceled!');
+            ->with('success', 'Penjualan berhasil di batalkan');
     }
 }

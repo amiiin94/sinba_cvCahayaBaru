@@ -2,7 +2,7 @@
     <div class="card-header">
         <div>
             <h3 class="card-title">
-                {{ __('Customers') }}
+                {{ __('Pembeli') }}
             </h3>
         </div>
 
@@ -49,7 +49,7 @@
                     </th>
                     <th scope="col" class="align-middle text-center">
                         <a wire:click.prevent="sortBy('name')" href="#" role="button">
-                            {{ __('Name') }}
+                            {{ __('Nama') }}
                             @include('inclues._sort-icon', ['field' => 'name'])
                         </a>
                     </th>
@@ -61,12 +61,12 @@
                     </th>
                     <th scope="col" class="align-middle text-center">
                         <a wire:click.prevent="sortBy('created_at')" href="#" role="button">
-                            {{ __('Created at') }}
+                            {{ __('Dibuat tanggal') }}
                             @include('inclues._sort-icon', ['field' => 'Created_at'])
                         </a>
                     </th>
                     <th scope="col" class="align-middle text-center">
-                        {{ __('Action') }}
+                        {{ __('Aksi') }}
                     </th>
                 </tr>
             </thead>
@@ -89,7 +89,7 @@
                             <x-button.show class="btn-icon" route="{{ route('customers.show', $customer->uuid) }}" />
                             <x-button.edit class="btn-icon" route="{{ route('customers.edit', $customer->uuid) }}" />
                             <x-button.delete class="btn-icon" route="{{ route('customers.destroy', $customer->uuid) }}"
-                                onclick="return confirm('Are you sure to remove {{ $customer->name }} ?')" />
+                                onclick="return confirm('Apakah anda yakin ingin menghapus {{ $customer->name }} ?')" />
                         </td>
                     </tr>
                 @empty

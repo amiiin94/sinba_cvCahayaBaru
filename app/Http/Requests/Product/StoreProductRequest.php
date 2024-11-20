@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Product;
 
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 use Haruncpi\LaravelIdGenerator\IdGenerator;
 
@@ -25,7 +26,11 @@ class StoreProductRequest extends FormRequest
     {
         return [
             'product_image'     => 'image|file|max:2048',
-            'name'              => 'required|string',
+            'name'              => [
+                'required',
+                'string',
+                Rule::unique('products') // Ensures 'name' is unique in the 'products' table
+            ],
             'category_id'       => 'required|numeric',
             'unit_id'           => 'required|numeric',
             'quantity'          => 'required|integer',
@@ -52,6 +57,7 @@ class StoreProductRequest extends FormRequest
 
             'name.required'          => 'Nama produk wajib diisi',
             'name.string'            => 'Nama produk harus berupa teks',
+            'name.unique'            => 'Nama produk sudah terdaftar',
 
             'category_id.required'   => 'Kategori produk wajib dipilih',
             'category_id.integer'    => 'Kategori yang dipilih tidak valid',

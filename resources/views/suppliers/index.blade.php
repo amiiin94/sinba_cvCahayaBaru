@@ -19,6 +19,14 @@
                     <a class="btn-close" data-bs-dismiss="alert" aria-label="close"></a>
                 </div>
             @endif
+            @if (session('error'))
+                <div class="alert alert-error alert-dismissible" role="alert">
+                    <h3 class="mb-1">Error</h3>
+                    <p>{{ session('error') }}</p>
+
+                    <a class="btn-close" data-bs-dismiss="alert" aria-label="close"></a>
+                </div>
+            @endif
             @livewire('tables.supplier-table')
         </div>
     @endif

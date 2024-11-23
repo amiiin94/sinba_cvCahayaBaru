@@ -4,9 +4,9 @@
 <div class="page-body">
     @if($units->isEmpty())
         <x-empty
-            title="No units found"
-            message="Try adjusting your search or filter to find what you're looking for."
-            button_label="{{ __('Add your first Unit') }}"
+            title="Unit tidak ditemukan"
+            message=""
+            button_label="{{ __('Tambahkan Unit Baru') }}"
             button_route="{{ route('units.create') }}"
         />
         @else

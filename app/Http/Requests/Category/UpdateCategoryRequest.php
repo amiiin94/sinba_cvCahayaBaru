@@ -1,3 +1,4 @@
+<?php
 namespace App\Http\Requests\Category;
 
 use Illuminate\Validation\Rule;
